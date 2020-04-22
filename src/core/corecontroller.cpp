@@ -22,5 +22,8 @@ void asclepios::core::CoreController::InitData()
 //-----------------------------------------------------------------------------
 void asclepios::core::CoreController::InsertData() const
 {
-	m_coreRepository->addPatient(m_dicomReader->getPatient());
+	m_coreRepository->addPatient(m_dicomReader->getReadPatient());
+	m_coreRepository->addStudy(m_dicomReader->getReadStudy());
+	m_coreRepository->addSeries(m_dicomReader->getReadSeries());
+	m_coreRepository->addImage(m_dicomReader->getReadImage());
 }
