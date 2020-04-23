@@ -24,6 +24,10 @@ void asclepios::core::CoreRepository::addSeries(std::unique_ptr<Series> t_series
 //-----------------------------------------------------------------------------
 void asclepios::core::CoreRepository::addImage(std::unique_ptr<Image> t_image) const
 {
+	if (!t_image)
+	{
+		return;
+	}
 	t_image->setParentObject(m_lastSeries);
 	t_image->getIsMultiFrame()
 		? m_lastSeries->addMultiFrameImage(std::move(t_image))
