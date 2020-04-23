@@ -1,6 +1,5 @@
 #pragma once
 
-#include <unordered_set>
 #include <memory>
 #include "study.h"
 
@@ -17,7 +16,7 @@ namespace asclepios::core
 		[[nodiscard]] std::string getName() const { return m_name; }
 		[[nodiscard]] int getAge() const { return m_age; }
 		[[nodiscard]] std::string getBirthDate() const { return m_birthDate; }
-		[[nodiscard]] std::unordered_set<std::unique_ptr<Study>>& getStudies() { return m_studies; }
+		[[nodiscard]] std::set<std::unique_ptr<Study>>& getStudies() { return m_studies; }
 
 		//setters
 		void setID(const std::string& t_id) { m_id = t_id; }
@@ -25,12 +24,16 @@ namespace asclepios::core
 		void setAge(const int& t_age) { m_age = t_age; }
 		void setBirthDate(const std::string& t_birthDate) { m_birthDate = t_birthDate; }
 
+		
+		[[nodiscard]] Study* addStudy(std::unique_ptr<Study> t_study);
+		bool operator==(const Patient& t_rhs) const;
+
 
 	private:
 		std::string m_id = {};
 		std::string m_name = {};
 		int m_age = {};
 		std::string m_birthDate = {};
-		std::unordered_set<std::unique_ptr<Study>> m_studies = {};
+		std::set<std::unique_ptr<Study>> m_studies = {};
 	};
 }

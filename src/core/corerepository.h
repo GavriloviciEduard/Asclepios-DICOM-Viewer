@@ -1,6 +1,5 @@
 #pragma once
 
-#include <unordered_set>
 #include <memory>
 #include "patient.h"
 
@@ -12,12 +11,23 @@ namespace asclepios::core
 		CoreRepository() = default;
 		~CoreRepository() = default;
 
-		void addPatient(std::unique_ptr<Patient> t_patient) { m_patients.emplace(std::move(t_patient)); }
+		//getters
+		[[nodiscard]] std::set<std::unique_ptr<Patient>>& getPatients() { return m_patients; }
+
+		//add
+		void addPatient(std::unique_ptr<Patient> t_patient);
 		void addStudy(std::unique_ptr<Study> t_study);
 		void addSeries(std::unique_ptr<Series> t_series);
-		void addImage(std::unique_ptr<Image> t_image);
+		void addImage(std::unique_ptr<Image> t_image) const;
+
+		//delete
+		void deletePatient(Patient* t_patient);
+		void deleteAllPatients();
 
 	private:
-		std::unordered_set<std::unique_ptr<Patient>> m_patients = {};
+		std::set<std::unique_ptr<Patient>> m_patients = {};
+		Patient* m_lastPatient = {};
+		Study* m_lastStudy = {};
+		Series* m_lastSeries = {};
 	};
 }

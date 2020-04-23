@@ -15,9 +15,12 @@ namespace asclepios::core
 		[[nodiscard]] std::unique_ptr<Patient> getReadPatient() const;
 		[[nodiscard]] std::unique_ptr<Study> getReadStudy() const;
 		[[nodiscard]] std::unique_ptr<Series> getReadSeries() const;
-		[[nodiscard]] std::unique_ptr<Image> getReadImage() const;
+		[[nodiscard]] std::unique_ptr<Image> getReadImage();
 
 	private:
 		std::unique_ptr<imebra::DataSet> m_dataSet = {};
+		std::string m_filePath = {};
+
+		[[nodiscard]] bool isModalitySupported(const std::string& t_modality);
 	};
 }

@@ -1,7 +1,9 @@
 #include "dicomreader.h"
+#include "utils.h"
 
 void asclepios::core::DicomReader::readFile(const std::string& t_filePath)
 {
+	m_filePath = t_filePath;
 	m_dataSet = std::make_unique<imebra::DataSet>(imebra::CodecFactory::load(t_filePath, 2048));
 }
 
@@ -39,10 +41,41 @@ std::unique_ptr<asclepios::core::Series> asclepios::core::DicomReader::getReadSe
 }
 
 //-----------------------------------------------------------------------------
-std::unique_ptr<asclepios::core::Image> asclepios::core::DicomReader::getReadImage() const
+std::unique_ptr<asclepios::core::Image> asclepios::core::DicomReader::getReadImage()
 {
-	//todo read other req data 
+	const auto modality = m_dataSet->getString(imebra::TagId(imebra::tagId_t::Modality_0008_0060), 0);
+	if (!isModalitySupported(modality))
+	{
+		throw std::exception("Modality is not supported!");
+	}
 	auto tempImage = std::make_unique<Image>();
-	//tempImage->setImage(m_dataSet->getImage(0));
+	tempImage->setModality(modality);
+	tempImage->setImagePath(m_filePath);
+	tempImage->setSOPInstanceUID(m_dataSet->getString(imebra::TagId(imebra::tagId_t::SOPInstanceUID_0008_0018), 0));
+	tempImage->setClassUID(m_dataSet->getString(imebra::TagId(imebra::tagId_t::SOPClassUID_0008_0016), 0));
+	const auto window = m_dataSet->getString(imebra::TagId(imebra::tagId_t::WindowCenter_0028_1050), 0);
+	tempImage->setWindowCenter(window.empty() ? defaultWindow : std::stoi(window));
+	const auto level = m_dataSet->getString(imebra::TagId(imebra::tagId_t::WindowWidth_0028_1051), 0);
+	tempImage->setWindowWidth(level.empty() ? defaultLevel : std::stoi(level));
+	const auto rows = m_dataSet->getString(imebra::TagId(imebra::tagId_t::Rows_0028_0010), 0);
+	tempImage->setRows(rows.empty() ? 0 : std::stoi(rows));
+	const auto columns = m_dataSet->getString(imebra::TagId(imebra::tagId_t::Columns_0028_0011), 0);
+	tempImage->setColumns(columns.empty() ? 0 : std::stoi(columns));
+	const auto sliceLocation = m_dataSet->getString(imebra::TagId(imebra::tagId_t::SliceLocation_0020_1041), 0);
+	tempImage->setSliceLocation(sliceLocation.empty() ? 0 : std::stod(sliceLocation));
+	const auto numberFrames = m_dataSet->getString(imebra::TagId(imebra::tagId_t::NumberOfFrames_0028_0008), 0);
+	tempImage->setNumberOfFrames(numberFrames.empty() ? 0 : std::stoi(numberFrames));
+	tempImage->setIsMultiFrame(tempImage->getNumberOfFrames() > 0);
+	if (!tempImage->getIsMultiFrame())
+	{
+		tempImage->setFrameOfRefernceID(
+			m_dataSet->getString(imebra::TagId(imebra::tagId_t::FrameOfReferenceUID_0020_0052), 0));
+	}
 	return tempImage;
+}
+
+//-----------------------------------------------------------------------------
+bool asclepios::core::DicomReader::isModalitySupported(const std::string& t_modality)
+{
+	return t_modality == "PR" || t_modality == "KO" || t_modality == "SR";
 }
