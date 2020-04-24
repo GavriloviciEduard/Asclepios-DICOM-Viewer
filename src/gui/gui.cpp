@@ -19,6 +19,8 @@ void asclepios::gui::GUI::initView()
 	setUpFramelessHelper();
 	createConnections();
 	m_ui.maximizeButton->setIcon(QIcon(QStringLiteral(":/res/maximize-button1.png")));
+	m_ui.labelTitle->setStyleSheet("font-weight: bold; color: grey");
+	m_ui.icon->setPixmap(QPixmap::fromImage(QImage(":/res/icon_small.png")));
 }
 
 //-----------------------------------------------------------------------------

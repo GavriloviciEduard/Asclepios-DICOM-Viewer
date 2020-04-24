@@ -6,5 +6,7 @@
         <file>res/maximize-button2.png</file>
         <file>res/minimize-button1.png</file>
         <file>res/background.png</file>
+        <file>res/icon_big.png</file>
+        <file>res/icon_small.png</file>
     </qresource>
 </RCC>
