@@ -4,6 +4,7 @@
 #include <QTimer>
 #include <QPushButton>
 #include <QFileDialog>
+#include <iostream>
 
 asclepios::gui::GUI::GUI(QWidget* parent) : QMainWindow(parent, Qt::FramelessWindowHint)
 {
@@ -37,6 +38,7 @@ void asclepios::gui::GUI::openFileClicked()
 		//open should be async
 		//todo make async class for opening files
 		m_coreController->readData(fileName.toStdString());
+		std::cout << m_coreController->getPatients().size() << '\n';
 	}
 	else
 	{

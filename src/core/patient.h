@@ -24,10 +24,18 @@ namespace asclepios::core
 		void setAge(const int& t_age) { m_age = t_age; }
 		void setBirthDate(const std::string& t_birthDate) { m_birthDate = t_birthDate; }
 
-		
-		[[nodiscard]] Study* addStudy(std::unique_ptr<Study> t_study);
-		bool operator==(const Patient& t_rhs) const;
 
+		[[nodiscard]] Study* addStudy(std::unique_ptr<Study> t_study);
+		static bool isLess(Patient* t_lhs, Patient* t_rhs);
+
+		//functor for set compare
+		struct patientCompare
+		{
+			bool operator()(const std::unique_ptr<Patient>& t_lhs, const std::unique_ptr<Patient>& t_rhs) const
+			{
+				return isLess(t_lhs.get(), t_rhs.get());
+			}
+		};
 
 	private:
 		std::string m_id = {};

@@ -64,7 +64,7 @@
       <AdditionalIncludeDirectories>..\core;..\..\lib\include\imebra;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\x64\Debug;..\..\lib\debug\imebra\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

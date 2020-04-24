@@ -12,7 +12,7 @@ namespace asclepios::core
 		~CoreRepository() = default;
 
 		//getters
-		[[nodiscard]] std::set<std::unique_ptr<Patient>>& getPatients() { return m_patients; }
+		[[nodiscard]] std::set<std::unique_ptr<Patient>, Patient::patientCompare>& getPatients() { return m_patients; }
 
 		//add
 		void addPatient(std::unique_ptr<Patient> t_patient);
@@ -25,7 +25,7 @@ namespace asclepios::core
 		void deleteAllPatients();
 
 	private:
-		std::set<std::unique_ptr<Patient>> m_patients = {};
+		std::set<std::unique_ptr<Patient>, Patient::patientCompare> m_patients = {};
 		Patient* m_lastPatient = {};
 		Study* m_lastStudy = {};
 		Series* m_lastSeries = {};
