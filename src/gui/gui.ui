@@ -46,7 +46,7 @@
 }
 
 #closeButton:pressed {
-  image: url(:/res/close-button2.png);
+  image: url(:/res/close-button1.png);
   border-style: none;
   background-color: #8c0a15;
 }
