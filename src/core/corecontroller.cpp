@@ -1,4 +1,5 @@
 #include "corecontroller.h"
+#include <iostream>
 
 asclepios::core::CoreController::CoreController()
 {
@@ -31,7 +32,8 @@ void asclepios::core::CoreController::InsertData() const
 	}
 	catch (std::exception& ex)
 	{
-		//todo log exceptions
+		std::string str = ex.what();
+		std::cout << "caca";
 		unused(ex);
 	}
 }
