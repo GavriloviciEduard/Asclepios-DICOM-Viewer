@@ -1,15 +1,14 @@
 #include "gui.h"
 #include <QWindow>
-#include <QScreen>
 #include <QPainter>
 #include <QTimer>
 #include <QPushButton>
+#include <QFileDialog>
 
 asclepios::gui::GUI::GUI(QWidget* parent) : QMainWindow(parent, Qt::FramelessWindowHint)
 {
-	//m_coreController = std::make_unique<core::CoreController>();
-	//m_coreController->readData(R"(C:\Users\GavEd\Desktop\cucu\CucuMpr\cucu mpr\08_1.25 mm\001_1531206301965 _CUCU TOADER .dcm)");
 	initView();
+	initData();
 }
 
 //-----------------------------------------------------------------------------
@@ -17,23 +16,51 @@ void asclepios::gui::GUI::initView()
 {
 	m_ui.setupUi(this);
 	setUpFramelessHelper();
+	showMaximized();
 	createConnections();
-	m_ui.maximizeButton->setIcon(QIcon(QStringLiteral(":/res/maximize-button1.png")));
-	m_ui.labelTitle->setStyleSheet("font-weight: bold; color: grey");
-	m_ui.icon->setPixmap(QPixmap::fromImage(QImage(":/res/icon_small.png")));
+	m_ui.maximizeButton->setIcon(QIcon(buttonMaximizeOn));
+	m_ui.icon->setPixmap(QPixmap::fromImage(QImage(iconTitleBar)));
 }
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::initData()
+{
+	m_coreController = std::make_unique<core::CoreController>();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::openFileClicked()
+{
+	const QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"));
+	if (!fileName.isEmpty())
+	{
+		//open should be async
+		//todo make async class for opening files
+		m_coreController->readData(fileName.toStdString());
+	}
+	else
+	{
+		//todo make alert class
+	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::openFolderClicked()
+{
+}
+
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUI::updateMaximizeButton(const bool& maximized) const
 {
 	if (maximized)
 	{
-		m_ui.maximizeButton->setIcon(QIcon(QStringLiteral(":/res/maximize-button2.png")));
+		m_ui.maximizeButton->setIcon(QIcon(buttonMaximizeOn));
 		m_ui.maximizeButton->setToolTip(tr("Restore"));
 	}
 	else
 	{
-		m_ui.maximizeButton->setIcon(QIcon(QStringLiteral(":/res/maximize-button1.png")));
+		m_ui.maximizeButton->setIcon(QIcon(buttonMaximizeOff));
 		m_ui.maximizeButton->setToolTip(tr("Maximize"));
 	}
 }
@@ -43,7 +70,7 @@ void asclepios::gui::GUI::paintEvent(QPaintEvent* event)
 {
 	Q_UNUSED(event);
 	QPainter painter(this);
-	const QImage backgroundImage(QStringLiteral(":/res/background.png"));
+	const QImage backgroundImage(appBackground);
 	painter.drawImage(contentsRect(), backgroundImage);
 }
 

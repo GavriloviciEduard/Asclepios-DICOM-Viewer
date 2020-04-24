@@ -47,7 +47,7 @@
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core;gui;widgets;winextras</QtModules>
+    <QtModules>core;gui;quick;quickwidgets;widgets;winextras</QtModules>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />

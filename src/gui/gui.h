@@ -13,6 +13,11 @@ namespace asclepios::gui
 	public:
 		explicit GUI(QWidget* parent = Q_NULLPTR);
 
+
+	private slots:
+		void openFileClicked();
+		void openFolderClicked();
+
 	protected:
 		void updateMaximizeButton(const bool& maximized) const;
 		void paintEvent(QPaintEvent* event) override;
@@ -23,6 +28,7 @@ namespace asclepios::gui
 		std::unique_ptr<core::CoreController> m_coreController = {};
 
 		void initView();
+		void initData();
 		void setUpFramelessHelper();
 		void createConnections() const;
 	};

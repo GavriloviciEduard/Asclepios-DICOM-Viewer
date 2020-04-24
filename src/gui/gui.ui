@@ -18,19 +18,30 @@
   image: url(:/res/minimize-button1.png);
 }
 
-#minimizeButton, #maximizeButton {
+#openFileButton
+{
+image: url(:/res/icon_file.png);
+}
+
+#openFolderButton
+{
+image: url(:/res/icon_folder.png);
+}
+
+#minimizeButton, #maximizeButton, #openFileButton, #openFolderButton {
   background-color: transparent;
   border-radius: 0px;
 }
 
-#minimizeButton:hover, #maximizeButton:hover {
+#minimizeButton:hover, #maximizeButton:hover, #openFileButton:hover, #openFolderButton:hover {
   border-style: none;
   background-color: #80c7c7c7;
 }
 
-#minimizeButton:pressed, #maximizeButton:pressed {
+#minimizeButton:pressed, #maximizeButton:pressed, #openFileButton:pressed, #openFolderButton:pressed {
   border-style: none;
-  background-color: #80808080;
+background-color: #80808080;
+  
 }
 
 #closeButton {
@@ -51,33 +62,20 @@
   background-color: #8c0a15;
 }
 
-#label {
-  color: &quot;#fefefe&quot;;
-}</string>
+#labelTitle {
+  font-weight: bold;
+   color: grey
+}
+</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>5</number>
-    </property>
-    <property name="leftMargin">
-     <number>5</number>
-    </property>
-    <property name="topMargin">
-     <number>5</number>
-    </property>
-    <property name="rightMargin">
-     <number>5</number>
-    </property>
-    <property name="bottomMargin">
-     <number>5</number>
-    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLabel" name="icon">
         <property name="text">
-         <string>Placeholder</string>
+         <string>PlaceHolder</string>
         </property>
        </widget>
       </item>
@@ -215,6 +213,127 @@
      </layout>
     </item>
     <item>
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>5</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>5</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="openFileButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>45</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>45</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>Open File</string>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>34</width>
+             <height>26</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="openFolderButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>45</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>45</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>Open Folder</string>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>34</width>
+             <height>26</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -234,5 +353,42 @@
  <resources>
   <include location="gui.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>openFileButton</sender>
+   <signal>clicked()</signal>
+   <receiver>guiClass</receiver>
+   <slot>openFileClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>36</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>86</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openFolderButton</sender>
+   <signal>clicked()</signal>
+   <receiver>guiClass</receiver>
+   <slot>openFolderClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>83</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>201</x>
+     <y>138</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>openFileClicked()</slot>
+  <slot>openFolderClicked()</slot>
+ </slots>
 </ui>
