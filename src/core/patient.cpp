@@ -7,10 +7,9 @@ asclepios::core::Study* asclepios::core::Patient::addStudy(std::unique_ptr<Study
 	return m_studies.emplace(std::move(t_study)).first->get();
 }
 
-//-----------------------------------------------------------------------------
-bool asclepios::core::Patient::operator==(const Patient& t_rhs) const
+bool asclepios::core::Patient::isLess(Patient* t_lhs, Patient* t_rhs)
 {
-	return getAge() == t_rhs.getAge() && getBirthDate() ==
-		t_rhs.getBirthDate() && getID() == t_rhs.getID() &&
-		getName() == t_rhs.getName();
+	return t_lhs->getAge() < t_rhs->getAge() && t_lhs->getBirthDate() <
+		t_rhs->getBirthDate() && t_lhs->getID() < t_rhs->getID() &&
+		t_lhs->getName() < t_rhs->getName();
 }

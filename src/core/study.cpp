@@ -7,10 +7,10 @@ asclepios::core::Series* asclepios::core::Study::addSeries(std::unique_ptr<Serie
 }
 
 //-----------------------------------------------------------------------------
-bool asclepios::core::Study::operator==(const Study& t_rhs) const
+bool asclepios::core::Study::isLess(Study* t_lhs, Study* t_rhs)
 {
-	return getParentObject() == t_rhs.getParentObject() && getUID()
-		== t_rhs.getUID() && getID() == t_rhs.getID() &&
-		getDescription() == t_rhs.getDescription() && getDate()
-		== t_rhs.getDate();
+	return t_lhs->getParentObject() == t_rhs->getParentObject()
+		&& t_lhs->getUID() == t_rhs->getUID() && t_lhs->getID()
+		== t_rhs->getID() && t_lhs->getDescription() ==
+		t_rhs->getDescription() && t_lhs->getDate() == t_rhs->getDate();
 }

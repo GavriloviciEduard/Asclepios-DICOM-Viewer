@@ -14,10 +14,10 @@ void asclepios::core::Series::addMultiFrameImage(std::unique_ptr<Image> t_image)
 }
 
 //-----------------------------------------------------------------------------
-bool asclepios::core::Series::operator==(const Series& t_rhs) const
+bool asclepios::core::Series::isLess(Series* t_lhs, Series* t_rhs)
 {
-	return getParentObject() == t_rhs.getParentObject() &&
-		getUID() == t_rhs.getUID() && getDescription() ==
-		t_rhs.getDescription() && getDate() ==
-		t_rhs.getDate() && getNumber() == t_rhs.getNumber();
+	return t_lhs->getParentObject() == t_rhs->getParentObject() &&
+		t_lhs->getUID() == t_rhs->getUID() && t_lhs->getDescription()
+		== t_rhs->getDescription() && t_lhs->getDate() ==
+		t_rhs->getDate() && t_lhs->getNumber() == t_rhs->getNumber();
 }
