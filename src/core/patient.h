@@ -16,7 +16,7 @@ namespace asclepios::core
 		[[nodiscard]] std::string getName() const { return m_name; }
 		[[nodiscard]] int getAge() const { return m_age; }
 		[[nodiscard]] std::string getBirthDate() const { return m_birthDate; }
-		[[nodiscard]] std::set<std::unique_ptr<Study>>& getStudies() { return m_studies; }
+		[[nodiscard]] std::set<std::unique_ptr<Study>, Study::studyCompare>& getStudies() { return m_studies; }
 
 		//setters
 		void setID(const std::string& t_id) { m_id = t_id; }
@@ -26,9 +26,10 @@ namespace asclepios::core
 
 
 		[[nodiscard]] Study* addStudy(std::unique_ptr<Study> t_study);
-		static bool isLess(Patient* t_lhs, Patient* t_rhs);
 
-		//functor for set compare
+		/**
+		* Functor for set compare
+		*/
 		struct patientCompare
 		{
 			bool operator()(const std::unique_ptr<Patient>& t_lhs, const std::unique_ptr<Patient>& t_rhs) const
@@ -42,6 +43,8 @@ namespace asclepios::core
 		std::string m_name = {};
 		int m_age = {};
 		std::string m_birthDate = {};
-		std::set<std::unique_ptr<Study>> m_studies = {};
+		std::set<std::unique_ptr<Study>, Study::studyCompare> m_studies = {};
+
+		static bool isLess(Patient* t_lhs, Patient* t_rhs);
 	};
 }

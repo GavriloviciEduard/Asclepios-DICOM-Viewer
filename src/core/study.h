@@ -19,7 +19,7 @@ namespace asclepios::core
 		[[nodiscard]] std::string getID() const { return m_id; }
 		[[nodiscard]] std::string getDescription() const { return m_desctiption; }
 		[[nodiscard]] std::string getDate() const { return m_date; }
-		std::set<std::unique_ptr<Series>>& getSeries() { return m_series; }
+		std::set<std::unique_ptr<Series>, Series::seriesCompare>& getSeries() { return m_series; }
 
 		//setters
 		void setParentObject(Patient* t_parent) { m_parent = t_parent; }
@@ -29,7 +29,17 @@ namespace asclepios::core
 		void setDate(const std::string& t_date) { m_date = t_date; }
 
 		Series* addSeries(std::unique_ptr<Series> t_series);
-		bool operator==(const Study& t_rhs) const;
+
+		/**
+		* Functor for set compare
+		*/
+		struct studyCompare
+		{
+			bool operator()(const std::unique_ptr<Study>& t_lhs, const std::unique_ptr<Study>& t_rhs) const
+			{
+				return isLess(t_lhs.get(), t_rhs.get());
+			}
+		};
 
 	private:
 		Patient* m_parent = {};
@@ -37,6 +47,8 @@ namespace asclepios::core
 		std::string m_id = {};
 		std::string m_desctiption = {};
 		std::string m_date = {};
-		std::set<std::unique_ptr<Series>> m_series = {};
+		std::set<std::unique_ptr<Series>, Series::seriesCompare> m_series = {};
+
+		static bool isLess(Study* t_lhs, Study* t_rhs);
 	};
 }

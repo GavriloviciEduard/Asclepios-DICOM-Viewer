@@ -20,8 +20,8 @@ namespace asclepios::core
 		[[nodiscard]] std::string getDescription() const { return m_desctiption; }
 		[[nodiscard]] std::string getDate() const { return m_date; }
 		[[nodiscard]] std::string getNumber() const { return m_number; }
-		std::set<std::unique_ptr<Image>>& getSinlgeFrameImages() { return m_singleFrameImages; }
-		std::set<std::unique_ptr<Image>>& getMultiFrameImages() { return m_multiFrameImages; }
+		std::set<std::unique_ptr<Image>, Image::imageCompare>& getSinlgeFrameImages() { return m_singleFrameImages; }
+		std::set<std::unique_ptr<Image>, Image::imageCompare>& getMultiFrameImages() { return m_multiFrameImages; }
 
 		//setters
 		void setParentObject(Study* t_parent) { m_parent = t_parent; }
@@ -32,7 +32,17 @@ namespace asclepios::core
 
 		void addSingleFrameImage(std::unique_ptr<Image> t_image);
 		void addMultiFrameImage(std::unique_ptr<Image> t_image);
-		bool operator==(const Series& t_rhs) const;
+
+		/**
+		* Functor for set compare
+		*/
+		struct seriesCompare
+		{
+			bool operator()(const std::unique_ptr<Series>& t_lhs, const std::unique_ptr<Series>& t_rhs) const
+			{
+				return isLess(t_lhs.get(), t_rhs.get());
+			}
+		};
 
 	private:
 		Study* m_parent = {};
@@ -40,7 +50,9 @@ namespace asclepios::core
 		std::string m_desctiption = {};
 		std::string m_date = {};
 		std::string m_number = {};
-		std::set<std::unique_ptr<Image>> m_singleFrameImages = {};
-		std::set<std::unique_ptr<Image>> m_multiFrameImages = {};
+		std::set<std::unique_ptr<Image>, Image::imageCompare> m_singleFrameImages = {};
+		std::set<std::unique_ptr<Image>, Image::imageCompare> m_multiFrameImages = {};
+
+		static bool isLess(Series* t_lhs, Series* t_rhs);
 	};
 }
