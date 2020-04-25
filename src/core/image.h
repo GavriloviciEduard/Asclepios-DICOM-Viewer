@@ -1,11 +1,14 @@
 #pragma once
 
 #include <imebra.h>
+#include <vtkDICOMReader.h>
+#include <vtkWeakPointer.h>
+#include <vtkSmartPointer.h>
 
 namespace asclepios::core
 {
 	class Series;
-	
+
 	class Image
 	{
 	public:
@@ -26,7 +29,12 @@ namespace asclepios::core
 		[[nodiscard]] int getNumberOfFrames() const { return m_numberOfFrames; }
 		[[nodiscard]] double getSliceLocation() const { return m_sliceLocation; }
 		[[nodiscard]] bool getIsMultiFrame() const { return m_isMultiframe; }
-		
+
+		/**
+		* Getter for image reader. If image reader is null is created.
+		*/
+		[[nodiscard]] vtkSmartPointer<vtkDICOMReader> getImageReader() const;
+
 		//setters
 		void setParentObject(Series* t_parent) { m_parent = t_parent; }
 		void setImagePath(const std::string& t_path) { m_path = t_path; }
@@ -42,7 +50,16 @@ namespace asclepios::core
 		void setSliceLocation(const double& t_sliceLocation) { m_sliceLocation = t_sliceLocation; }
 		void setIsMultiFrame(const bool& t_isMultiframe) { m_isMultiframe = t_isMultiframe; }
 
-		bool operator==(const Image& t_rhs) const;
+		/**
+		* Functor for set compare
+		*/
+		struct imageCompare
+		{
+			bool operator()(const std::unique_ptr<Image>& t_lhs, const std::unique_ptr<Image>& t_rhs) const
+			{
+				return isLess(t_lhs.get(), t_rhs.get());
+			}
+		};
 
 	private:
 		Series* m_parent = {};
@@ -58,5 +75,8 @@ namespace asclepios::core
 		int m_numberOfFrames = {};
 		double m_sliceLocation = {};
 		bool m_isMultiframe = false;
+		vtkWeakPointer<vtkDICOMReader> m_imageReader;
+
+		static bool isLess(Image* t_lhs, Image* t_rhs);
 	};
 }
