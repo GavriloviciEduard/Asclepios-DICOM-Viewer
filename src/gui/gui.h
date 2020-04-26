@@ -3,6 +3,7 @@
 #include "ui_gui.h"
 #include "corecontroller.h"
 #include "FramelessHelper.h"
+#include "LayoutMenu.h"
 
 namespace asclepios::gui
 {
@@ -26,9 +27,11 @@ namespace asclepios::gui
 		Ui::guiClass m_ui = {};
 		std::unique_ptr<FramelessHelper> m_helper = {};
 		std::unique_ptr<core::CoreController> m_coreController = {};
+		std::unique_ptr<LayoutMenu> m_layoutMenu = {};
 
 		void initView();
 		void initData();
+		void initLayoutMenu();
 		void setUpFramelessHelper();
 		void createConnections() const;
 	};

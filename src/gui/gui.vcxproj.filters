@@ -49,6 +49,9 @@
     <ClCompile Include="WindowFramelessHelper.cpp">
       <Filter>Source Files\frameless helper</Filter>
     </ClCompile>
+    <ClCompile Include="layoutmenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui.h">
@@ -63,9 +66,15 @@
     <QtMoc Include="WindowFramelessHelper.h">
       <Filter>Header Files\frameless helper</Filter>
     </QtMoc>
+    <QtMoc Include="layoutmenu.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="gui.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="layoutMenu.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

@@ -14,8 +14,14 @@
    <string>gui</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#minimizeButton {
+   <string notr="true">#minimizeButton 
+{
   image: url(:/res/minimize-button1.png);
+}
+
+#layoutButton
+{
+	image: url(:/res/icon_layout.png);
 }
 
 #openFileButton
@@ -28,19 +34,27 @@ image: url(:/res/icon_file.png);
 image: url(:/res/icon_folder.png);
 }
 
-#minimizeButton, #maximizeButton, #openFileButton, #openFolderButton {
+QToolButton::menu-indicator
+{
+ image: url(:/res/arrow_icon.png);
+}
+
+#minimizeButton, #maximizeButton, #openFileButton, #openFolderButton , #layoutButton
+{
   background-color: transparent;
   border-radius: 0px;
 }
 
-#minimizeButton:hover, #maximizeButton:hover, #openFileButton:hover, #openFolderButton:hover {
+#minimizeButton:hover, #maximizeButton:hover, #openFileButton:hover, #openFolderButton:hover ,#layoutButton:hover
+{
   border-style: none;
-  background-color: #80c7c7c7;
+  background-color:  rgba(128, 128, 128, 0.2);
 }
 
-#minimizeButton:pressed, #maximizeButton:pressed, #openFileButton:pressed, #openFolderButton:pressed {
-  border-style: none;
-background-color: #80808080;
+#minimizeButton:pressed, #maximizeButton:pressed, #openFileButton:pressed, #openFolderButton:pressed, #layoutButton::pressed 
+{
+  	border-style: none;
+	background-color: rgba(128, 128, 128, 0.3);
   
 }
 
@@ -221,26 +235,8 @@ background-color: #80808080;
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>5</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>5</number>
-       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
          <item>
           <widget class="QPushButton" name="openFileButton">
            <property name="sizePolicy">
@@ -258,7 +254,7 @@ background-color: #80808080;
            <property name="maximumSize">
             <size>
              <width>45</width>
-             <height>26</height>
+             <height>36</height>
             </size>
            </property>
            <property name="focusPolicy">
@@ -306,6 +302,43 @@ background-color: #80808080;
            </property>
            <property name="toolTip">
             <string>Open Folder</string>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>34</width>
+             <height>26</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="layoutButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>45</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>45</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>Layout Menu</string>
            </property>
            <property name="iconSize">
             <size>

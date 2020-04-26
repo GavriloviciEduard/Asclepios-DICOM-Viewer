@@ -27,6 +27,15 @@ void asclepios::gui::GUI::initView()
 void asclepios::gui::GUI::initData()
 {
 	m_coreController = std::make_unique<core::CoreController>();
+	initLayoutMenu();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::initLayoutMenu()
+{
+	m_layoutMenu = std::make_unique<LayoutMenu>(this);
+	m_ui.layoutButton->setMenu(m_layoutMenu.get());
+	m_ui.layoutButton->setPopupMode(QToolButton::InstantPopup);
 }
 
 //-----------------------------------------------------------------------------
