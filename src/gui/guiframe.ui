@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GUIFrame</class>
+ <widget class="QFrame" name="GUIFrame">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1032</width>
+    <height>807</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GUIFrame</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#minimizeButton 
+{
+  image: url(:/res/minimize-button1.png);
+}
+
+#minimizeButton, #maximizeButton
+{
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+#minimizeButton:hover, #maximizeButton:hover
+{
+  border-style: none;
+  background-color:  rgba(128, 128, 128, 0.2);
+}
+
+#minimizeButton:pressed, #maximizeButton:pressed
+{
+  	border-style: none;
+	background-color: rgba(128, 128, 128, 0.3);
+  
+}
+
+#closeButton
+ {
+  image: url(:/res/close-button1.png);
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+#closeButton:hover {
+  image: url(:/res/close-button2.png);
+  border-style: none;
+  background-color: #e81123;
+}
+
+#closeButton:pressed {
+  image: url(:/res/close-button1.png);
+  border-style: none;
+  background-color: #8c0a15;
+}
+
+#labelTitle 
+{
+  font-weight: bold;
+   color: grey;
+}
+#GUIFrame
+{
+	background-color: #18263a;
+}
+#widgetTopBar
+{
+	background-color: #18263a;
+}
+#icon
+{
+	margin-top: 5px;
+	margin-right:5px;
+	margin-bottom:5px;
+}</string>
+  </property>
+  <property name="lineWidth">
+   <number>0</number>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>5</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>5</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="widgetTopBar" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="topBarLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="icon">
+          <property name="text">
+           <string>PlaceHolder</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelTitle">
+          <property name="text">
+           <string>Asclepios DICOM Viewer</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="minimizeButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>26</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>45</width>
+            <height>26</height>
+           </size>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::NoContextMenu</enum>
+          </property>
+          <property name="toolTip">
+           <string>Minimize</string>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>34</width>
+            <height>26</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="maximizeButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>26</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>45</width>
+            <height>26</height>
+           </size>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::NoContextMenu</enum>
+          </property>
+          <property name="toolTip">
+           <string>Maximize</string>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>34</width>
+            <height>26</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="closeButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>26</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>45</width>
+            <height>26</height>
+           </size>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::NoContextMenu</enum>
+          </property>
+          <property name="toolTip">
+           <string>Close</string>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>34</width>
+            <height>26</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widgetContent" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>683</width>
+       <height>750</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="gui.qrc"/>
+ </resources>
+ <connections/>
+</ui>

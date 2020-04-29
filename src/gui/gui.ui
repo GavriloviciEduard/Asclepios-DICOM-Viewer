@@ -6,420 +6,173 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>755</width>
-    <height>383</height>
+    <width>909</width>
+    <height>693</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>250</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>gui</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#minimizeButton 
+   <string notr="true">QMenuBar
 {
-  image: url(:/res/minimize-button1.png);
+	background-color: #18263a;
+	color : white;
 }
 
-#layoutButton
+QMenu
 {
-	image: url(:/res/icon_layout.png);
+	background-color:#233a54;
+	color : white;
 }
 
-#openFileButton
+QToolBar 
 {
-image: url(:/res/icon_file.png);
+	 background-color: #18263a;
+	 border: 0px ;
+	 margin:5px;
 }
 
-#openFolderButton
+
+QToolBar::handle:vertical 
 {
-image: url(:/res/icon_folder.png);
+  border-top:1px solid grey;
 }
 
-QToolButton::menu-indicator
+QToolBar::handle:horizontal 
 {
- image: url(:/res/arrow_icon.png);
+  border-left:1px solid grey;
+  padding-right: 5px;
 }
 
-#minimizeButton, #maximizeButton, #openFileButton, #openFolderButton , #layoutButton
+
+QMenuBar::item:selected,
+QMenu::item:selected
 {
-  background-color: transparent;
-  border-radius: 0px;
+	border-style: none;
+	background-color:  rgba(128, 128, 128, 0.2);
 }
 
-#minimizeButton:hover, #maximizeButton:hover, #openFileButton:hover, #openFolderButton:hover ,#layoutButton:hover
+QMenuBar::item:pressed,
+QMenu::item:pressed
 {
-  border-style: none;
-  background-color:  rgba(128, 128, 128, 0.2);
-}
-
-#minimizeButton:pressed, #maximizeButton:pressed, #openFileButton:pressed, #openFolderButton:pressed, #layoutButton::pressed 
-{
-  	border-style: none;
-	background-color: rgba(128, 128, 128, 0.3);
-  
-}
-
-#closeButton {
-  image: url(:/res/close-button1.png);
-  background-color: transparent;
-  border-radius: 0px;
-}
-
-#closeButton:hover {
-  image: url(:/res/close-button2.png);
-  border-style: none;
-  background-color: #e81123;
-}
-
-#closeButton:pressed {
-  image: url(:/res/close-button1.png);
-  border-style: none;
-  background-color: #8c0a15;
-}
-
-#labelTitle {
-  font-weight: bold;
-   color: grey
+	border-style: none;
+	background-color:  rgba(128, 128, 128, 0.3);
 }
 </string>
   </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="icon">
-        <property name="text">
-         <string>PlaceHolder</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelTitle">
-        <property name="text">
-         <string>Asclepios DICOM Viewer</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="minimizeButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>45</width>
-          <height>26</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>45</width>
-          <height>26</height>
-         </size>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::NoFocus</enum>
-        </property>
-        <property name="contextMenuPolicy">
-         <enum>Qt::NoContextMenu</enum>
-        </property>
-        <property name="toolTip">
-         <string>Minimize</string>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>34</width>
-          <height>26</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="maximizeButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>45</width>
-          <height>26</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>45</width>
-          <height>26</height>
-         </size>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::NoFocus</enum>
-        </property>
-        <property name="contextMenuPolicy">
-         <enum>Qt::NoContextMenu</enum>
-        </property>
-        <property name="toolTip">
-         <string>Maximize</string>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>34</width>
-          <height>26</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="closeButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>45</width>
-          <height>26</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>45</width>
-          <height>26</height>
-         </size>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::NoFocus</enum>
-        </property>
-        <property name="contextMenuPolicy">
-         <enum>Qt::NoContextMenu</enum>
-        </property>
-        <property name="toolTip">
-         <string>Close</string>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>34</width>
-          <height>26</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QFrame" name="frame">
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QPushButton" name="openFileButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>45</width>
-             <height>26</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>45</width>
-             <height>36</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="contextMenuPolicy">
-            <enum>Qt::NoContextMenu</enum>
-           </property>
-           <property name="toolTip">
-            <string>Open File</string>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>34</width>
-             <height>26</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="openFolderButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>45</width>
-             <height>26</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>45</width>
-             <height>26</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="contextMenuPolicy">
-            <enum>Qt::NoContextMenu</enum>
-           </property>
-           <property name="toolTip">
-            <string>Open Folder</string>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>34</width>
-             <height>26</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="layoutButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>45</width>
-             <height>26</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>45</width>
-             <height>26</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="contextMenuPolicy">
-            <enum>Qt::NoContextMenu</enum>
-           </property>
-           <property name="toolTip">
-            <string>Layout Menu</string>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>34</width>
-             <height>26</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-   </layout>
+   <layout class="QVBoxLayout" name="verticalLayout_2"/>
   </widget>
+  <widget class="QToolBar" name="toolBarButtons">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::TopToolBarArea</set>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>909</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpenDICOMfile"/>
+    <addaction name="actionOpenDICOMfolder"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarThumbnails">
+   <property name="minimumSize">
+    <size>
+     <width>250</width>
+     <height>250</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftToolBarArea</set>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="actionOpenDICOMfile">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/icon_file.png</normaloff>:/res/icon_file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open DICOM file</string>
+   </property>
+  </action>
+  <action name="actionOpenDICOMfolder">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/icon_folder.png</normaloff>:/res/icon_folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open DICOM folder</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
   <include location="gui.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>openFileButton</sender>
-   <signal>clicked()</signal>
-   <receiver>guiClass</receiver>
-   <slot>openFileClicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>36</x>
-     <y>65</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>86</x>
-     <y>230</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>openFolderButton</sender>
-   <signal>clicked()</signal>
-   <receiver>guiClass</receiver>
-   <slot>openFolderClicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>83</x>
-     <y>69</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>201</x>
-     <y>138</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>openFileClicked()</slot>
   <slot>openFolderClicked()</slot>

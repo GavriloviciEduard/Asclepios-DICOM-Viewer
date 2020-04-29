@@ -2,8 +2,8 @@
 
 #include "ui_gui.h"
 #include "corecontroller.h"
-#include "FramelessHelper.h"
-#include "LayoutMenu.h"
+#include "thumbnailswidget.h"
+#include "buttonswidget.h"
 
 namespace asclepios::gui
 {
@@ -14,25 +14,14 @@ namespace asclepios::gui
 	public:
 		explicit GUI(QWidget* parent = Q_NULLPTR);
 
-
-	private slots:
-		void openFileClicked();
-		void openFolderClicked();
-
-	protected:
-		void updateMaximizeButton(const bool& maximized) const;
-		void paintEvent(QPaintEvent* event) override;
-
 	private:
 		Ui::guiClass m_ui = {};
-		std::unique_ptr<FramelessHelper> m_helper = {};
 		std::unique_ptr<core::CoreController> m_coreController = {};
-		std::unique_ptr<LayoutMenu> m_layoutMenu = {};
+		std::unique_ptr<ThumbnailsWidget> m_thumbnailsWidget = {};
+		std::unique_ptr<ButtonsWidget> m_buttonsWidget = {};
 
 		void initView();
 		void initData();
-		void initLayoutMenu();
-		void setUpFramelessHelper();
 		void createConnections() const;
 	};
 }

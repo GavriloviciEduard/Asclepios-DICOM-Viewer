@@ -91,20 +91,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="buttonswidget.cpp" />
     <ClCompile Include="FramelessHelper.cpp" />
     <ClCompile Include="gui.cpp" />
+    <ClCompile Include="guiframe.cpp" />
     <ClCompile Include="layoutmenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NativeWindowFilter.cpp" />
     <ClCompile Include="NativeWindowHelper.cpp" />
+    <ClCompile Include="patienttab.cpp" />
+    <ClCompile Include="studylist.cpp" />
+    <ClCompile Include="thumbnailswidget.cpp" />
     <ClCompile Include="WindowFramelessHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="buttonswidget.ui" />
     <QtUic Include="gui.ui" />
+    <QtUic Include="guiframe.ui" />
     <QtUic Include="layoutMenu.ui" />
+    <QtUic Include="patienttab.ui" />
+    <QtUic Include="studylist.ui" />
+    <QtUic Include="thumbnailswidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="gui.qrc" />
@@ -118,11 +128,16 @@
     <QtMoc Include="FramelessHelper.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="buttonswidget.h" />
     <ClInclude Include="FramelessHelper_p.h" />
     <QtMoc Include="layoutmenu.h" />
+    <QtMoc Include="guiframe.h" />
     <ClInclude Include="NativeWindowFilter.h" />
     <ClInclude Include="NativeWindowFilter_p.h" />
     <ClInclude Include="NativeWindowHelper_p.h" />
+    <QtMoc Include="thumbnailswidget.h" />
+    <QtMoc Include="patienttab.h" />
+    <QtMoc Include="studylist.h" />
     <ClInclude Include="WindowFramelessHelper_p.h" />
     <QtMoc Include="WindowFramelessHelper.h" />
     <QtMoc Include="NativeWindowHelper.h" />
