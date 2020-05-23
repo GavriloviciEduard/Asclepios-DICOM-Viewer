@@ -20,7 +20,7 @@ namespace asclepios::core
 		std::unique_ptr<CoreRepository> m_coreRepository = {};
 		std::unique_ptr<DicomReader> m_dicomReader = {};
 
-		void InitData();
-		void InsertData() const;
+		void initData();
+		void insertDataInRepo() const;
 	};
 }
