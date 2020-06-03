@@ -1,5 +1,5 @@
 # Asclepios DICOM Viewer
-Bachelor's thesis project.
+Bachelor thesis project.
 A basic DICOM Viewer written in C++ and QT.
 
 # Libraries links
