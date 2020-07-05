@@ -50,6 +50,12 @@ QTabWidget::tab-bar
      <property name="text">
       <string>Patients</string>
      </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+     <property name="margin">
+      <number>4</number>
+     </property>
     </widget>
    </item>
   </layout>

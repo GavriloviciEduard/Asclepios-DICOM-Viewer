@@ -48,12 +48,12 @@ QToolBar
 
 QToolBar::handle:vertical 
 {
-  border-top:1px dashed grey;
+  border-top:1px grey;
 }
 
 QToolBar::handle:horizontal 
 {
-  border-left:1px dashed grey;
+  border-left:1px grey;
   padding-right: 5px;
 }
 
@@ -114,7 +114,7 @@ QMenu::item:pressed
      <x>0</x>
      <y>0</y>
      <width>909</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -154,6 +154,11 @@ QMenu::item:pressed
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
   </widget>
   <action name="actionOpenDICOMfile">
    <property name="icon">

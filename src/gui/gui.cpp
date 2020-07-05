@@ -1,5 +1,4 @@
 #include "gui.h"
-#include <QWindow>
 
 asclepios::gui::GUI::GUI(QWidget* parent) : QMainWindow(parent)
 {

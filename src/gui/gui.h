@@ -1,9 +1,10 @@
 #pragma once
 
-#include "ui_gui.h"
+#include <memory>
+#include "buttonswidget.h"
 #include "corecontroller.h"
 #include "thumbnailswidget.h"
-#include "buttonswidget.h"
+#include "ui_gui.h"
 
 namespace asclepios::gui
 {
