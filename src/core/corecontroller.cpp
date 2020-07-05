@@ -3,7 +3,7 @@
 
 asclepios::core::CoreController::CoreController()
 {
-	InitData();
+	initData();
 }
 
 //-----------------------------------------------------------------------------
@@ -14,7 +14,7 @@ void asclepios::core::CoreController::readData(const std::string& t_filepath) co
 		m_dicomReader->readFile(t_filepath);
 		if (m_dicomReader->dataSetExists())
 		{
-			InsertData();
+			insertDataInRepo();
 		}
 		else
 		{
@@ -36,14 +36,14 @@ CoreController::getPatients() const
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::core::CoreController::InitData()
+void asclepios::core::CoreController::initData()
 {
 	m_coreRepository = std::make_unique<CoreRepository>();
 	m_dicomReader = std::make_unique<DicomReader>();
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::core::CoreController::InsertData() const
+void asclepios::core::CoreController::insertDataInRepo() const
 {
 	m_coreRepository->addPatient(m_dicomReader->getReadPatient());
 	m_coreRepository->addStudy(m_dicomReader->getReadStudy());

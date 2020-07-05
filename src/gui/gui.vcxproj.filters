@@ -49,6 +49,24 @@
     <ClCompile Include="WindowFramelessHelper.cpp">
       <Filter>Source Files\frameless helper</Filter>
     </ClCompile>
+    <ClCompile Include="layoutmenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="thumbnailswidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="patienttab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="studylist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="guiframe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="buttonswidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui.h">
@@ -63,9 +81,45 @@
     <QtMoc Include="WindowFramelessHelper.h">
       <Filter>Header Files\frameless helper</Filter>
     </QtMoc>
+    <QtMoc Include="layoutmenu.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="thumbnailswidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="patienttab.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="studylist.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="guiframe.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="buttonswidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="gui.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="layoutMenu.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="thumbnailswidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="patienttab.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="studylist.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="guiframe.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="buttonswidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
