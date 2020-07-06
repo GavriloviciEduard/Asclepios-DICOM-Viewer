@@ -2,7 +2,7 @@
 
 #include <memory>
 #include "buttonswidget.h"
-#include "corecontroller.h"
+#include "filesimporter.h"
 #include "thumbnailswidget.h"
 #include "ui_gui.h"
 
@@ -14,15 +14,23 @@ namespace asclepios::gui
 
 	public:
 		explicit GUI(QWidget* parent = Q_NULLPTR);
+		~GUI();
+
+
+	private slots:
+		void onOpenFile();
+		void onOpenFolder();
 
 	private:
 		Ui::guiClass m_ui = {};
-		std::unique_ptr<core::CoreController> m_coreController = {};
-		std::unique_ptr<ThumbnailsWidget> m_thumbnailsWidget = {};
-		std::unique_ptr<ButtonsWidget> m_buttonsWidget = {};
+		std::unique_ptr<FilesImporter> m_filesImporter = {};
+		ThumbnailsWidget* m_thumbnailsWidget = {};
+		ButtonsWidget* m_buttonsWidget = {};
 
 		void initView();
 		void initData();
 		void createConnections() const;
+		void connectGUIActions() const;
+		void connectButtonsWidgetActions() const;
 	};
 }

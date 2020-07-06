@@ -75,7 +75,7 @@ namespace asclepios::core
 		int m_numberOfFrames = {};
 		double m_sliceLocation = {};
 		bool m_isMultiframe = false;
-		vtkWeakPointer<vtkDICOMReader> m_imageReader;
+		vtkWeakPointer<vtkDICOMReader> m_imageReader = {};
 
 		static bool isLess(Image* t_lhs, Image* t_rhs);
 	};

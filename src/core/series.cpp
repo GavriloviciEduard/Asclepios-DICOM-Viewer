@@ -1,5 +1,6 @@
 #include "series.h"
 
+
 void asclepios::core::Series::addSingleFrameImage(std::unique_ptr<Image> t_image)
 {
 	t_image->setParentObject(this);

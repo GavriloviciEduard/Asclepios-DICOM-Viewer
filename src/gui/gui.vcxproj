@@ -96,6 +96,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="buttonswidget.cpp" />
+    <ClCompile Include="filesimporter.cpp" />
     <ClCompile Include="FramelessHelper.cpp" />
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="guiframe.cpp" />
@@ -133,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="buttonswidget.h" />
+    <QtMoc Include="filesimporter.h" />
     <ClInclude Include="FramelessHelper_p.h" />
     <QtMoc Include="layoutmenu.h" />
     <QtMoc Include="guiframe.h" />
@@ -142,6 +144,7 @@
     <QtMoc Include="thumbnailswidget.h" />
     <QtMoc Include="patienttab.h" />
     <QtMoc Include="studylist.h" />
+    <ClInclude Include="seriesitem.h" />
     <ClInclude Include="WindowFramelessHelper_p.h" />
     <QtMoc Include="WindowFramelessHelper.h" />
     <QtMoc Include="NativeWindowHelper.h" />
