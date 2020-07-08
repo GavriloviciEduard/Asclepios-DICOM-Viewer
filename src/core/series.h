@@ -30,8 +30,8 @@ namespace asclepios::core
 		void setDate(const std::string& t_date) { m_date = t_date; }
 		void setNumber(const std::string& t_number) { m_number = t_number; }
 
-		void addSingleFrameImage(std::unique_ptr<Image> t_image);
-		void addMultiFrameImage(std::unique_ptr<Image> t_image);
+		[[nodiscard]] Image* addSingleFrameImage(std::unique_ptr<Image> t_image, bool& t_newImage);
+		[[nodiscard]] Image* addMultiFrameImage(std::unique_ptr<Image> t_image, bool& t_newImage);
 
 		/**
 		* Functor for set compare
@@ -54,7 +54,7 @@ namespace asclepios::core
 		std::set<std::unique_ptr<Image>, Image::imageCompare> m_multiFrameImages = {};
 
 		static bool isLess(Series* t_lhs, Series* t_rhs);
-		static bool imageAlreadyInserted(const std::set<std::unique_ptr<Image>, Image::imageCompare>& t_images,
+		std::size_t findImage(const std::set<std::unique_ptr<Image>, Image::imageCompare>& t_images,
 		                                 Image* t_image);
 	};
 }
