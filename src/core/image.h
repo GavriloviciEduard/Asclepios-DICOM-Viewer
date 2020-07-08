@@ -28,6 +28,7 @@ namespace asclepios::core
 		[[nodiscard]] int getColumns() const { return m_columns; }
 		[[nodiscard]] int getNumberOfFrames() const { return m_numberOfFrames; }
 		[[nodiscard]] double getSliceLocation() const { return m_sliceLocation; }
+		[[nodiscard]] int getAcquisitionNumber() const { return m_acquisitionNumber; }
 		[[nodiscard]] bool getIsMultiFrame() const { return m_isMultiframe; }
 
 		/**
@@ -48,6 +49,7 @@ namespace asclepios::core
 		void setColumns(const int& t_columns) { m_columns = t_columns; }
 		void setNumberOfFrames(const int& t_numberOfFrames) { m_numberOfFrames = t_numberOfFrames; }
 		void setSliceLocation(const double& t_sliceLocation) { m_sliceLocation = t_sliceLocation; }
+		void setAcquisitionNumber(const int& t_acquisitionNumber) { m_acquisitionNumber = t_acquisitionNumber; }
 		void setIsMultiFrame(const bool& t_isMultiframe) { m_isMultiframe = t_isMultiframe; }
 
 		/**
@@ -60,6 +62,8 @@ namespace asclepios::core
 				return isLess(t_lhs.get(), t_rhs.get());
 			}
 		};
+
+		bool equal(Image* t_image) const;
 
 	private:
 		Series* m_parent = {};
@@ -74,6 +78,7 @@ namespace asclepios::core
 		int m_columns = {};
 		int m_numberOfFrames = {};
 		double m_sliceLocation = {};
+		int m_acquisitionNumber = {};
 		bool m_isMultiframe = false;
 		vtkWeakPointer<vtkDICOMReader> m_imageReader = {};
 

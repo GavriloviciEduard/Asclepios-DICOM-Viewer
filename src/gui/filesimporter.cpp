@@ -80,5 +80,5 @@ void asclepios::gui::FilesImporter::importFiles()
 		m_filesPaths.pop_front();
 		m_filesMutex.unlock();
 	}
-	std::cout << m_coreController->getPatients().size();
+	std::cout << m_coreController->getPatients().size() << '\n';
 }
