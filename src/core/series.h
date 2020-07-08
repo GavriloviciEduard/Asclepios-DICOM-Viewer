@@ -54,5 +54,7 @@ namespace asclepios::core
 		std::set<std::unique_ptr<Image>, Image::imageCompare> m_multiFrameImages = {};
 
 		static bool isLess(Series* t_lhs, Series* t_rhs);
+		static bool imageAlreadyInserted(const std::set<std::unique_ptr<Image>, Image::imageCompare>& t_images,
+		                                 Image* t_image);
 	};
 }

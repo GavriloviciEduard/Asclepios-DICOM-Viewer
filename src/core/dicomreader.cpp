@@ -17,6 +17,11 @@ std::unique_ptr<asclepios::core::Patient> asclepios::core::DicomReader::getReadP
 	tempPatient->setBirthDate(getTagFromDataSet(imebra::tagId_t::PatientBirthDate_0010_0030));
 	tempPatient->setID(getTagFromDataSet(imebra::tagId_t::PatientID_0010_0020));
 	tempPatient->setName(getTagFromDataSet(imebra::tagId_t::PatientName_0010_0010));
+	if(tempPatient->getID().empty())
+	{
+		tempPatient.release();
+		return nullptr;
+	}
 	return tempPatient;
 }
 
@@ -65,6 +70,8 @@ std::unique_ptr<asclepios::core::Image> asclepios::core::DicomReader::getReadIma
 	tempImage->setColumns(columns.empty() ? 0 : std::stoi(columns));
 	const auto sliceLocation = getTagFromDataSet(imebra::tagId_t::SliceLocation_0020_1041);
 	tempImage->setSliceLocation(sliceLocation.empty() ? 0 : std::stod(sliceLocation));
+	const auto acquisitionNumber = getTagFromDataSet(imebra::tagId_t::AcquisitionNumber_0020_0012);
+	tempImage->setAcquisitionNumber(acquisitionNumber.empty() ? 0 : std::stoi(acquisitionNumber));
 	const auto numberFrames = getTagFromDataSet(imebra::tagId_t::NumberOfFrames_0028_0008);
 	tempImage->setNumberOfFrames(numberFrames.empty() ? 0 : std::stoi(numberFrames));
 	tempImage->setIsMultiFrame(tempImage->getNumberOfFrames() > 0);
@@ -85,8 +92,7 @@ std::string asclepios::core::DicomReader::getTagFromDataSet(const imebra::tagId_
 	catch (std::exception& ex)
 	{
 		//todo log exception
-		std::cout << ex.what() << '\n';
-		return "";
+		return {};
 	}
 }
 

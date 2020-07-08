@@ -23,49 +23,125 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
-    <Filter Include="Header Files\frameless helper">
+    <Filter Include="Header Files\gui">
+      <UniqueIdentifier>{adc69a06-dc57-4fe5-a114-0b8600f28175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui">
+      <UniqueIdentifier>{161f66cf-cb9b-4980-ad5e-50ceb04438dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\thumbnails">
+      <UniqueIdentifier>{27c8ed49-6295-4ff2-b5cf-9261691c09df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thumbnails">
+      <UniqueIdentifier>{4e54f000-d6cc-4bd3-80e3-e3c29e0816e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\files_importer">
+      <UniqueIdentifier>{c75deec9-d088-4aec-b121-1be65e51ef8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\frameless_helper">
       <UniqueIdentifier>{eb0f6b6e-f8f6-4301-bbbb-bdfd7c1362ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\frameless helper">
+    <Filter Include="Source Files\frameless_helper">
       <UniqueIdentifier>{bc636df1-ff14-491d-97c0-190e87182ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\files_importer">
+      <UniqueIdentifier>{4a953e07-1634-463e-bcb1-d361d43eeb45}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FramelessHelper.cpp">
-      <Filter>Source Files\frameless helper</Filter>
+      <Filter>Source Files\frameless_helper</Filter>
     </ClCompile>
     <ClCompile Include="NativeWindowFilter.cpp">
-      <Filter>Source Files\frameless helper</Filter>
+      <Filter>Source Files\frameless_helper</Filter>
     </ClCompile>
     <ClCompile Include="NativeWindowHelper.cpp">
-      <Filter>Source Files\frameless helper</Filter>
+      <Filter>Source Files\frameless_helper</Filter>
     </ClCompile>
     <ClCompile Include="WindowFramelessHelper.cpp">
-      <Filter>Source Files\frameless helper</Filter>
+      <Filter>Source Files\frameless_helper</Filter>
+    </ClCompile>
+    <ClCompile Include="buttonswidget.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="guiframe.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="layoutmenu.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="patienttab.cpp">
+      <Filter>Source Files\thumbnails</Filter>
+    </ClCompile>
+    <ClCompile Include="studylist.cpp">
+      <Filter>Source Files\thumbnails</Filter>
+    </ClCompile>
+    <ClCompile Include="thumbnailswidget.cpp">
+      <Filter>Source Files\thumbnails</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="filesimporter.cpp">
+      <Filter>Source Files\files_importer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="gui.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="FramelessHelper.h">
-      <Filter>Header Files\frameless helper</Filter>
+      <Filter>Header Files\frameless_helper</Filter>
     </QtMoc>
     <QtMoc Include="NativeWindowHelper.h">
-      <Filter>Header Files\frameless helper</Filter>
+      <Filter>Header Files\frameless_helper</Filter>
     </QtMoc>
     <QtMoc Include="WindowFramelessHelper.h">
-      <Filter>Header Files\frameless helper</Filter>
+      <Filter>Header Files\frameless_helper</Filter>
+    </QtMoc>
+    <QtMoc Include="gui.h">
+      <Filter>Header Files\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="buttonswidget.h">
+      <Filter>Header Files\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="guiframe.h">
+      <Filter>Header Files\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="layoutmenu.h">
+      <Filter>Header Files\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="thumbnailswidget.h">
+      <Filter>Header Files\thumbnails</Filter>
+    </QtMoc>
+    <QtMoc Include="patienttab.h">
+      <Filter>Header Files\thumbnails</Filter>
+    </QtMoc>
+    <QtMoc Include="studylist.h">
+      <Filter>Header Files\thumbnails</Filter>
+    </QtMoc>
+    <QtMoc Include="filesimporter.h">
+      <Filter>Header Files\files_importer</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="gui.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="layoutMenu.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="thumbnailswidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="patienttab.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="studylist.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="guiframe.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="buttonswidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -76,19 +152,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FramelessHelper_p.h">
-      <Filter>Header Files\frameless helper</Filter>
+      <Filter>Header Files\frameless_helper</Filter>
     </ClInclude>
     <ClInclude Include="NativeWindowFilter.h">
-      <Filter>Header Files\frameless helper</Filter>
+      <Filter>Header Files\frameless_helper</Filter>
     </ClInclude>
     <ClInclude Include="NativeWindowFilter_p.h">
-      <Filter>Header Files\frameless helper</Filter>
+      <Filter>Header Files\frameless_helper</Filter>
     </ClInclude>
     <ClInclude Include="NativeWindowHelper_p.h">
-      <Filter>Header Files\frameless helper</Filter>
+      <Filter>Header Files\frameless_helper</Filter>
     </ClInclude>
     <ClInclude Include="WindowFramelessHelper_p.h">
-      <Filter>Header Files\frameless helper</Filter>
+      <Filter>Header Files\frameless_helper</Filter>
+    </ClInclude>
+    <ClInclude Include="seriesitem.h">
+      <Filter>Header Files\thumbnails</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

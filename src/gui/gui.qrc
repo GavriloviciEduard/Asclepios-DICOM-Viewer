@@ -1,14 +1,20 @@
 <RCC>
     <qresource prefix="/">
+        <file>res/0.png</file>
+        <file>res/1.png</file>
+        <file>res/2.png</file>
+        <file>res/3.png</file>
+        <file>res/4.png</file>
         <file>res/close-button1.png</file>
         <file>res/close-button2.png</file>
+        <file>res/icon_big.png</file>
+        <file>res/icon_file.png</file>
+        <file>res/icon_folder.png</file>
+        <file>res/icon_layout.png</file>
+        <file>res/icon_small.png</file>
         <file>res/maximize-button1.png</file>
         <file>res/maximize-button2.png</file>
         <file>res/minimize-button1.png</file>
-        <file>res/background.png</file>
-        <file>res/icon_big.png</file>
-        <file>res/icon_small.png</file>
-        <file>res/icon_file.png</file>
-        <file>res/icon_folder.png</file>
+        <file>res/arrow_icon.png</file>
     </qresource>
 </RCC>

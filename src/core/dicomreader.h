@@ -23,6 +23,6 @@ namespace asclepios::core
 		std::string m_filePath = {};
 
 		[[nodiscard]] std::string getTagFromDataSet(const imebra::tagId_t& t_tagId) const;
-		[[nodiscard]] bool isModalitySupported(const std::string& t_modality);
+		[[nodiscard]] static bool isModalitySupported(const std::string& t_modality);
 	};
 }

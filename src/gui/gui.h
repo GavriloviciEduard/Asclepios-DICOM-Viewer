@@ -1,8 +1,10 @@
 #pragma once
 
+#include <memory>
+#include "buttonswidget.h"
+#include "filesimporter.h"
+#include "thumbnailswidget.h"
 #include "ui_gui.h"
-#include "corecontroller.h"
-#include "FramelessHelper.h"
 
 namespace asclepios::gui
 {
@@ -12,24 +14,23 @@ namespace asclepios::gui
 
 	public:
 		explicit GUI(QWidget* parent = Q_NULLPTR);
+		~GUI();
 
 
 	private slots:
-		void openFileClicked();
-		void openFolderClicked();
-
-	protected:
-		void updateMaximizeButton(const bool& maximized) const;
-		void paintEvent(QPaintEvent* event) override;
+		void onOpenFile();
+		void onOpenFolder();
 
 	private:
 		Ui::guiClass m_ui = {};
-		std::unique_ptr<FramelessHelper> m_helper = {};
-		std::unique_ptr<core::CoreController> m_coreController = {};
+		std::unique_ptr<FilesImporter> m_filesImporter = {};
+		ThumbnailsWidget* m_thumbnailsWidget = {};
+		ButtonsWidget* m_buttonsWidget = {};
 
 		void initView();
 		void initData();
-		void setUpFramelessHelper();
 		void createConnections() const;
+		void connectGUIActions() const;
+		void connectButtonsWidgetActions() const;
 	};
 }
