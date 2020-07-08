@@ -14,19 +14,30 @@ vtkSmartPointer<vtkDICOMReader> asclepios::core::Image::getImageReader() const
 }
 
 //-----------------------------------------------------------------------------
+bool asclepios::core::Image::equal(Image* t_image) const
+{
+	return getParentObject() == t_image->getParentObject() &&
+		getImagePath() == t_image->getImagePath() &&
+		getSOPInstanceUID() == t_image->getSOPInstanceUID() &&
+		getClassUID() == t_image->getClassUID() &&
+		getFrameOfRefernceID() == t_image->getFrameOfRefernceID() &&
+		getModality() == t_image->getModality() &&
+		getWindowCenter() == t_image->getWindowCenter() &&
+		getWindowWidth() == t_image->getWindowWidth() &&
+		getRows() == t_image->getRows() &&
+		getColumns() == t_image->getColumns() &&
+		getNumberOfFrames() == t_image->getNumberOfFrames() &&
+		getSliceLocation() == t_image->getSliceLocation() &&
+		getAcquisitionNumber() == t_image->getAcquisitionNumber() &&
+		getIsMultiFrame() == t_image->getIsMultiFrame();
+}
+
+//-----------------------------------------------------------------------------
 bool asclepios::core::Image::isLess(Image* t_lhs, Image* t_rhs)
 {
-	return t_lhs->getParentObject() == t_rhs->getParentObject() &&
-		t_lhs->getImagePath() == t_rhs->getImagePath() &&
-		t_lhs->getSOPInstanceUID() == t_rhs->getSOPInstanceUID() &&
-		t_lhs->getClassUID() == t_rhs->getClassUID() &&
-		t_lhs->getFrameOfRefernceID() == t_rhs->getFrameOfRefernceID() &&
-		t_lhs->getModality() == t_rhs->getModality() &&
-		t_lhs->getWindowCenter() == t_rhs->getWindowCenter() &&
-		t_lhs->getWindowWidth() == t_rhs->getWindowWidth() &&
-		t_lhs->getRows() == t_rhs->getRows() &&
-		t_lhs->getColumns() == t_rhs->getColumns() &&
-		t_lhs->getNumberOfFrames() == t_rhs->getNumberOfFrames() &&
-		t_lhs->getSliceLocation() == t_rhs->getSliceLocation() &&
-		t_lhs->getIsMultiFrame() == t_rhs->getIsMultiFrame();
+	if (t_lhs->getSliceLocation() == t_rhs->getSliceLocation())
+	{
+		return t_lhs->getAcquisitionNumber() < t_rhs->getAcquisitionNumber();
+	}
+	return t_rhs->getSliceLocation() > t_lhs->getSliceLocation();
 }

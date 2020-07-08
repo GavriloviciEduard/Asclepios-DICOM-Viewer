@@ -12,27 +12,15 @@ void asclepios::core::CoreController::readData(const std::string& t_filepath) co
 	try
 	{
 		m_dicomReader->readFile(t_filepath);
-		if (m_dicomReader->dataSetExists())
-		{
-			insertDataInRepo();
-		}
-		else
-		{
-			throw std::exception("File not supported");
-		}
+		m_dicomReader->dataSetExists()
+			? insertDataInRepo()
+			: throw std::exception("File not supported");
 	}
 	catch (std::exception& ex)
 	{
 		//todo log exception
 		std::cout << ex.what() << '\n';
 	}
-}
-
-//-----------------------------------------------------------------------------
-std::set<std::unique_ptr<asclepios::core::Patient>, asclepios::core::Patient::patientCompare>& asclepios::core::
-CoreController::getPatients() const
-{
-	return m_coreRepository->getPatients();
 }
 
 //-----------------------------------------------------------------------------
