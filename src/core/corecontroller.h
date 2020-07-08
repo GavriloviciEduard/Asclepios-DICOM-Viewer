@@ -14,7 +14,13 @@ namespace asclepios::core
 		~CoreController() = default;
 
 		void readData(const std::string& t_filepath) const;
-		[[nodiscard]] std::set<std::unique_ptr<Patient>, Patient::patientCompare>& getPatients() const;
+		[[nodiscard]] std::vector<std::unique_ptr<Patient>>& getPatients() const { return m_coreRepository->getPatients(); }
+		[[nodiscard]] Patient* getLastPatient() const { return m_coreRepository->getLastPatient(); }
+		[[nodiscard]] Study* getLastStudy() const { return m_coreRepository->getLastStudy(); }
+		[[nodiscard]] Series* getLastSeries() const { return m_coreRepository->getLastSeries(); }
+		[[nodiscard]] Image* getLastImage()  const { return m_coreRepository->getLastImage(); }
+		[[nodiscard]] bool newSeriesAdded() const { return m_coreRepository->newSeriesAdded(); }
+		[[nodiscard]] bool newImageAdded() const { return m_coreRepository->newImageAdded(); }
 
 	private:
 		std::unique_ptr<CoreRepository> m_coreRepository = {};

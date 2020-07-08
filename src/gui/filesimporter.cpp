@@ -77,8 +77,13 @@ void asclepios::gui::FilesImporter::importFiles()
 		m_filesMutex.lock();
 		m_coreController->
 			readData(m_filesPaths.front().toStdString());
+		if (m_coreController->newSeriesAdded() ||
+			m_coreController->newImageAdded() &&
+			m_coreController->getLastImage()->getIsMultiFrame())
+		{
+
+		}
 		m_filesPaths.pop_front();
 		m_filesMutex.unlock();
 	}
-	std::cout << m_coreController->getPatients().size() << '\n';
 }

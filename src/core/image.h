@@ -1,6 +1,5 @@
 #pragma once
 
-#include <imebra.h>
 #include <vtkDICOMReader.h>
 #include <vtkWeakPointer.h>
 #include <vtkSmartPointer.h>

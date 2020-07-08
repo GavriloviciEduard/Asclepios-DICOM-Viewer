@@ -1,12 +1,24 @@
 #include "patient.h"
-
+#include <algorithm>
 
 asclepios::core::Study* asclepios::core::Patient::addStudy(std::unique_ptr<Study> t_study)
 {
-	return m_studies.emplace(std::move(t_study)).first->get();
+	auto index = findStudy(t_study.get());
+	if(index == m_studies.size())
+	{
+		m_studies.emplace_back(std::move(t_study));
+		index = m_studies.size() - 1;
+	}
+	return m_studies.at(index).get();
 }
 
-bool asclepios::core::Patient::isLess(Patient* t_lhs, Patient* t_rhs)
+//-----------------------------------------------------------------------------
+std::size_t asclepios::core::Patient::findStudy(Study* t_study)
 {
-	return t_lhs->getID() < t_rhs->getID();
+	const auto it = std::find_if(m_studies.begin(),
+		m_studies.end(), [&t_study](const std::unique_ptr<Study>& study)
+	{
+		return t_study->getUID() == study->getUID();
+	});
+	return  std::distance(m_studies.begin(), it);
 }

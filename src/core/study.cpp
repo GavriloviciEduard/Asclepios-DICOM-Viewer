@@ -1,12 +1,26 @@
 #include "study.h"
+#include <algorithm>
 
-asclepios::core::Series* asclepios::core::Study::addSeries(std::unique_ptr<Series> t_series)
+asclepios::core::Series* asclepios::core::Study::addSeries(std::unique_ptr<Series> t_series, bool& t_newSeries)
 {
-	return m_series.emplace(std::move(t_series)).first->get();
+	auto index = findSeries(t_series.get());
+	t_newSeries = false;
+	if (index == m_series.size())
+	{
+		m_series.emplace_back(std::move(t_series));
+		index = m_series.size() - 1;
+		t_newSeries = true;
+	}
+	return m_series.at(index).get();
 }
 
 //-----------------------------------------------------------------------------
-bool asclepios::core::Study::isLess(Study* t_lhs, Study* t_rhs)
+std::size_t asclepios::core::Study::findSeries(Series* t_series)
 {
-	return t_lhs->getUID() < t_rhs->getUID();
+	const auto it = std::find_if(m_series.begin(),
+		m_series.end(), [&t_series](const std::unique_ptr<Series>& series)
+	{
+		return t_series->getUID() == series->getUID();
+	});
+	return  std::distance(m_series.begin(), it);
 }

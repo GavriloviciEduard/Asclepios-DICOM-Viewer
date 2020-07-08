@@ -2,10 +2,8 @@
 
 #define export __declspec(dllexport)
 #define unused(x) (void)x;
-#define defaultWindow 420
-#define defaultLevel 69
-#define iconTitleBar ":/res/icon_small.png"
-#define iconapp ":/res/icon_big.png"
-#define appBackground ":/res/background.png"
-#define buttonMaximizeOff ":/res/maximize-button1.png"
-#define buttonMaximizeOn ":/res/maximize-button2.png"
+constexpr auto iconTitleBar = ":/res/icon_small.png";
+constexpr auto iconapp = ":/res/icon_big.png";
+constexpr auto appBackground = ":/res/background.png";
+constexpr auto buttonMaximizeOff = ":/res/maximize-button1.png";
+constexpr auto buttonMaximizeOn = ":/res/maximize-button2.png";
