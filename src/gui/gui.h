@@ -32,5 +32,6 @@ namespace asclepios::gui
 		void createConnections() const;
 		void connectGUIActions() const;
 		void connectButtonsWidgetActions() const;
+		void connectFilesImporter() const;
 	};
 }

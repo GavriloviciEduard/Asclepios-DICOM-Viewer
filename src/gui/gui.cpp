@@ -1,5 +1,6 @@
 #include "gui.h"
 #include <QFileDialog>
+#include <qtextcodec.h>
 
 asclepios::gui::GUI::GUI(QWidget* parent) : QMainWindow(parent)
 {
@@ -38,6 +39,7 @@ void asclepios::gui::GUI::createConnections() const
 {
 	connectGUIActions();
 	connectButtonsWidgetActions();
+	connectFilesImporter();
 }
 
 //-----------------------------------------------------------------------------
@@ -56,6 +58,14 @@ void asclepios::gui::GUI::connectButtonsWidgetActions() const
 		&QPushButton::pressed, this, &asclepios::gui::GUI::onOpenFile));
 	Q_UNUSED(connect(m_buttonsWidget->getUI().buttonOpenFolder,
 		&QPushButton::pressed, this, &asclepios::gui::GUI::onOpenFolder));
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::connectFilesImporter() const
+{
+	Q_UNUSED(connect(m_filesImporter.get(),
+		&FilesImporter::addNewThumbnail,
+		m_thumbnailsWidget, &ThumbnailsWidget::addThumbnail));
 }
 
 //-----------------------------------------------------------------------------

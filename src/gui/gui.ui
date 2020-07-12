@@ -22,6 +22,9 @@
     <height>0</height>
    </size>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::PreventContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>gui</string>
   </property>

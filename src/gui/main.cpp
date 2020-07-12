@@ -1,3 +1,4 @@
+//#include <vld.h>
 #include "gui.h"
 #include <QtWidgets/QApplication>
 #include "guiframe.h"

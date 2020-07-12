@@ -22,7 +22,7 @@ namespace asclepios::gui
 		//getters
 		[[nodiscard]] QString getPatientName() const { return m_patientName; }
 		[[nodiscard]] QString getPatientID() const { return m_patientid; }
-		[[nodiscard]] StudyList* getStudyItem(const QString& t_studyuid) const;
+		[[nodiscard]] StudyList* getStudyTab (const QString& t_studyuid) const;
 
 		//setters
 		void setPatientName(const QString& t_patientName) { m_patientName = t_patientName; }

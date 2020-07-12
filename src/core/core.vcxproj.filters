@@ -56,7 +56,7 @@
       <Filter>Source Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="smartdjdecoderregistration.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +84,8 @@
     <ClInclude Include="utils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="smartdjdecoderregistration.h" />
+    <ClInclude Include="smartdjdecoderregistration.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

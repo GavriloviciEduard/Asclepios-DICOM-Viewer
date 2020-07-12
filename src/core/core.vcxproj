@@ -166,7 +166,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\lib\include\vtkdicom;..\..\lib\include\vtk;..\..\lib\inlude\dcmtk</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\lib\include\vtkdicom;..\..\lib\include\vtk;..\..\lib\include\dcmtk;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderFile />
     </ClCompile>
