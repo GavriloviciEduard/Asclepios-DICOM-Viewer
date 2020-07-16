@@ -47,6 +47,12 @@
     <Filter Include="Source Files\files_importer">
       <UniqueIdentifier>{4a953e07-1634-463e-bcb1-d361d43eeb45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\widgets">
+      <UniqueIdentifier>{4ae79a58-3a00-4e57-a491-469a994ecc79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\widgets">
+      <UniqueIdentifier>{ff6c9c31-be43-494a-ab5c-29eb300b3a7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FramelessHelper.cpp">
@@ -86,6 +92,18 @@
     <ClCompile Include="filesimporter.cpp">
       <Filter>Source Files\files_importer</Filter>
     </ClCompile>
+    <ClCompile Include="vtkeventfilter.cpp">
+      <Filter>Source Files\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="tabwidget.cpp">
+      <Filter>Source Files\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetbase.cpp">
+      <Filter>Source Files\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widget2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="FramelessHelper.h">
@@ -121,6 +139,18 @@
     <QtMoc Include="filesimporter.h">
       <Filter>Header Files\files_importer</Filter>
     </QtMoc>
+    <QtMoc Include="vtkeventfilter.h">
+      <Filter>Header Files\widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="tabwidget.h">
+      <Filter>Header Files\widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="widgetbase.h">
+      <Filter>Header Files\widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="widget2d.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="gui.ui">
@@ -142,6 +172,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="buttonswidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="tabwidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget2d.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

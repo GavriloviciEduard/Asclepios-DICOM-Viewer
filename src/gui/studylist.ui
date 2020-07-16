@@ -1,23 +1,35 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>StudyList</class>
- <widget class="QListView" name="StudyList" >
-  <property name="objectName" >
-   <string notr="true">StudyList</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QListView" name="StudyList">
+  <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>400</width>
-	<height>300</height>
+    <x>0</x>
+    <y>0</y>
+    <width>250</width>
+    <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="maximumSize">
+   <size>
+    <width>250</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
    <string>StudyList</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QListView
+{
+	background-color:#2a2a2c;;
+	color : white;
+	border: 0px;
+}
+</string>
+  </property>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
-</UI>
+</ui>

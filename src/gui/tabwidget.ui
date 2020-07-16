@@ -1,42 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ThumbnailsWidget</class>
- <widget class="QWidget" name="ThumbnailsWidget">
+ <class>TabWidget</class>
+ <widget class="QWidget" name="TabWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>250</width>
-    <height>700</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>250</width>
-    <height>16777215</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string>ThumbnailsWidget</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">QTabWidget::tab-bar 
-{
-  left: 5px;
-}
-
-QTabWidget::pane
-{
-	border: none;
-}
-
-#ThumbnailsWidget
-{
-	background-color:#2a2a2c;
-	color : white;
-	border: 0px;
-}
-</string>
+   <string>TabWidget</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -54,6 +29,13 @@ QTabWidget::pane
    <property name="bottomMargin">
     <number>0</number>
    </property>
+   <item>
+    <widget class="QTabWidget" name="tab">
+     <property name="active" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

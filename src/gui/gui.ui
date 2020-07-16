@@ -31,23 +31,29 @@
   <property name="styleSheet">
    <string notr="true">QMenuBar
 {
-	background-color: #18263a;
+	background-color: #2f3136;
 	color : white;
 }
 
 QMenu
 {
-	background-color:#233a54;
+	background-color:#2a2a2c;
 	color : white;
 }
 
-QToolBar 
+#toolBarThumbnails 
 {
-	 background-color: #18263a;
-	 border: 0px ;
+	 background-color: #2f3136;
+	 border: 0.5px solid #3b3b41;
 	 margin:5px;
 }
 
+#toolBarButtons
+{
+	background-color: #2f3136;
+	 border: 0px ;
+	 margin:5px;
+}
 
 QToolBar::handle:vertical 
 {
@@ -132,8 +138,14 @@ QMenu::item:pressed
   <widget class="QToolBar" name="toolBarThumbnails">
    <property name="minimumSize">
     <size>
-     <width>250</width>
+     <width>270</width>
      <height>250</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>270</width>
+     <height>16777215</height>
     </size>
    </property>
    <property name="contextMenuPolicy">

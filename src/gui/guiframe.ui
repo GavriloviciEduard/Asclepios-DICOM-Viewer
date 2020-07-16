@@ -64,11 +64,11 @@
 }
 #GUIFrame
 {
-	background-color: #18263a;
+	background-color: #2f3136;
 }
 #widgetTopBar
 {
-	background-color: #18263a;
+	background-color: #2f3136;
 }
 #icon
 {

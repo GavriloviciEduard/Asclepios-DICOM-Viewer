@@ -20,7 +20,7 @@ void asclepios::gui::StudyList::initView()
 	setFlow(LeftToRight);
 	setResizeMode(Adjust);
 	setViewMode(IconMode);
-	setSpacing(5);
+	setSpacing(2);
 	setMovement(Static);
 }
 
@@ -29,7 +29,7 @@ void asclepios::gui::StudyList::insertNewSeries(core::Study* t_study,
 	core::Series* t_series, core::Image* t_image)
 {
 	auto* newSeriesItem = new SeriesItem(this);
-	newSeriesItem->setSizeHint(QSize(250, 210));
+	newSeriesItem->setSizeHint(QSize(190, 210));
 	newSeriesItem->setText(getDescription(t_study, t_series));
 	//todo set data in item for drag and drop event
 	qRegisterMetaType<QVector<int>>("QVector<int>");

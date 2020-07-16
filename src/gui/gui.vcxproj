@@ -84,7 +84,7 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeaderFile />
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;..\..\lib\include\vtkdicom;..\..\lib\include\vtk;..\..\lib\include\dcmtk;..\core;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;..\core;.\;..\..\lib\include\vtkdicom;..\..\lib\include\vtk;..\..\lib\include\dcmtk;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -108,7 +108,11 @@
     <ClCompile Include="NativeWindowHelper.cpp" />
     <ClCompile Include="patienttab.cpp" />
     <ClCompile Include="studylist.cpp" />
+    <ClCompile Include="tabwidget.cpp" />
     <ClCompile Include="thumbnailswidget.cpp" />
+    <ClCompile Include="vtkeventfilter.cpp" />
+    <ClCompile Include="widget2d.cpp" />
+    <ClCompile Include="widgetbase.cpp" />
     <ClCompile Include="WindowFramelessHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -121,7 +125,9 @@
     <QtUic Include="layoutMenu.ui" />
     <QtUic Include="patienttab.ui" />
     <QtUic Include="studylist.ui" />
+    <QtUic Include="tabwidget.ui" />
     <QtUic Include="thumbnailswidget.ui" />
+    <QtUic Include="widget2d.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="gui.qrc" />
@@ -147,6 +153,10 @@
     <QtMoc Include="patienttab.h" />
     <QtMoc Include="studylist.h" />
     <ClInclude Include="seriesitem.h" />
+    <QtMoc Include="vtkeventfilter.h" />
+    <QtMoc Include="tabwidget.h" />
+    <QtMoc Include="widgetbase.h" />
+    <QtMoc Include="widget2d.h" />
     <ClInclude Include="WindowFramelessHelper_p.h" />
     <QtMoc Include="WindowFramelessHelper.h" />
     <QtMoc Include="NativeWindowHelper.h" />
