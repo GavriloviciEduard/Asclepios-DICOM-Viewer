@@ -5,6 +5,7 @@
 #include "filesimporter.h"
 #include "thumbnailswidget.h"
 #include "ui_gui.h"
+#include "widgetscontroller.h"
 
 namespace asclepios::gui
 {
@@ -24,6 +25,7 @@ namespace asclepios::gui
 	private:
 		Ui::guiClass m_ui = {};
 		std::unique_ptr<FilesImporter> m_filesImporter = {};
+		std::unique_ptr<WidgetsController> m_widgetsController = {};
 		ThumbnailsWidget* m_thumbnailsWidget = {};
 		ButtonsWidget* m_buttonsWidget = {};
 

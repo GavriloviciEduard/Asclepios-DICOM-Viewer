@@ -13,6 +13,7 @@ namespace asclepios::gui
 	{
 	Q_OBJECT
 
+		//todo move core comtroller to gui a set a refernce here
 	public:
 		explicit FilesImporter(QObject* parent) : QThread(Q_NULLPTR),
 			m_coreController(std::make_unique<core::CoreController>()) {}

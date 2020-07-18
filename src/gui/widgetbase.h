@@ -45,8 +45,9 @@ namespace asclepios::gui
 		WidgetType m_widgetType = WidgetType::none;
 
 		virtual void initView() = 0;
+		virtual void initData() = 0;
 		virtual void render() = 0;
-		virtual void propagateFocusFromChild() = 0;
+		virtual void createActivationConnections() = 0;
 		virtual void resetView() = 0;
 		virtual void setWindowLevel(const int& t_window, const int& t_level) = 0;
 		virtual void setSliderValues(const int& t_min, const int& t_max, const int& t_value) = 0;

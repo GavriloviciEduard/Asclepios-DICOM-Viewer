@@ -36,7 +36,6 @@ void asclepios::gui::GUIFrame::initView()
 	m_ui.setupUi(this);
 	setUpFramelessHelper();
 	createConnections();
-	showMaximized();
 	m_ui.maximizeButton->setIcon(QIcon(buttonMaximizeOn));
 	m_ui.icon->setPixmap(QPixmap::fromImage(QImage(iconTitleBar)));
 }

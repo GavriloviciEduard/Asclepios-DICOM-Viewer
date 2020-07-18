@@ -1,209 +1,269 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
+    <Filter Include="gui">
+      <UniqueIdentifier>{02d5815b-219f-4b0b-964c-b6d5fdbe462c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
+    <Filter Include="gui\header">
+      <UniqueIdentifier>{28ca0a0e-3d4a-41df-bb31-e272bdd08f2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\source">
+      <UniqueIdentifier>{d85c348d-31da-4d96-a145-18de4a909c07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\ui">
+      <UniqueIdentifier>{108882dd-7b94-41fb-b9b8-66da36bd03d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="frameless_helper">
+      <UniqueIdentifier>{f5c9ef7b-8426-434a-ac03-b44e21d91879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="frameless_helper\header">
+      <UniqueIdentifier>{f609e1e8-1917-430d-8619-098ff526ab56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="frameless_helper\source">
+      <UniqueIdentifier>{96cafbba-c9d5-4cf0-b82e-c3d239bdc4d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{be27ea5c-e556-4343-944a-ecb6b8218509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\header">
+      <UniqueIdentifier>{70a5ff1b-35e9-446c-8178-4553307773ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\source">
+      <UniqueIdentifier>{fcc51be1-0785-499b-91b6-7b6487b25302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thumbnails">
+      <UniqueIdentifier>{1d998b0f-e0d4-4297-b568-327301e03f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thumbnails\header">
+      <UniqueIdentifier>{f83c3a30-c235-4eb2-a7dc-3cb5c55b7e4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thumbnails\source">
+      <UniqueIdentifier>{d786bbcc-eaab-4df5-a1db-f9aff3a27e45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thumbnails\ui">
+      <UniqueIdentifier>{3de345bd-fae1-49e4-be21-5036e9905694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="qt_widgets">
+      <UniqueIdentifier>{39116922-17e6-4320-81a5-e441bd887a20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="qt_widgets\header">
+      <UniqueIdentifier>{bf5d5a14-8dc9-4616-aeec-e9079513215c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="qt_widgets\source">
+      <UniqueIdentifier>{245293c8-ded2-4751-97f0-dbde94790f32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="qt_widgets\ui">
+      <UniqueIdentifier>{9a3584f7-ea26-48ef-a0b7-64b47c757240}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vtk_widgets">
+      <UniqueIdentifier>{2ddc55ea-cf7c-4ed6-8ff0-690080761e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vtk_widgets\header">
+      <UniqueIdentifier>{9477cc57-0b40-4bcd-89c6-e294cc20caa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vtk_widgets\source">
+      <UniqueIdentifier>{efcd1de1-903a-4fc3-a6ba-3f7c73aefb90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widgets_controller">
+      <UniqueIdentifier>{1ffd0dff-7da2-40b2-b732-e8836adb23b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widgets_repository">
+      <UniqueIdentifier>{0705d6fc-0002-4c54-91af-9786af597d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widgets_repository\header">
+      <UniqueIdentifier>{27e22960-e1b7-4d32-ad82-fe59a5ded2c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widgets_repository\source">
+      <UniqueIdentifier>{deb671c3-cd30-45f6-b267-5fc4a0cff43d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widgets_controller\header">
+      <UniqueIdentifier>{e970fdf0-5941-4736-ad63-25a3e7022481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widgets_controller\source">
+      <UniqueIdentifier>{506c58b3-bcca-4957-93a1-35512ff24941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
       <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
-    </Filter>
-    <Filter Include="Header Files\gui">
-      <UniqueIdentifier>{adc69a06-dc57-4fe5-a114-0b8600f28175}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui">
-      <UniqueIdentifier>{161f66cf-cb9b-4980-ad5e-50ceb04438dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\thumbnails">
-      <UniqueIdentifier>{27c8ed49-6295-4ff2-b5cf-9261691c09df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\thumbnails">
-      <UniqueIdentifier>{4e54f000-d6cc-4bd3-80e3-e3c29e0816e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\files_importer">
-      <UniqueIdentifier>{c75deec9-d088-4aec-b121-1be65e51ef8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\frameless_helper">
-      <UniqueIdentifier>{eb0f6b6e-f8f6-4301-bbbb-bdfd7c1362ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\frameless_helper">
-      <UniqueIdentifier>{bc636df1-ff14-491d-97c0-190e87182ca6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\files_importer">
-      <UniqueIdentifier>{4a953e07-1634-463e-bcb1-d361d43eeb45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\widgets">
-      <UniqueIdentifier>{4ae79a58-3a00-4e57-a491-469a994ecc79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\widgets">
-      <UniqueIdentifier>{ff6c9c31-be43-494a-ab5c-29eb300b3a7f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FramelessHelper.cpp">
-      <Filter>Source Files\frameless_helper</Filter>
-    </ClCompile>
-    <ClCompile Include="NativeWindowFilter.cpp">
-      <Filter>Source Files\frameless_helper</Filter>
-    </ClCompile>
-    <ClCompile Include="NativeWindowHelper.cpp">
-      <Filter>Source Files\frameless_helper</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowFramelessHelper.cpp">
-      <Filter>Source Files\frameless_helper</Filter>
-    </ClCompile>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="buttonswidget.cpp">
-      <Filter>Source Files\gui</Filter>
+      <Filter>gui\source</Filter>
     </ClCompile>
     <ClCompile Include="gui.cpp">
-      <Filter>Source Files\gui</Filter>
+      <Filter>gui\source</Filter>
     </ClCompile>
     <ClCompile Include="guiframe.cpp">
-      <Filter>Source Files\gui</Filter>
+      <Filter>gui\source</Filter>
     </ClCompile>
     <ClCompile Include="layoutmenu.cpp">
-      <Filter>Source Files\gui</Filter>
+      <Filter>gui\source</Filter>
     </ClCompile>
-    <ClCompile Include="patienttab.cpp">
-      <Filter>Source Files\thumbnails</Filter>
+    <ClCompile Include="FramelessHelper.cpp">
+      <Filter>frameless_helper\source</Filter>
     </ClCompile>
-    <ClCompile Include="studylist.cpp">
-      <Filter>Source Files\thumbnails</Filter>
+    <ClCompile Include="NativeWindowFilter.cpp">
+      <Filter>frameless_helper\source</Filter>
     </ClCompile>
-    <ClCompile Include="thumbnailswidget.cpp">
-      <Filter>Source Files\thumbnails</Filter>
+    <ClCompile Include="NativeWindowHelper.cpp">
+      <Filter>frameless_helper\source</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="WindowFramelessHelper.cpp">
+      <Filter>frameless_helper\source</Filter>
+    </ClCompile>
     <ClCompile Include="filesimporter.cpp">
-      <Filter>Source Files\files_importer</Filter>
+      <Filter>utils\source</Filter>
     </ClCompile>
     <ClCompile Include="vtkeventfilter.cpp">
-      <Filter>Source Files\widgets</Filter>
+      <Filter>utils\source</Filter>
+    </ClCompile>
+    <ClCompile Include="patienttab.cpp">
+      <Filter>thumbnails\source</Filter>
+    </ClCompile>
+    <ClCompile Include="studylist.cpp">
+      <Filter>thumbnails\source</Filter>
+    </ClCompile>
+    <ClCompile Include="thumbnailswidget.cpp">
+      <Filter>thumbnails\source</Filter>
     </ClCompile>
     <ClCompile Include="tabwidget.cpp">
-      <Filter>Source Files\widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="widgetbase.cpp">
-      <Filter>Source Files\widgets</Filter>
+      <Filter>qt_widgets\source</Filter>
     </ClCompile>
     <ClCompile Include="widget2d.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>qt_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetbase.cpp">
+      <Filter>qt_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetsrepository.cpp">
+      <Filter>widgets_repository\source</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetscontroller.cpp">
+      <Filter>widgets_controller\source</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetscontainer.cpp">
+      <Filter>gui\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="FramelessHelper.h">
-      <Filter>Header Files\frameless_helper</Filter>
-    </QtMoc>
-    <QtMoc Include="NativeWindowHelper.h">
-      <Filter>Header Files\frameless_helper</Filter>
-    </QtMoc>
-    <QtMoc Include="WindowFramelessHelper.h">
-      <Filter>Header Files\frameless_helper</Filter>
+    <QtMoc Include="buttonswidget.h">
+      <Filter>gui\header</Filter>
     </QtMoc>
     <QtMoc Include="gui.h">
-      <Filter>Header Files\gui</Filter>
-    </QtMoc>
-    <QtMoc Include="buttonswidget.h">
-      <Filter>Header Files\gui</Filter>
+      <Filter>gui\header</Filter>
     </QtMoc>
     <QtMoc Include="guiframe.h">
-      <Filter>Header Files\gui</Filter>
+      <Filter>gui\header</Filter>
     </QtMoc>
     <QtMoc Include="layoutmenu.h">
-      <Filter>Header Files\gui</Filter>
+      <Filter>gui\header</Filter>
     </QtMoc>
-    <QtMoc Include="thumbnailswidget.h">
-      <Filter>Header Files\thumbnails</Filter>
+    <QtMoc Include="FramelessHelper.h">
+      <Filter>frameless_helper\header</Filter>
     </QtMoc>
-    <QtMoc Include="patienttab.h">
-      <Filter>Header Files\thumbnails</Filter>
+    <QtMoc Include="NativeWindowHelper.h">
+      <Filter>frameless_helper\header</Filter>
     </QtMoc>
-    <QtMoc Include="studylist.h">
-      <Filter>Header Files\thumbnails</Filter>
+    <QtMoc Include="WindowFramelessHelper.h">
+      <Filter>frameless_helper\header</Filter>
     </QtMoc>
     <QtMoc Include="filesimporter.h">
-      <Filter>Header Files\files_importer</Filter>
+      <Filter>utils\header</Filter>
     </QtMoc>
     <QtMoc Include="vtkeventfilter.h">
-      <Filter>Header Files\widgets</Filter>
+      <Filter>utils\header</Filter>
+    </QtMoc>
+    <QtMoc Include="patienttab.h">
+      <Filter>thumbnails\header</Filter>
+    </QtMoc>
+    <QtMoc Include="studylist.h">
+      <Filter>thumbnails\header</Filter>
+    </QtMoc>
+    <QtMoc Include="thumbnailswidget.h">
+      <Filter>thumbnails\header</Filter>
     </QtMoc>
     <QtMoc Include="tabwidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="widgetbase.h">
-      <Filter>Header Files\widgets</Filter>
+      <Filter>qt_widgets\header</Filter>
     </QtMoc>
     <QtMoc Include="widget2d.h">
-      <Filter>Header Files</Filter>
+      <Filter>qt_widgets\header</Filter>
+    </QtMoc>
+    <QtMoc Include="widgetbase.h">
+      <Filter>qt_widgets\header</Filter>
+    </QtMoc>
+    <QtMoc Include="widgetscontainer.h">
+      <Filter>gui\header</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="gui.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="layoutMenu.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="thumbnailswidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="patienttab.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="studylist.ui">
-      <Filter>Form Files</Filter>
+    <QtUic Include="buttonswidget.ui">
+      <Filter>gui\ui</Filter>
     </QtUic>
     <QtUic Include="guiframe.ui">
-      <Filter>Form Files</Filter>
+      <Filter>gui\ui</Filter>
     </QtUic>
-    <QtUic Include="buttonswidget.ui">
-      <Filter>Form Files</Filter>
+    <QtUic Include="layoutMenu.ui">
+      <Filter>gui\ui</Filter>
+    </QtUic>
+    <QtUic Include="gui.ui">
+      <Filter>gui\ui</Filter>
+    </QtUic>
+    <QtUic Include="patienttab.ui">
+      <Filter>thumbnails\ui</Filter>
+    </QtUic>
+    <QtUic Include="studylist.ui">
+      <Filter>thumbnails\ui</Filter>
+    </QtUic>
+    <QtUic Include="thumbnailswidget.ui">
+      <Filter>thumbnails\ui</Filter>
     </QtUic>
     <QtUic Include="tabwidget.ui">
-      <Filter>Form Files</Filter>
+      <Filter>qt_widgets\ui</Filter>
     </QtUic>
     <QtUic Include="widget2d.ui">
-      <Filter>Form Files</Filter>
+      <Filter>qt_widgets\ui</Filter>
+    </QtUic>
+    <QtUic Include="widgetscontainer.ui">
+      <Filter>gui\ui</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="gui.qrc">
-      <Filter>Resource Files</Filter>
+      <Filter>resources</Filter>
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FramelessHelper_p.h">
-      <Filter>Header Files\frameless_helper</Filter>
+      <Filter>frameless_helper\header</Filter>
     </ClInclude>
     <ClInclude Include="NativeWindowFilter.h">
-      <Filter>Header Files\frameless_helper</Filter>
+      <Filter>frameless_helper\header</Filter>
     </ClInclude>
     <ClInclude Include="NativeWindowFilter_p.h">
-      <Filter>Header Files\frameless_helper</Filter>
+      <Filter>frameless_helper\header</Filter>
     </ClInclude>
     <ClInclude Include="NativeWindowHelper_p.h">
-      <Filter>Header Files\frameless_helper</Filter>
+      <Filter>frameless_helper\header</Filter>
     </ClInclude>
     <ClInclude Include="WindowFramelessHelper_p.h">
-      <Filter>Header Files\frameless_helper</Filter>
+      <Filter>frameless_helper\header</Filter>
     </ClInclude>
     <ClInclude Include="seriesitem.h">
-      <Filter>Header Files\thumbnails</Filter>
+      <Filter>thumbnails\header</Filter>
+    </ClInclude>
+    <ClInclude Include="widgetsrepository.h">
+      <Filter>widgets_repository\header</Filter>
+    </ClInclude>
+    <ClInclude Include="widgetscontroller.h">
+      <Filter>widgets_controller\header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -113,6 +113,9 @@
     <ClCompile Include="vtkeventfilter.cpp" />
     <ClCompile Include="widget2d.cpp" />
     <ClCompile Include="widgetbase.cpp" />
+    <ClCompile Include="widgetscontainer.cpp" />
+    <ClCompile Include="widgetscontroller.cpp" />
+    <ClCompile Include="widgetsrepository.cpp" />
     <ClCompile Include="WindowFramelessHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +131,7 @@
     <QtUic Include="tabwidget.ui" />
     <QtUic Include="thumbnailswidget.ui" />
     <QtUic Include="widget2d.ui" />
+    <QtUic Include="widgetscontainer.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="gui.qrc" />
@@ -157,6 +161,9 @@
     <QtMoc Include="tabwidget.h" />
     <QtMoc Include="widgetbase.h" />
     <QtMoc Include="widget2d.h" />
+    <QtMoc Include="widgetscontainer.h" />
+    <ClInclude Include="widgetscontroller.h" />
+    <ClInclude Include="widgetsrepository.h" />
     <ClInclude Include="WindowFramelessHelper_p.h" />
     <QtMoc Include="WindowFramelessHelper.h" />
     <QtMoc Include="NativeWindowHelper.h" />

@@ -26,6 +26,10 @@ void asclepios::gui::GUI::initView()
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUI::initData()
 {
+	m_widgetsController = std::make_unique<WidgetsController>();
+	m_widgetsController->createWidgets(WidgetsContainer::layouts::twoRowOneBottom, 3);
+	setCentralWidget(m_widgetsController->getWidgetsContainer());
+	//todo remove somehow nr of widgets
 	m_filesImporter = std::make_unique<FilesImporter>(this);
 	m_filesImporter->startImporter();
 	m_thumbnailsWidget = new ThumbnailsWidget(this);
