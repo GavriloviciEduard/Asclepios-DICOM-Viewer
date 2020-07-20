@@ -1,13 +1,13 @@
-#include "buttonswidget.h"
+#include "GeneralToolbar.h"
 
-asclepios::gui::ButtonsWidget::ButtonsWidget(QWidget *parent)
+asclepios::gui::GeneralToolbar::GeneralToolbar(QWidget *parent)
 	: QWidget(parent)
 {
 	initView();
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::ButtonsWidget::initView()
+void asclepios::gui::GeneralToolbar::initView()
 {
 	m_ui.setupUi(this);
 }

@@ -13,6 +13,12 @@
   <property name="windowTitle">
    <string>TabWidget</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QTabWidget::pane 
+{
+ 	border: 0.5px solid #3b3b41;
+ }</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>

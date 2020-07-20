@@ -28,6 +28,18 @@
 }
 </string>
   </property>
+  <property name="dragEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="dragDropMode">
+   <enum>QAbstractItemView::DragDrop</enum>
+  </property>
+  <property name="movement">
+   <enum>QListView::Free</enum>
+  </property>
+  <property name="layoutMode">
+   <enum>QListView::Batched</enum>
+  </property>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

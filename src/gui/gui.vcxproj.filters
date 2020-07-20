@@ -1,11 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
-      <Extensions>qrc;*</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
     <Filter Include="gui">
       <UniqueIdentifier>{02d5815b-219f-4b0b-964c-b6d5fdbe462c}</UniqueIdentifier>
     </Filter>
@@ -95,9 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="buttonswidget.cpp">
-      <Filter>gui\source</Filter>
-    </ClCompile>
     <ClCompile Include="gui.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
@@ -152,11 +144,14 @@
     <ClCompile Include="widgetscontainer.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
+    <ClCompile Include="generaltoolbar.cpp">
+      <Filter>gui\source</Filter>
+    </ClCompile>
+    <ClCompile Include="imagefunctionstoolbar.cpp">
+      <Filter>gui\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="buttonswidget.h">
-      <Filter>gui\header</Filter>
-    </QtMoc>
     <QtMoc Include="gui.h">
       <Filter>gui\header</Filter>
     </QtMoc>
@@ -202,11 +197,14 @@
     <QtMoc Include="widgetscontainer.h">
       <Filter>gui\header</Filter>
     </QtMoc>
+    <QtMoc Include="generaltoolbar.h">
+      <Filter>gui\header</Filter>
+    </QtMoc>
+    <QtMoc Include="imagefunctionstoolbar.h">
+      <Filter>gui\header</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="buttonswidget.ui">
-      <Filter>gui\ui</Filter>
-    </QtUic>
     <QtUic Include="guiframe.ui">
       <Filter>gui\ui</Filter>
     </QtUic>
@@ -232,6 +230,12 @@
       <Filter>qt_widgets\ui</Filter>
     </QtUic>
     <QtUic Include="widgetscontainer.ui">
+      <Filter>gui\ui</Filter>
+    </QtUic>
+    <QtUic Include="generaltoolbar.ui">
+      <Filter>gui\ui</Filter>
+    </QtUic>
+    <QtUic Include="imagefunctionstoolbar.ui">
       <Filter>gui\ui</Filter>
     </QtUic>
   </ItemGroup>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>250</width>
-    <height>184</height>
+    <width>211</width>
+    <height>160</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">QMenu 
 {
-	background-image:url(:/res/background.png)
+	
 }
 QMenu::item
 {      
@@ -48,7 +48,7 @@ QMenu::item:pressed
   <action name="actionTwoInRowOneBottom">
    <property name="icon">
     <iconset resource="gui.qrc">
-     <normaloff>:/res/1.png</normaloff>:/res/1.png</iconset>
+     <normaloff>:/res/2.png</normaloff>:/res/2.png</iconset>
    </property>
    <property name="text">
     <string>Two in row one bottom</string>
@@ -57,7 +57,7 @@ QMenu::item:pressed
   <action name="actionTwoInColumnOneRight">
    <property name="icon">
     <iconset resource="gui.qrc">
-     <normaloff>:/res/2.png</normaloff>:/res/2.png</iconset>
+     <normaloff>:/res/1.png</normaloff>:/res/1.png</iconset>
    </property>
    <property name="text">
     <string>Two in column one right</string>

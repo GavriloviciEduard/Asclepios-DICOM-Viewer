@@ -1,6 +1,5 @@
 #include "gui.h"
 #include <QFileDialog>
-#include <qtextcodec.h>
 
 asclepios::gui::GUI::GUI(QWidget* parent) : QMainWindow(parent)
 {
@@ -21,28 +20,44 @@ asclepios::gui::GUI::~GUI()
 void asclepios::gui::GUI::initView()
 {
 	m_ui.setupUi(this);
+	setAutoFillBackground(false);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUI::initData()
 {
+	//create widget controller
 	m_widgetsController = std::make_unique<WidgetsController>();
-	m_widgetsController->createWidgets(WidgetsContainer::layouts::twoRowOneBottom, 3);
+	m_widgetsController->createWidgets(WidgetsContainer::layouts::twoRowOneBottom);
 	setCentralWidget(m_widgetsController->getWidgetsContainer());
-	//todo remove somehow nr of widgets
+
+	//create file importer
 	m_filesImporter = std::make_unique<FilesImporter>(this);
 	m_filesImporter->startImporter();
+
+	//create toolbars and widgets
 	m_thumbnailsWidget = new ThumbnailsWidget(this);
-	m_buttonsWidget = new ButtonsWidget(this);
-	m_ui.toolBarButtons->addWidget(m_buttonsWidget);
+	m_imageFunctionsTtoolbar = new ImageFunctionsToolbar(this);
+	m_ui.toolBarImageTransf->addWidget(m_imageFunctionsTtoolbar);
+	m_generalToolbar = new GeneralToolbar(this);
+	m_ui.toolBarButtons->addWidget(m_generalToolbar);
+	createLayoutMenu();
 	m_ui.toolBarThumbnails->addWidget(m_thumbnailsWidget);
+}
+
+void asclepios::gui::GUI::createLayoutMenu()
+{
+	m_layoutMenu = new LayoutMenu(this);
+	auto* const toolBt = m_generalToolbar->getUI().buttonLayout;
+	toolBt->setMenu(m_layoutMenu);
+	toolBt->setPopupMode(QToolButton::InstantPopup);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUI::createConnections() const
 {
 	connectGUIActions();
-	connectButtonsWidgetActions();
+	connectGeneralToolbar();
 	connectFilesImporter();
 }
 
@@ -53,15 +68,19 @@ void asclepios::gui::GUI::connectGUIActions() const
 		&QAction::triggered, this, &asclepios::gui::GUI::onOpenFile));
 	Q_UNUSED(connect(m_ui.actionOpenDICOMfolder,
 		&QAction::triggered, this, &asclepios::gui::GUI::onOpenFolder))
+	//todo connect mpr and volume to viewers
+	//todo connect image functions to viewers
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::GUI::connectButtonsWidgetActions() const
+void asclepios::gui::GUI::connectGeneralToolbar() const
 {
-	Q_UNUSED(connect(m_buttonsWidget->getUI().buttonOpenFile,
+	Q_UNUSED(connect(m_generalToolbar->getUI().buttonOpenFile,
 		&QPushButton::pressed, this, &asclepios::gui::GUI::onOpenFile));
-	Q_UNUSED(connect(m_buttonsWidget->getUI().buttonOpenFolder,
+	Q_UNUSED(connect(m_generalToolbar->getUI().buttonOpenFolder,
 		&QPushButton::pressed, this, &asclepios::gui::GUI::onOpenFolder));
+	//todo connect mpr and volume to viewers
+	//todo connect image functions to viewers
 }
 
 //-----------------------------------------------------------------------------
@@ -95,4 +114,11 @@ void asclepios::gui::GUI::onOpenFolder()
 	{
 		m_filesImporter->addFolders(filedialog->selectedFiles());
 	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::onChangeLayout(const WidgetsContainer::layouts& t_layout) const
+{
+	m_widgetsController->createWidgets(t_layout);
+	QApplication::restoreOverrideCursor();
 }

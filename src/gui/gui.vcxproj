@@ -13,18 +13,18 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3E032935-879A-4C6E-AC66-EE8D8969B79B}</ProjectGuid>
     <Keyword>QtVS_v303</Keyword>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -97,11 +97,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="buttonswidget.cpp" />
     <ClCompile Include="filesimporter.cpp" />
     <ClCompile Include="FramelessHelper.cpp" />
+    <ClCompile Include="generaltoolbar.cpp" />
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="guiframe.cpp" />
+    <ClCompile Include="imagefunctionstoolbar.cpp" />
     <ClCompile Include="layoutmenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NativeWindowFilter.cpp" />
@@ -122,9 +123,10 @@
     <QtMoc Include="gui.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="buttonswidget.ui" />
+    <QtUic Include="generaltoolbar.ui" />
     <QtUic Include="gui.ui" />
     <QtUic Include="guiframe.ui" />
+    <QtUic Include="imagefunctionstoolbar.ui" />
     <QtUic Include="layoutMenu.ui" />
     <QtUic Include="patienttab.ui" />
     <QtUic Include="studylist.ui" />
@@ -137,19 +139,15 @@
     <QtRcc Include="gui.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\core\core.vcxproj">
-      <Project>{14c7108b-3780-4c4b-98cc-9181c830fab8}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <QtMoc Include="FramelessHelper.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="buttonswidget.h" />
     <QtMoc Include="filesimporter.h" />
     <ClInclude Include="FramelessHelper_p.h" />
     <QtMoc Include="layoutmenu.h" />
     <QtMoc Include="guiframe.h" />
+    <QtMoc Include="generaltoolbar.h" />
+    <QtMoc Include="imagefunctionstoolbar.h" />
     <ClInclude Include="NativeWindowFilter.h" />
     <ClInclude Include="NativeWindowFilter_p.h" />
     <ClInclude Include="NativeWindowHelper_p.h" />

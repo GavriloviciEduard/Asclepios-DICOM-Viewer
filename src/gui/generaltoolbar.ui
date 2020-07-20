@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ButtonsWidget</class>
- <widget class="QWidget" name="ButtonsWidget">
+ <class>GeneralToolbar</class>
+ <widget class="QWidget" name="GeneralToolbar">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>122</width>
-    <height>36</height>
+    <width>138</width>
+    <height>54</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,26 +34,18 @@
 #buttonLayout:pressed, #buttonOpenFile:pressed,#buttonOpenFolder:pressed
 {
   	border-style: none;
-	background-color: rgba(128, 128, 128, 0.3);
+	background-color: rgba(128, 128, 128, 0.5);
   
+}
+
+#buttonLayout::menu-indicator
+{
+	image: url(:/res/arrow_icon.png);
+    bottom: -2px;
+    right: 13px;
 }</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="spacing">
-    <number>7</number>
-   </property>
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
     <widget class="QPushButton" name="buttonOpenFile">
      <property name="minimumSize">

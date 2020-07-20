@@ -14,15 +14,14 @@ void asclepios::gui::WidgetsController::initData()
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::WidgetsController::createWidgets(const WidgetsContainer::layouts& t_layout,
-                                                      const int& t_nrWidgets) const
+void asclepios::gui::WidgetsController::createWidgets(const WidgetsContainer::layouts& t_layout)
 {
-	createRemoveWidgets(t_nrWidgets);
+	createRemoveWidgets(computeNumberWidgetsFromLayout(t_layout));
 	m_widgetsContainer->setLayout(t_layout);
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::WidgetsController::createRemoveWidgets(const int& t_nrWidgets) const
+void asclepios::gui::WidgetsController::createRemoveWidgets(const std::size_t& t_nrWidgets) const
 {
 	while (t_nrWidgets != m_widgetsRepository->getWidgets().size())
 	{
@@ -38,4 +37,10 @@ asclepios::gui::TabWidget* asclepios::gui::WidgetsController::createNewWidget() 
 	auto* const widget = new TabWidget(m_widgetsContainer.get());
 	widget->createWidget2D();
 	return widget;
+}
+
+//-----------------------------------------------------------------------------
+std::size_t asclepios::gui::WidgetsController::computeNumberWidgetsFromLayout(const WidgetsContainer::layouts& t_layout)
+{
+	return t_layout == WidgetsContainer::layouts::one ? 1 : static_cast<std::size_t>(t_layout) / 2 + 2ul;
 }

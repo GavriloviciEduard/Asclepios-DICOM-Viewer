@@ -10,6 +10,7 @@ VTK_MODULE_INIT(vtkRenderingVolumeOpenGL2);
 
 int main(int argc, char* argv[])
 {
+	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	QApplication application(argc, argv);
 	application.setWindowIcon(QIcon(iconapp));
 	asclepios::gui::GUIFrame guiFrame;

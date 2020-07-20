@@ -25,10 +25,13 @@ namespace asclepios::gui
 		void setPatient(core::Patient* t_patient) { m_patient = t_patient; }
 		void setStudy(core::Study* t_study) { m_study = t_study; }
 
-		void insertNewSeries(core::Study* t_study, core::Series* t_series, core::Image* t_image);
+		void insertNewSeries(core::Series* t_series, core::Image* t_image);
 
 	signals:
 		void finishConcurrent();
+
+	protected:
+		void startDrag(Qt::DropActions supportedActions) override;
 
 	private slots:
 		void cleanUp();
@@ -41,6 +44,7 @@ namespace asclepios::gui
 
 		void initView();
 		[[nodiscard]] QString getDescription(core::Study* t_study, core::Series* t_series) const;
+		[[nodiscard]] QString createMimeData(core::Series* t_series, core::Image* t_image);
 		static void createImageForItem(StudyList* t_self, core::Image* t_image, SeriesItem* t_item);
 	};
 }

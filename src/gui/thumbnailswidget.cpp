@@ -49,7 +49,7 @@ bool asclepios::gui::ThumbnailsWidget::tryInsertExistingItem(core::Patient* t_pa
 			{
 				studyTab = patientTab->addNewStudy(t_study);
 			}
-			studyTab->insertNewSeries(t_study, t_series, t_image);
+			studyTab->insertNewSeries(t_series, t_image);
 			return true;
 		}
 	}
@@ -64,6 +64,6 @@ void asclepios::gui::ThumbnailsWidget::insertNewItem(core::Patient* t_patient, c
 	newPatientTab->setPatientID(t_patient->getID().c_str());
 	newPatientTab->setPatientName(QString::fromLatin1(t_patient->getName().c_str()));
 	auto* newStudyTab = newPatientTab->addNewStudy(t_study);
-	newStudyTab->insertNewSeries(t_study, t_series, t_image);
+	newStudyTab->insertNewSeries(t_series, t_image);
 	m_patientsTabs->addTab(newPatientTab, newPatientTab->getPatientName());
 }

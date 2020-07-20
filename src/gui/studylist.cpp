@@ -1,6 +1,8 @@
 #include "studylist.h"
+#include <QDrag>
 #include <QFileDialog>
 #include <QMetaMethod>
+#include <QMimeData>
 #include <dcmtk/dcmimgle/dcmimage.h>
 #include <QtConcurrent/qtconcurrentrun.h>
 #include "smartdjdecoderregistration.h"
@@ -21,20 +23,18 @@ void asclepios::gui::StudyList::initView()
 	setResizeMode(Adjust);
 	setViewMode(IconMode);
 	setSpacing(2);
-	setMovement(Static);
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::StudyList::insertNewSeries(core::Study* t_study,
-	core::Series* t_series, core::Image* t_image)
+void asclepios::gui::StudyList::insertNewSeries(core::Series* t_series, core::Image* t_image)
 {
 	auto* newSeriesItem = new SeriesItem(this);
 	newSeriesItem->setSizeHint(QSize(190, 210));
-	newSeriesItem->setText(getDescription(t_study, t_series));
-	//todo set data in item for drag and drop event
+	newSeriesItem->setText(getDescription(m_study, t_series));
+	newSeriesItem->setData(Qt::UserRole, createMimeData(t_series, t_image));
 	qRegisterMetaType<QVector<int>>("QVector<int>");
 	m_futures.push_back(QtConcurrent::run(createImageForItem, this, t_image, newSeriesItem));
-	if(!isSignalConnected(QMetaMethod::fromSignal(&StudyList::finishConcurrent)))
+	if (!isSignalConnected(QMetaMethod::fromSignal(&StudyList::finishConcurrent)))
 	{
 		Q_UNUSED(connect(this, &StudyList::finishConcurrent, this, &StudyList::cleanUp))
 	}
@@ -42,12 +42,17 @@ void asclepios::gui::StudyList::insertNewSeries(core::Study* t_study,
 
 //-----------------------------------------------------------------------------
 QString asclepios::gui::StudyList::getDescription(core::Study* t_study,
-	core::Series* t_series) const
+                                                  core::Series* t_series) const
 {
 	QString description;
 	description.append(QString::fromLatin1(t_study->getDescription().c_str()))
-		.append('\n').append(QString::fromLatin1(t_series->getDescription().c_str()));
+	           .append('\n').append(QString::fromLatin1(t_series->getDescription().c_str()));
 	return description;
+}
+
+QString asclepios::gui::StudyList::createMimeData(core::Series* t_series, core::Image* t_image)
+{
+	return {};
 }
 
 //-----------------------------------------------------------------------------
@@ -59,11 +64,12 @@ void asclepios::gui::StudyList::createImageForItem(StudyList* t_self, core::Imag
 		t_item->setHeight(t_image->getRows());
 		core::SmartDJDecoderRegistration::registerCodecs();
 		const auto dcmImage = std::make_unique<DicomImage>(t_image->getImagePath().c_str(),
-			CIF_UsePartialAccessToPixelData | CIF_AcrNemaCompatibility, 0, 1);
+		                                                   CIF_UsePartialAccessToPixelData | CIF_AcrNemaCompatibility,
+		                                                   0, 1);
 		dcmImage->setWindow(t_image->getWindowCenter(), t_image->getWindowWidth());
 		auto* scaledImage = dcmImage->createScaledImage(300ul);
 		const auto thpath = t_image->getImagePath() + ".bmp";
-		if(scaledImage)
+		if (scaledImage)
 		{
 			scaledImage->writeBMP(thpath.c_str(), 24);
 			t_item->setSeriesPhoto(QPixmap(thpath.c_str()));
@@ -78,6 +84,18 @@ void asclepios::gui::StudyList::createImageForItem(StudyList* t_self, core::Imag
 		emit t_self->finishConcurrent();
 		//todo log
 	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::StudyList::startDrag(Qt::DropActions supportedActions)
+{
+	auto* const drag = new QDrag(this);
+	const auto icon = selectedItems().at(0)->icon();
+	drag->setPixmap(icon.pixmap(100, 100));
+	auto* const mimeData = new QMimeData();
+	mimeData->setText(selectedItems().at(0)->data(Qt::UserRole).toString());
+	drag->setMimeData(mimeData);
+	drag->exec();
 }
 
 //-----------------------------------------------------------------------------

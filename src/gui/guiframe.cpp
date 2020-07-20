@@ -34,6 +34,7 @@ void asclepios::gui::GUIFrame::updateMaximizeButton(const bool& maximized) const
 void asclepios::gui::GUIFrame::initView()
 {
 	m_ui.setupUi(this);
+	setAutoFillBackground(false);
 	setUpFramelessHelper();
 	createConnections();
 	m_ui.maximizeButton->setIcon(QIcon(buttonMaximizeOn));

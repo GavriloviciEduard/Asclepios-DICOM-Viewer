@@ -50,9 +50,15 @@ QMenu
 
 #toolBarButtons
 {
-	background-color: #2f3136;
+	 background-color: #2f3136;
 	 border: 0px ;
 	 margin:5px;
+}
+
+#toolBarImageTransf
+{
+	background-color: #2f3136;
+	border: 0px ;
 }
 
 QToolBar::handle:vertical 
@@ -85,7 +91,25 @@ QMenu::item:pressed
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+   </layout>
+  </widget>
   <widget class="QToolBar" name="toolBarButtons">
    <property name="minimumSize">
     <size>
@@ -99,14 +123,20 @@ QMenu::item:pressed
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
    <property name="allowedAreas">
-    <set>Qt::TopToolBarArea</set>
+    <set>Qt::NoToolBarArea</set>
    </property>
    <property name="iconSize">
     <size>
      <width>36</width>
      <height>36</height>
     </size>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -131,7 +161,27 @@ QMenu::item:pressed
     <addaction name="actionOpenDICOMfile"/>
     <addaction name="actionOpenDICOMfolder"/>
    </widget>
+   <widget class="QMenu" name="menuImageOperations">
+    <property name="title">
+     <string>Image</string>
+    </property>
+    <addaction name="actionFlip_horizontal"/>
+    <addaction name="actionFlip_vertical"/>
+    <addaction name="actionRotate_left"/>
+    <addaction name="actionRotate_right"/>
+    <addaction name="actionInvert"/>
+    <addaction name="actionSARS_CoV_2_detection"/>
+   </widget>
+   <widget class="QMenu" name="menu3D">
+    <property name="title">
+     <string>3D</string>
+    </property>
+    <addaction name="actionMultiplanar_reconstruction_MPR"/>
+    <addaction name="action3D_volume_rendering"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuImageOperations"/>
+   <addaction name="menu3D"/>
   </widget>
   <widget class="QToolBar" name="toolBarThumbnails">
    <property name="minimumSize">
@@ -153,13 +203,16 @@ QMenu::item:pressed
     <string>toolBar</string>
    </property>
    <property name="movable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="allowedAreas">
     <set>Qt::LeftToolBarArea</set>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
    </property>
    <attribute name="toolBarArea">
     <enum>LeftToolBarArea</enum>
@@ -172,6 +225,23 @@ QMenu::item:pressed
    <property name="sizeGripEnabled">
     <bool>false</bool>
    </property>
+  </widget>
+  <widget class="QToolBar" name="toolBarImageTransf">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>RightToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
   </widget>
   <action name="actionOpenDICOMfile">
    <property name="icon">
@@ -189,6 +259,78 @@ QMenu::item:pressed
    </property>
    <property name="text">
     <string>Open DICOM folder</string>
+   </property>
+  </action>
+  <action name="actionMultiplanar_reconstruction_MPR">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/mpr_icon.png</normaloff>:/res/mpr_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Multiplanar reconstruction</string>
+   </property>
+  </action>
+  <action name="action3D_volume_rendering">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/3d_icon.png</normaloff>:/res/3d_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>3D volume rendering</string>
+   </property>
+  </action>
+  <action name="actionFlip_horizontal">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/fliphorizontal_icon.png</normaloff>:/res/fliphorizontal_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Flip horizontal</string>
+   </property>
+  </action>
+  <action name="actionFlip_vertical">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/flipvertical_icon.png</normaloff>:/res/flipvertical_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Flip vertical</string>
+   </property>
+  </action>
+  <action name="actionRotate_left">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/rotateleft_icon.png</normaloff>:/res/rotateleft_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate left</string>
+   </property>
+  </action>
+  <action name="actionRotate_right">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/rotateright_icon.png</normaloff>:/res/rotateright_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate right</string>
+   </property>
+  </action>
+  <action name="actionInvert">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/invert_icon.png</normaloff>:/res/invert_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Invert</string>
+   </property>
+  </action>
+  <action name="actionSARS_CoV_2_detection">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/coronavirus_icon.png</normaloff>:/res/coronavirus_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>SARS-CoV-2 detection</string>
    </property>
   </action>
  </widget>
