@@ -63,6 +63,9 @@
     <ClCompile Include="corecontroller.cpp">
       <Filter>controller\source</Filter>
     </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>utils\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dicomreader.h">

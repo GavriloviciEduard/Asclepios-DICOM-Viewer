@@ -1,12 +1,11 @@
 #pragma once
 
-#include <QFrame>
 #include "ui_guiframe.h"
 #include "FramelessHelper.h"
 
 namespace asclepios::gui
 {
-	class GUIFrame : public QFrame
+	class GUIFrame final : public QFrame
 	{
 	Q_OBJECT
 
@@ -18,11 +17,13 @@ namespace asclepios::gui
 
 	protected:
 		void updateMaximizeButton(const bool& maximized) const;
+		void moveEvent(QMoveEvent* event) override;
 
 	private:
 		Ui::GUIFrame m_ui = {};
 		QWidget* m_childWidget = {};
 		std::unique_ptr<FramelessHelper> m_helper = {};
+		unsigned short m_currentScreen;
 
 		void initView();
 		void createConnections() const;

@@ -1,9 +1,11 @@
 #include "guiframe.h"
 #include "utils.h"
 #include <QPushButton>
+#include <QDesktopWidget>
 
 asclepios::gui::GUIFrame::GUIFrame(QWidget* parent) : QFrame(
-	parent, Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::Dialog)
+	parent, Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::Dialog),
+	m_currentScreen(QApplication::desktop()->screenNumber(this))
 {
 	initView();
 }
@@ -27,6 +29,18 @@ void asclepios::gui::GUIFrame::updateMaximizeButton(const bool& maximized) const
 	{
 		m_ui.maximizeButton->setIcon(QIcon(buttonMaximizeOff));
 		m_ui.maximizeButton->setToolTip(tr("Maximize"));
+	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::moveEvent(QMoveEvent* event)
+{
+	const auto screen =
+		QApplication::desktop()->screenNumber(this);
+	if (screen != m_currentScreen)
+	{
+		m_currentScreen = screen;
+		resize(width() + 1, height());
 	}
 }
 

@@ -29,7 +29,7 @@ void asclepios::gui::StudyList::initView()
 void asclepios::gui::StudyList::insertNewSeries(core::Series* t_series, core::Image* t_image)
 {
 	auto* newSeriesItem = new SeriesItem(this);
-	newSeriesItem->setSizeHint(QSize(190, 210));
+	newSeriesItem->setSizeHint(QSize(185, 210));
 	newSeriesItem->setText(getDescription(m_study, t_series));
 	newSeriesItem->setData(Qt::UserRole, createMimeData(t_series, t_image));
 	qRegisterMetaType<QVector<int>>("QVector<int>");
@@ -64,8 +64,8 @@ void asclepios::gui::StudyList::createImageForItem(StudyList* t_self, core::Imag
 		t_item->setHeight(t_image->getRows());
 		core::SmartDJDecoderRegistration::registerCodecs();
 		const auto dcmImage = std::make_unique<DicomImage>(t_image->getImagePath().c_str(),
-		                                                   CIF_UsePartialAccessToPixelData | CIF_AcrNemaCompatibility,
-		                                                   0, 1);
+			CIF_UsePartialAccessToPixelData | CIF_AcrNemaCompatibility,
+			0, 1);
 		dcmImage->setWindow(t_image->getWindowCenter(), t_image->getWindowWidth());
 		auto* scaledImage = dcmImage->createScaledImage(300ul);
 		const auto thpath = t_image->getImagePath() + ".bmp";

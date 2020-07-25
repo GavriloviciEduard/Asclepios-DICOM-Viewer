@@ -27,6 +27,7 @@
     <ClCompile Include="series.cpp" />
     <ClCompile Include="smartdjdecoderregistration.cpp" />
     <ClCompile Include="study.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="corecontroller.h" />

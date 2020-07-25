@@ -97,6 +97,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="corneroverlay.cpp" />
     <ClCompile Include="filesimporter.cpp" />
     <ClCompile Include="FramelessHelper.cpp" />
     <ClCompile Include="generaltoolbar.cpp" />
@@ -107,17 +108,25 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NativeWindowFilter.cpp" />
     <ClCompile Include="NativeWindowHelper.cpp" />
+    <ClCompile Include="overlayinfo.cpp" />
     <ClCompile Include="patienttab.cpp" />
     <ClCompile Include="studylist.cpp" />
     <ClCompile Include="tabwidget.cpp" />
     <ClCompile Include="thumbnailswidget.cpp" />
     <ClCompile Include="vtkeventfilter.cpp" />
+    <ClCompile Include="vtkwidget2d.cpp" />
+    <ClCompile Include="vtkwidget2dinteractorstyle.cpp" />
+    <ClCompile Include="vtkwidgetbase.cpp" />
+    <ClCompile Include="vtkwidgetdicom.cpp" />
+    <ClCompile Include="vtkwidgetoverlay.cpp" />
+    <ClCompile Include="vtkwidgetoverlaycallback.cpp" />
     <ClCompile Include="widget2d.cpp" />
     <ClCompile Include="widgetbase.cpp" />
     <ClCompile Include="widgetscontainer.cpp" />
     <ClCompile Include="widgetscontroller.cpp" />
     <ClCompile Include="widgetsrepository.cpp" />
     <ClCompile Include="WindowFramelessHelper.cpp" />
+    <ClCompile Include="windowlevelfilter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui.h" />
@@ -142,6 +151,14 @@
     <QtMoc Include="FramelessHelper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="corneroverlay.h" />
+    <ClInclude Include="overlayinfo.h" />
+    <ClInclude Include="vtkwidget2d.h" />
+    <ClInclude Include="vtkwidget2dinteractorstyle.h" />
+    <ClInclude Include="vtkwidgetdicom.h" />
+    <ClInclude Include="vtkwidgetoverlay.h" />
+    <ClInclude Include="vtkwidgetoverlaycallback.h" />
+    <ClInclude Include="windowlevelfilter.h" />
     <QtMoc Include="filesimporter.h" />
     <ClInclude Include="FramelessHelper_p.h" />
     <QtMoc Include="layoutmenu.h" />
@@ -160,6 +177,7 @@
     <QtMoc Include="widgetbase.h" />
     <QtMoc Include="widget2d.h" />
     <QtMoc Include="widgetscontainer.h" />
+    <ClInclude Include="vtkwidgetbase.h" />
     <ClInclude Include="widgetscontroller.h" />
     <ClInclude Include="widgetsrepository.h" />
     <ClInclude Include="WindowFramelessHelper_p.h" />

@@ -1,11 +1,12 @@
 #pragma once
 
-#include <qscrollbar.h>
 #include <qfuture.h>
+#include <qscrollbar.h>
+#include <QVTKOpenGLNativeWidget.h>
 #include <vtkEventQtSlotConnect.h>
 #include "ui_widget2d.h"
+#include "vtkwidgetbase.h"
 #include "widgetbase.h"
-#include <QVTKOpenGLNativeWidget.h>
 
 namespace asclepios::gui
 {
@@ -31,7 +32,7 @@ namespace asclepios::gui
 	private:
 		Ui::Widget2D m_ui = {};
 		QVTKOpenGLNativeWidget* m_qtvtkWidget = {};
-		//std::unique_ptr<vtkViewerWidget> m_vtkWidget;
+		std::unique_ptr<vtkWidgetBase> m_vtkWidget;
 		QScrollBar* m_scroll = {};
 		vtkSmartPointer<vtkEventQtSlotConnect> m_scrollConnections = {};
 		QFuture<void> m_future = {};

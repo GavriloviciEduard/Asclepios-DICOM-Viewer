@@ -150,6 +150,33 @@
     <ClCompile Include="imagefunctionstoolbar.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
+    <ClCompile Include="vtkwidgetbase.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="windowlevelfilter.cpp">
+      <Filter>utils\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidgetdicom.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidget2d.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidgetoverlay.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="corneroverlay.cpp">
+      <Filter>utils\source</Filter>
+    </ClCompile>
+    <ClCompile Include="overlayinfo.cpp">
+      <Filter>utils\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidgetoverlaycallback.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidget2dinteractorstyle.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui.h">
@@ -268,6 +295,33 @@
     </ClInclude>
     <ClInclude Include="widgetscontroller.h">
       <Filter>widgets_controller\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidgetbase.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="windowlevelfilter.h">
+      <Filter>utils\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidgetdicom.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidget2d.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidgetoverlay.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="corneroverlay.h">
+      <Filter>utils\header</Filter>
+    </ClInclude>
+    <ClInclude Include="overlayinfo.h">
+      <Filter>utils\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidgetoverlaycallback.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidget2dinteractorstyle.h">
+      <Filter>vtk_widgets\header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
