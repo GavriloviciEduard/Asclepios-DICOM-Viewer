@@ -18,6 +18,9 @@ void asclepios::gui::WidgetsController::createWidgets(const WidgetsContainer::la
 {
 	createRemoveWidgets(computeNumberWidgetsFromLayout(t_layout));
 	m_widgetsContainer->setLayout(t_layout);
+	auto* const firstWidget = *m_widgetsRepository->getWidgets().begin();
+	firstWidget->getActiveTabbedWidget()->setFocus();
+	m_activeWidget = firstWidget;
 }
 
 //-----------------------------------------------------------------------------

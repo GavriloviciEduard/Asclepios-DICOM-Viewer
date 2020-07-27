@@ -5,6 +5,7 @@
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkEventQtSlotConnect.h>
 #include "ui_widget2d.h"
+#include "vtkwidget2d.h"
 #include "vtkwidgetbase.h"
 #include "widgetbase.h"
 
@@ -24,8 +25,10 @@ namespace asclepios::gui
 		void resetView() override;
 		void setWindowLevel(const int& t_window, const int& t_level) override;
 		void setSliderValues(const int& t_min, const int& t_max, const int& t_value) override;
-		void focusInEvent(QFocusEvent* event) override;
 
+	signals:
+		void imageReaderInitialized();
+		
 	public slots:
 		void activateWidget(const bool& t_flag);
 
@@ -36,5 +39,11 @@ namespace asclepios::gui
 		QScrollBar* m_scroll = {};
 		vtkSmartPointer<vtkEventQtSlotConnect> m_scrollConnections = {};
 		QFuture<void> m_future = {};
+
+		void connectScroll();
+		void disconnectScroll();
+		static void initImageReader(vtkWidget2D* t_vtkWidget2D, Widget2D* t_self);
+		[[nodiscard]] bool canScrollBeRefreshed(const int& t_patientIndex, const int& t_studyIndex,
+		                                        const int& t_seriesIndex) const;
 	};
 }

@@ -32,7 +32,7 @@ namespace asclepios::core
 		[[nodiscard]] Series* addSeries(std::unique_ptr<Series> t_series, bool& t_newSeries);
 
 		//find
-		[[nodiscard]] std::size_t findSeries(Series* t_series);
+		[[nodiscard]] std::size_t findSeriesIndex(Series* t_series);
 
 
 	private:

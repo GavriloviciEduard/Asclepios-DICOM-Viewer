@@ -1,4 +1,5 @@
 #pragma once
+#include <vtkCommand.h>
 #include <vtkDICOMTag.h>
 
 #define export __declspec(dllexport)
@@ -22,6 +23,19 @@ enum class transformationType
 	zoom,
 	pan,
 	windowLevel
+};
+
+enum class overlayKey
+{
+	zoom = 1001,
+	series = 1003,
+	window = 2625616,
+	level = 2625617
+};
+
+enum vtkCustomEvents : unsigned long
+{
+	imageChanged = vtkCommand::UserEvent + 1,
 };
 
 namespace asclepios::core

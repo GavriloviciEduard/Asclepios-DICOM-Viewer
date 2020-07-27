@@ -1,5 +1,6 @@
 #include "widget2d.h"
 #include <vtkGenericOpenGLRenderWindow.h>
+#include <QFocusEvent>
 #include <QHBoxLayout>
 
 
@@ -8,6 +9,7 @@ asclepios::gui::Widget2D::Widget2D(QWidget* parent)
 {
 	initData();
 	initView();
+	createActivationConnections();
 	m_tabWidget = parent;
 }
 
@@ -75,13 +77,38 @@ void asclepios::gui::Widget2D::setSliderValues(const int& t_min, const int& t_ma
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::focusInEvent(QFocusEvent* event)
+void asclepios::gui::Widget2D::activateWidget(const bool& t_flag)
 {
-	//todo
+	if (t_flag)
+	{
+		auto* event = new QFocusEvent(QEvent::FocusIn,
+			Qt::FocusReason::MouseFocusReason);
+		focusInEvent(event);
+		delete event;
+	}
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::activateWidget(const bool& t_flag)
+void asclepios::gui::Widget2D::connectScroll()
 {
-	//todo
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::Widget2D::disconnectScroll()
+{
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::Widget2D::initImageReader(vtkWidget2D* t_vtkWidget2D, Widget2D* t_self)
+{
+	t_vtkWidget2D->initImageReader();
+	emit t_self->imageReaderInitialized();
+}
+
+//-----------------------------------------------------------------------------
+bool asclepios::gui::Widget2D::canScrollBeRefreshed(const int& t_patientIndex, const int& t_studyIndex,
+                                                    const int& t_seriesIndex) const
+{
+	return m_vtkWidget && m_vtkWidget->getImage() && t_patientIndex == m_patientIndex && t_patientIndex != -1 &&
+		t_studyIndex == m_studyIndex && t_studyIndex != -1 && m_seriesIndex == t_seriesIndex && t_seriesIndex != -1;
 }

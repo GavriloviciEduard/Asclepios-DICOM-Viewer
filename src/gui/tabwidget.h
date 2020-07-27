@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ui_tabwidget.h"
-#include "WidgetBase.h"
+#include "widgetbase.h"
 
 namespace asclepios::gui
 {

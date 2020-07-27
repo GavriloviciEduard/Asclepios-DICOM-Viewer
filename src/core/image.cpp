@@ -2,7 +2,6 @@
 
 vtkSmartPointer<vtkDICOMReader> asclepios::core::Image::getImageReader() const
 {
-	//todo this is blocking the first time, must be made async
 	if (m_imageReader)
 	{
 		return vtkSmartPointer<vtkDICOMReader>(m_imageReader);

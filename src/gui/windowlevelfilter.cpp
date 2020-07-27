@@ -8,10 +8,10 @@ void asclepios::gui::WindowLevelFilter::setWindowWidthCenter(const int& t_width,
 	{
 		return;
 	}
-	if (auto const lookupTable =
+	if (auto* const lookupTable =
 		m_dicomWidget->GetWindowLevel()->GetLookupTable(); lookupTable)
 	{
-		auto const table = dynamic_cast<vtkWindowLevelLookupTable*>(lookupTable);
+		auto* const table = dynamic_cast<vtkWindowLevelLookupTable*>(lookupTable);
 		table->SetInverseVideo(!m_invert);
 		table->SetWindow(t_width);
 		table->SetLevel(t_center);

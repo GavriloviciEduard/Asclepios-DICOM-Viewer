@@ -29,7 +29,7 @@ namespace asclepios::core
 		[[nodiscard]] Study* addStudy(std::unique_ptr<Study> t_study);
 
 		//find
-		[[nodiscard]] std::size_t findStudy(Study* t_study);
+		[[nodiscard]] std::size_t findStudyIndex(Study* t_study);
 
 	private:
 		std::string m_id = {};

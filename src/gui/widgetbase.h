@@ -29,11 +29,18 @@ namespace asclepios::gui
 		[[nodiscard]] bool getIsImageLoaded() const { return m_isImageLoaded; }
 		[[nodiscard]] WidgetType getWidgetType() const { return m_widgetType; }
 		[[nodiscard]] QWidget* getTabWidget() const { return m_tabWidget; }
+		[[nodiscard]] int getPatientIndex() const { return m_patientIndex; }
+		[[nodiscard]] int getStudyInex() const { return m_studyIndex; }
+		[[nodiscard]] int getSeriesIndex() const { return m_seriesIndex; }
+		[[nodiscard]] int getImageIndex() const { return m_imageIndex; }
+
 		//setters
 		void setSeries(core::Series* t_series) { m_series = t_series; }
 		void setImage(core::Image* t_image) { m_image = t_image; }
 		void setIsImageLoaded(const bool& t_flag) { m_isImageLoaded = t_flag; }
 		void setWidgetType(const WidgetType& t_widgetType) { m_widgetType = t_widgetType; }
+		void setIndexes(const int& t_patientIndex, const int& t_studyIndex, const int& t_seriesIndex,
+		                const int& t_imageIndex);
 
 	protected:
 		QWidget* m_tabWidget = {};
@@ -43,6 +50,10 @@ namespace asclepios::gui
 		std::unique_ptr<vtkEventFilter> m_vtkEvents = {};
 		bool m_isImageLoaded = false;
 		WidgetType m_widgetType = WidgetType::none;
+		int m_patientIndex = {};
+		int m_studyIndex = {};
+		int m_seriesIndex = {};
+		int m_imageIndex = {};
 
 		virtual void initView() = 0;
 		virtual void initData() = 0;
