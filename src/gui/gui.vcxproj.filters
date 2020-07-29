@@ -13,15 +13,6 @@
     <Filter Include="gui\ui">
       <UniqueIdentifier>{108882dd-7b94-41fb-b9b8-66da36bd03d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="frameless_helper">
-      <UniqueIdentifier>{f5c9ef7b-8426-434a-ac03-b44e21d91879}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="frameless_helper\header">
-      <UniqueIdentifier>{f609e1e8-1917-430d-8619-098ff526ab56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="frameless_helper\source">
-      <UniqueIdentifier>{96cafbba-c9d5-4cf0-b82e-c3d239bdc4d6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="utils">
       <UniqueIdentifier>{be27ea5c-e556-4343-944a-ecb6b8218509}</UniqueIdentifier>
     </Filter>
@@ -93,23 +84,8 @@
     <ClCompile Include="gui.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
-    <ClCompile Include="guiframe.cpp">
-      <Filter>gui\source</Filter>
-    </ClCompile>
     <ClCompile Include="layoutmenu.cpp">
       <Filter>gui\source</Filter>
-    </ClCompile>
-    <ClCompile Include="FramelessHelper.cpp">
-      <Filter>frameless_helper\source</Filter>
-    </ClCompile>
-    <ClCompile Include="NativeWindowFilter.cpp">
-      <Filter>frameless_helper\source</Filter>
-    </ClCompile>
-    <ClCompile Include="NativeWindowHelper.cpp">
-      <Filter>frameless_helper\source</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowFramelessHelper.cpp">
-      <Filter>frameless_helper\source</Filter>
     </ClCompile>
     <ClCompile Include="filesimporter.cpp">
       <Filter>utils\source</Filter>
@@ -177,25 +153,19 @@
     <ClCompile Include="vtkwidget2dinteractorstyle.cpp">
       <Filter>vtk_widgets\source</Filter>
     </ClCompile>
+    <ClCompile Include="guiframe.cpp">
+      <Filter>gui\source</Filter>
+    </ClCompile>
+    <ClCompile Include="framelesswindow.cpp">
+      <Filter>gui\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui.h">
       <Filter>gui\header</Filter>
     </QtMoc>
-    <QtMoc Include="guiframe.h">
-      <Filter>gui\header</Filter>
-    </QtMoc>
     <QtMoc Include="layoutmenu.h">
       <Filter>gui\header</Filter>
-    </QtMoc>
-    <QtMoc Include="FramelessHelper.h">
-      <Filter>frameless_helper\header</Filter>
-    </QtMoc>
-    <QtMoc Include="NativeWindowHelper.h">
-      <Filter>frameless_helper\header</Filter>
-    </QtMoc>
-    <QtMoc Include="WindowFramelessHelper.h">
-      <Filter>frameless_helper\header</Filter>
     </QtMoc>
     <QtMoc Include="filesimporter.h">
       <Filter>utils\header</Filter>
@@ -228,6 +198,15 @@
       <Filter>gui\header</Filter>
     </QtMoc>
     <QtMoc Include="imagefunctionstoolbar.h">
+      <Filter>gui\header</Filter>
+    </QtMoc>
+    <QtMoc Include="widgetscontroller.h">
+      <Filter>widgets_controller\header</Filter>
+    </QtMoc>
+    <QtMoc Include="guiframe.h">
+      <Filter>gui\header</Filter>
+    </QtMoc>
+    <QtMoc Include="framelesswindow.h">
       <Filter>gui\header</Filter>
     </QtMoc>
   </ItemGroup>
@@ -272,29 +251,11 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FramelessHelper_p.h">
-      <Filter>frameless_helper\header</Filter>
-    </ClInclude>
-    <ClInclude Include="NativeWindowFilter.h">
-      <Filter>frameless_helper\header</Filter>
-    </ClInclude>
-    <ClInclude Include="NativeWindowFilter_p.h">
-      <Filter>frameless_helper\header</Filter>
-    </ClInclude>
-    <ClInclude Include="NativeWindowHelper_p.h">
-      <Filter>frameless_helper\header</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowFramelessHelper_p.h">
-      <Filter>frameless_helper\header</Filter>
-    </ClInclude>
     <ClInclude Include="seriesitem.h">
       <Filter>thumbnails\header</Filter>
     </ClInclude>
     <ClInclude Include="widgetsrepository.h">
       <Filter>widgets_repository\header</Filter>
-    </ClInclude>
-    <ClInclude Include="widgetscontroller.h">
-      <Filter>widgets_controller\header</Filter>
     </ClInclude>
     <ClInclude Include="vtkwidgetbase.h">
       <Filter>vtk_widgets\header</Filter>
@@ -323,5 +284,8 @@
     <ClInclude Include="vtkwidget2dinteractorstyle.h">
       <Filter>vtk_widgets\header</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

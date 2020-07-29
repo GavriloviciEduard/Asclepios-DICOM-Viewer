@@ -20,7 +20,6 @@ asclepios::gui::GUI::~GUI()
 void asclepios::gui::GUI::initView()
 {
 	m_ui.setupUi(this);
-	setAutoFillBackground(false);
 }
 
 //-----------------------------------------------------------------------------
@@ -28,7 +27,7 @@ void asclepios::gui::GUI::initData()
 {
 	//create widget controller
 	m_widgetsController = std::make_unique<WidgetsController>();
-	m_widgetsController->createWidgets(WidgetsContainer::layouts::twoRowOneBottom);
+	m_widgetsController->createWidgets(WidgetsContainer::layouts::one);
 	setCentralWidget(m_widgetsController->getWidgetsContainer());
 
 	//create file importer

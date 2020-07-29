@@ -19,6 +19,7 @@ namespace asclepios::gui
 		void setSeries(core::Series* t_series) { m_series = t_series; }
 		void setImage(core::Image* t_image) { m_image = t_image; }
 
+		void changeImage(int& t_index);
 		void updateOvelayImageNumber(const int& t_index) const;
 
 	protected:
@@ -41,7 +42,6 @@ namespace asclepios::gui
 		void refreshImage() const;
 		void updateOverlayWindowLevelApply() const;
 		void updateOverlayHUValue() const;
-		void changeImage(int& t_index);
 		[[nodiscard]] core::Image* getNextImage() const;
 		[[nodiscard]] core::Image* getPreviousImage() const;
 	};

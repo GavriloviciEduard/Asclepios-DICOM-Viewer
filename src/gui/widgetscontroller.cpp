@@ -16,11 +16,21 @@ void asclepios::gui::WidgetsController::initData()
 //-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsController::createWidgets(const WidgetsContainer::layouts& t_layout)
 {
+	resetConnections();
 	createRemoveWidgets(computeNumberWidgetsFromLayout(t_layout));
 	m_widgetsContainer->setLayout(t_layout);
-	auto* const firstWidget = *m_widgetsRepository->getWidgets().begin();
-	firstWidget->getActiveTabbedWidget()->setFocus();
-	m_activeWidget = firstWidget;
+	createConnections();
+	(*m_widgetsRepository->getWidgets().begin())->onFocus(true);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsController::setActiveWidget(TabWidget* t_widget)
+{
+	if (m_activeWidget)
+	{
+		m_activeWidget->onFocus(false);
+	}
+	m_activeWidget = t_widget;
 }
 
 //-----------------------------------------------------------------------------
@@ -31,6 +41,30 @@ void asclepios::gui::WidgetsController::createRemoveWidgets(const std::size_t& t
 		m_widgetsRepository->getWidgets().size() > t_nrWidgets
 			? m_widgetsRepository->removeWidget()
 			: m_widgetsRepository->addWidget(createNewWidget());
+	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsController::createConnections() const
+{
+	const auto widgets = m_widgetsRepository->getWidgets();
+	for (const auto& widget : widgets)
+	{
+		Q_UNUSED(connect(widget, &TabWidget::focused, this,
+			&WidgetsController::setActiveWidget));
+	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsController::resetConnections()
+{
+	m_activeWidget = nullptr;
+	const auto widgets = m_widgetsRepository->getWidgets();
+	for (const auto& widget : widgets)
+	{
+		widget->onFocus(false);
+		disconnect(widget, &TabWidget::focused, this,
+		           &WidgetsController::setActiveWidget);
 	}
 }
 

@@ -1,14 +1,13 @@
 #pragma once
 
+#include "framelesswindow.h"
 #include "ui_guiframe.h"
-#include "FramelessHelper.h"
 
 namespace asclepios::gui
 {
-	class GUIFrame final : public QFrame
+	class GUIFrame final : public Frameless
 	{
 	Q_OBJECT
-
 	public:
 		explicit GUIFrame(QWidget* parent = Q_NULLPTR);
 		~GUIFrame() = default;
@@ -17,16 +16,18 @@ namespace asclepios::gui
 
 	protected:
 		void updateMaximizeButton(const bool& maximized) const;
-		void moveEvent(QMoveEvent* event) override;
+		void changeEvent(QEvent* t_event) override;
+
+	private slots:
+		void onClose();
+		void onMaximize();
+		void onMinimize();
 
 	private:
 		Ui::GUIFrame m_ui = {};
 		QWidget* m_childWidget = {};
-		std::unique_ptr<FramelessHelper> m_helper = {};
-		unsigned short m_currentScreen;
 
+		
 		void initView();
-		void createConnections() const;
-		void setUpFramelessHelper();
 	};
 }

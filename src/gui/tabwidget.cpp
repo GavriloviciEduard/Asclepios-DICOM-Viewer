@@ -1,4 +1,6 @@
 #include "tabwidget.h"
+#include <QFocusEvent>
+#include <qstyle.h>
 #include <QTabBar>
 #include "widget2d.h"
 
@@ -43,4 +45,30 @@ asclepios::gui::WidgetBase::WidgetType asclepios::gui::TabWidget::getWidgetType(
 asclepios::gui::WidgetBase* asclepios::gui::TabWidget::getActiveTabbedWidget() const
 {
 	return dynamic_cast<WidgetBase*>(m_ui.tab->widget(m_ui.tab->currentIndex()));
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::TabWidget::onFocus(const bool& t_flag)
+{
+	m_isActive = t_flag;
+	auto* const tab = dynamic_cast<QTabWidget*>(this->findChild<QTabWidget*>("tab"));
+	tab->setProperty("active", t_flag);
+	style()->unpolish(tab);
+	style()->polish(tab);
+	if (m_isActive)
+	{
+		emit focused(this);
+	}
+	update();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::TabWidget::focusInEvent(QFocusEvent* event)
+{
+	if (event->reason() == Qt::FocusReason::MouseFocusReason
+		&& !m_isActive)
+	{
+		onFocus(true);
+	}
+	QWidget::focusInEvent(event);
 }

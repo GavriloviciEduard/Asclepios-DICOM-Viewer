@@ -17,7 +17,26 @@
    <string notr="true">QTabWidget::pane 
 {
  	border: 0.5px solid #3b3b41;
- }</string>
+ }
+
+QTabWidget::pane[active=&quot;true&quot;] 
+{
+	border:0.5px solid #47E10C;
+}
+
+QTabWidget::pane[active=&quot;false&quot;] 
+{
+  border: 0.5px solid #3b3b41;
+}
+
+QTabBar::tab {
+	margin-bottom: -2px;
+    border-radius: 3px 3px;
+	background: #73AD21;
+	width: 80px;
+	height: 15px;
+	padding: 3px;
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">

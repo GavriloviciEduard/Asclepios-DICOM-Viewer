@@ -2,7 +2,8 @@
 
 void asclepios::gui::WidgetsRepository::removeWidget()
 {
-	auto* const widget = m_widgets.back();
+	auto* widget = m_widgets.back();
 	delete widget;
+	widget = nullptr;
 	m_widgets.pop_back();
 }

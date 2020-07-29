@@ -47,7 +47,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>qt5</QtInstall>
-    <QtModules>core;gui;quick;quickwidgets;widgets;winextras</QtModules>
+    <QtModules>core;gui;opengl;openglextensions;qmltest;quick;quickcontrols2;quickwidgets;widgets;winextras</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>qt5</QtInstall>
@@ -99,15 +99,13 @@
   <ItemGroup>
     <ClCompile Include="corneroverlay.cpp" />
     <ClCompile Include="filesimporter.cpp" />
-    <ClCompile Include="FramelessHelper.cpp" />
+    <ClCompile Include="framelesswindow.cpp" />
     <ClCompile Include="generaltoolbar.cpp" />
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="guiframe.cpp" />
     <ClCompile Include="imagefunctionstoolbar.cpp" />
     <ClCompile Include="layoutmenu.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="NativeWindowFilter.cpp" />
-    <ClCompile Include="NativeWindowHelper.cpp" />
     <ClCompile Include="overlayinfo.cpp" />
     <ClCompile Include="patienttab.cpp" />
     <ClCompile Include="studylist.cpp" />
@@ -125,7 +123,6 @@
     <ClCompile Include="widgetscontainer.cpp" />
     <ClCompile Include="widgetscontroller.cpp" />
     <ClCompile Include="widgetsrepository.cpp" />
-    <ClCompile Include="WindowFramelessHelper.cpp" />
     <ClCompile Include="windowlevelfilter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,10 +145,9 @@
     <QtRcc Include="gui.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="FramelessHelper.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="corneroverlay.h" />
+    <QtMoc Include="guiframe.h" />
+    <QtMoc Include="framelesswindow.h" />
     <ClInclude Include="overlayinfo.h" />
     <ClInclude Include="vtkwidget2d.h" />
     <ClInclude Include="vtkwidget2dinteractorstyle.h" />
@@ -160,14 +156,9 @@
     <ClInclude Include="vtkwidgetoverlaycallback.h" />
     <ClInclude Include="windowlevelfilter.h" />
     <QtMoc Include="filesimporter.h" />
-    <ClInclude Include="FramelessHelper_p.h" />
     <QtMoc Include="layoutmenu.h" />
-    <QtMoc Include="guiframe.h" />
     <QtMoc Include="generaltoolbar.h" />
     <QtMoc Include="imagefunctionstoolbar.h" />
-    <ClInclude Include="NativeWindowFilter.h" />
-    <ClInclude Include="NativeWindowFilter_p.h" />
-    <ClInclude Include="NativeWindowHelper_p.h" />
     <QtMoc Include="thumbnailswidget.h" />
     <QtMoc Include="patienttab.h" />
     <QtMoc Include="studylist.h" />
@@ -178,11 +169,11 @@
     <QtMoc Include="widget2d.h" />
     <QtMoc Include="widgetscontainer.h" />
     <ClInclude Include="vtkwidgetbase.h" />
-    <ClInclude Include="widgetscontroller.h" />
+    <QtMoc Include="widgetscontroller.h" />
     <ClInclude Include="widgetsrepository.h" />
-    <ClInclude Include="WindowFramelessHelper_p.h" />
-    <QtMoc Include="WindowFramelessHelper.h" />
-    <QtMoc Include="NativeWindowHelper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -26,7 +26,10 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <property name="spacing">
+   <property name="horizontalSpacing">
+    <number>25</number>
+   </property>
+   <property name="verticalSpacing">
     <number>2</number>
    </property>
   </layout>

@@ -24,6 +24,14 @@ namespace asclepios::gui
 		//setters
 		void setIsActive(const bool& t_flag) { m_isActive = t_flag; }
 
+	public slots:
+		void onFocus(const bool& t_flag);
+
+	signals:
+		void focused(TabWidget* t_widget);
+
+	protected:
+		void focusInEvent(QFocusEvent* event) override;
 
 	private:
 		Ui::TabWidget m_ui = {};

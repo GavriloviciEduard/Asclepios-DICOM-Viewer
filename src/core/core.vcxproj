@@ -40,6 +40,9 @@
     <ClInclude Include="study.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{14C7108B-3780-4C4B-98CC-9181C830FAB8}</ProjectGuid>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1032</width>
-    <height>807</height>
+    <width>1316</width>
+    <height>799</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -279,6 +279,12 @@
    </item>
    <item>
     <widget class="QWidget" name="widgetContent" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>1032</width>
+       <height>767</height>
+      </size>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="spacing">
        <number>6</number>
@@ -304,5 +310,59 @@
  <resources>
   <include location="gui.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>minimizeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GUIFrame</receiver>
+   <slot>onMinimize()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>897</x>
+     <y>28</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1308</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maximizeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GUIFrame</receiver>
+   <slot>onMaximize()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>967</x>
+     <y>28</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1253</x>
+     <y>196</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GUIFrame</receiver>
+   <slot>onClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1005</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1237</x>
+     <y>247</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onClose()</slot>
+  <slot>onMaximize()</slot>
+  <slot>onMinimize()</slot>
+ </slots>
 </ui>
