@@ -188,13 +188,13 @@ void asclepios::gui::vtkWidget2DInteractorStyle::updateOverlayWindowLevelApply()
 //-----------------------------------------------------------------------------
 void asclepios::gui::vtkWidget2DInteractorStyle::updateOverlayHUValue() const
 {
-	auto* const pixelSpacing = m_image->getImageReader()->GetDataSpacing();
 	const auto x = Interactor->GetEventPosition()[0];
 	const auto y = Interactor->GetEventPosition()[1];
 	double world[4];
 	ComputeDisplayToWorld(m_widget2D->getDCMWidget()->GetRenderWindow()
 	                                ->GetRenderers()->GetFirstRenderer(), x, y, 0, world);
-	m_widget2D->updateOverlayHUValue(world[0] / pixelSpacing[0], world[1] / pixelSpacing[1]);
+	m_widget2D->updateOverlayHUValue(world[0] / m_image->getPixelSpacingX(),
+		world[1] / m_image->getPixelSpacingY());
 }
 
 //-----------------------------------------------------------------------------

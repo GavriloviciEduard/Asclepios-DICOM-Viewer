@@ -2,7 +2,6 @@
 
 #include <memory>
 #include "filesimporter.h"
-#include "generaltoolbar.h"
 #include "imagefunctionstoolbar.h"
 #include "layoutmenu.h"
 #include "thumbnailswidget.h"
@@ -29,19 +28,16 @@ namespace asclepios::gui
 
 	private:
 		Ui::guiClass m_ui = {};
-		std::unique_ptr<FilesImporter> m_filesImporter = {};
+		std::shared_ptr<FilesImporter> m_filesImporter = {};
 		std::unique_ptr<WidgetsController> m_widgetsController = {};
 		ThumbnailsWidget* m_thumbnailsWidget = {};
-		GeneralToolbar* m_generalToolbar = {};
 		ImageFunctionsToolbar* m_imageFunctionsTtoolbar = {};
 		LayoutMenu* m_layoutMenu = {};
 
 		void initView();
 		void initData();
-		void createLayoutMenu();
 		void createConnections() const;
 		void connectGUIActions() const;
-		void connectGeneralToolbar() const;
 		void connectFilesImporter() const;
 	};
 }

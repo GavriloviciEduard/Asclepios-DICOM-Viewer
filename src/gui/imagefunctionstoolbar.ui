@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>96</width>
-    <height>180</height>
+    <width>94</width>
+    <height>348</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,70 +36,6 @@
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <widget class="QPushButton" name="buttonMPR">
-     <property name="minimumSize">
-      <size>
-       <width>36</width>
-       <height>36</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>36</width>
-       <height>36</height>
-      </size>
-     </property>
-     <property name="toolTip">
-      <string>MPR</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="gui.qrc">
-       <normaloff>:/res/mpr_icon.png</normaloff>:/res/mpr_icon.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>26</width>
-       <height>26</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="buttonInvert">
-     <property name="minimumSize">
-      <size>
-       <width>36</width>
-       <height>36</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>36</width>
-       <height>36</height>
-      </size>
-     </property>
-     <property name="toolTip">
-      <string>Invert</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="gui.qrc">
-       <normaloff>:/res/invert_icon.png</normaloff>:/res/invert_icon.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>26</width>
-       <height>26</height>
-      </size>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QPushButton" name="buttonVolume">
      <property name="minimumSize">
@@ -132,8 +68,8 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QPushButton" name="buttonRotateRight">
+   <item row="1" column="0">
+    <widget class="QPushButton" name="buttonMPR">
      <property name="minimumSize">
       <size>
        <width>36</width>
@@ -147,14 +83,14 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Rotate right</string>
+      <string>MPR</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="icon">
       <iconset resource="gui.qrc">
-       <normaloff>:/res/rotateright_icon.png</normaloff>:/res/rotateright_icon.png</iconset>
+       <normaloff>:/res/mpr_icon.png</normaloff>:/res/mpr_icon.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -164,7 +100,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="2" column="0">
     <widget class="QPushButton" name="buttonCOVID">
      <property name="minimumSize">
       <size>
@@ -197,7 +133,7 @@
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QPushButton" name="buttonRotateLeft">
+    <widget class="QPushButton" name="buttonInvert">
      <property name="minimumSize">
       <size>
        <width>36</width>
@@ -211,14 +147,14 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Rotate right</string>
+      <string>Invert</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="icon">
       <iconset resource="gui.qrc">
-       <normaloff>:/res/rotateleft_icon.png</normaloff>:/res/rotateleft_icon.png</iconset>
+       <normaloff>:/res/invert_icon.png</normaloff>:/res/invert_icon.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -228,7 +164,39 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="4" column="0">
+    <widget class="QPushButton" name="buttonFlipHorizontal">
+     <property name="minimumSize">
+      <size>
+       <width>36</width>
+       <height>36</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>36</width>
+       <height>36</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>Flip horizontal</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="gui.qrc">
+       <normaloff>:/res/fliphorizontal_icon.png</normaloff>:/res/fliphorizontal_icon.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>26</width>
+       <height>26</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
     <widget class="QPushButton" name="buttonFlipVerical">
      <property name="minimumSize">
       <size>
@@ -260,8 +228,8 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="buttonFlipHorizontal">
+   <item row="6" column="0">
+    <widget class="QPushButton" name="buttonRotateLeft">
      <property name="minimumSize">
       <size>
        <width>36</width>
@@ -275,14 +243,46 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Flip horizontal</string>
+      <string>Rotate right</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="icon">
       <iconset resource="gui.qrc">
-       <normaloff>:/res/fliphorizontal_icon.png</normaloff>:/res/fliphorizontal_icon.png</iconset>
+       <normaloff>:/res/rotateleft_icon.png</normaloff>:/res/rotateleft_icon.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>26</width>
+       <height>26</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QPushButton" name="buttonRotateRight">
+     <property name="minimumSize">
+      <size>
+       <width>36</width>
+       <height>36</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>36</width>
+       <height>36</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>Rotate right</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="gui.qrc">
+       <normaloff>:/res/rotateright_icon.png</normaloff>:/res/rotateright_icon.png</iconset>
      </property>
      <property name="iconSize">
       <size>

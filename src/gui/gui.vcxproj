@@ -100,7 +100,6 @@
     <ClCompile Include="corneroverlay.cpp" />
     <ClCompile Include="filesimporter.cpp" />
     <ClCompile Include="framelesswindow.cpp" />
-    <ClCompile Include="generaltoolbar.cpp" />
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="guiframe.cpp" />
     <ClCompile Include="imagefunctionstoolbar.cpp" />
@@ -129,7 +128,6 @@
     <QtMoc Include="gui.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="generaltoolbar.ui" />
     <QtUic Include="gui.ui" />
     <QtUic Include="guiframe.ui" />
     <QtUic Include="imagefunctionstoolbar.ui" />
@@ -157,7 +155,6 @@
     <ClInclude Include="windowlevelfilter.h" />
     <QtMoc Include="filesimporter.h" />
     <QtMoc Include="layoutmenu.h" />
-    <QtMoc Include="generaltoolbar.h" />
     <QtMoc Include="imagefunctionstoolbar.h" />
     <QtMoc Include="thumbnailswidget.h" />
     <QtMoc Include="patienttab.h" />

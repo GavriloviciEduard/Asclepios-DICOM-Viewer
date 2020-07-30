@@ -1,8 +1,8 @@
 #include "widget2d.h"
 #include <vtkGenericOpenGLRenderWindow.h>
 #include <QFocusEvent>
-#include <QHBoxLayout>
-
+#include <QtConcurrent/QtConcurrent>
+#include "tabwidget.h"
 #include "vtkwidget2dinteractorstyle.h"
 
 
@@ -11,7 +11,7 @@ asclepios::gui::Widget2D::Widget2D(QWidget* parent)
 {
 	initData();
 	initView();
-	createActivationConnections();
+	createConnections();
 	m_tabWidget = parent;
 }
 
@@ -26,6 +26,7 @@ void asclepios::gui::Widget2D::initView()
 	layout()->addWidget(m_scroll);
 }
 
+//-----------------------------------------------------------------------------
 void asclepios::gui::Widget2D::initData()
 {
 	disconnectScroll();
@@ -44,17 +45,40 @@ void asclepios::gui::Widget2D::initData()
 //-----------------------------------------------------------------------------
 void asclepios::gui::Widget2D::render()
 {
-	//todo
+	if(m_qtvtkWidget && m_vtkWidget && m_renderWindow->Get())
+	{
+		try
+		{
+			dynamic_cast<TabWidget*>(m_tabWidget)->setTabTitle(0,
+				m_series->getDescription().c_str());
+			auto* const vtkWidget = dynamic_cast<vtkWidget2D*>(m_vtkWidget.get());
+			vtkWidget->setSeries(m_series);
+			vtkWidget->setImage(m_image);
+			vtkWidget->resetOverlay();
+			m_tabWidget->setAcceptDrops(false);
+			m_future = QtConcurrent::run(initImageReader, vtkWidget, this);
+			Q_UNUSED(connect(this, &Widget2D::imageReaderInitialized,
+				this, &Widget2D::renderFinished));
+		}
+		catch (std::exception& ex)
+		{
+			m_future = {};
+			//todo log
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::createActivationConnections()
+void asclepios::gui::Widget2D::createConnections()
 {
 	setFocusPolicy(Qt::FocusPolicy::WheelFocus);
 	m_qtvtkWidget->installEventFilter(m_vtkEvents.get());
 	Q_UNUSED(connect(m_vtkEvents.get(),
 		&vtkEventFilter::activateWidget,
 		this, &Widget2D::activateWidget));
+	Q_UNUSED(connect(m_vtkEvents.get(),
+		&vtkEventFilter::setMaximized,
+		this, &Widget2D::setMaximized));
 }
 
 //-----------------------------------------------------------------------------
@@ -62,11 +86,12 @@ void asclepios::gui::Widget2D::resetView()
 {
 	resetWidgets();
 	resetScroll();
+	m_isImageLoaded = false;
 	m_image = nullptr;
 	m_series = nullptr;
 	//todo reset title of tab
 	disconnectScroll();
-	createActivationConnections();
+	createConnections();
 }
 
 //-----------------------------------------------------------------------------
@@ -87,7 +112,7 @@ void asclepios::gui::Widget2D::activateWidget(const bool& t_flag)
 	if (t_flag)
 	{
 		auto* event = new QFocusEvent(QEvent::FocusIn,
-		                              Qt::FocusReason::MouseFocusReason);
+			Qt::FocusReason::MouseFocusReason);
 		focusInEvent(event);
 		delete event;
 	}
@@ -116,19 +141,49 @@ void asclepios::gui::Widget2D::refreshSliderValues(const int& t_patientIndex, co
 	{
 		if (!m_image->getIsMultiFrame())
 		{
-			//todo
+			setSliderValues(0, t_seriesSize - 1,
+				t_imagesInSeries <= m_scroll->value() &&
+				t_seriesSize > 1 && t_imagesInSeries > 0
+				? m_scroll->value() + 1
+				: m_scroll->value());
+			/*dynamic_cast<vtkWidget2D*>(m_vtkWidget.get())->updateOvelayImageNumber(1,
+				t_seriesSize, std::stoi(m_series->getNumber()));*/
 		}
 	}
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::renderFinished()
+void asclepios::gui::Widget2D::setMaximized() const
 {
-	//todo
+	dynamic_cast<TabWidget*>(m_tabWidget)->onMaximize();
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::changeImage(int& t_index)
+void asclepios::gui::Widget2D::renderFinished()
+{
+	m_vtkWidget->setInteractor(m_qtvtkWidget->
+		GetRenderWindow()->GetInteractor());
+	m_vtkWidget->render();
+	m_scroll->setMaximum(m_image->getIsMultiFrame()
+		? m_image->getNumberOfFrames() - 1
+		: static_cast<int>(m_series->getSinlgeFrameImages().size()) - 1);
+	connectScroll();
+	m_tabWidget->setAcceptDrops(true);
+	m_future = {};
+	disconnect(this, &Widget2D::imageReaderInitialized,
+		this, &Widget2D::renderFinished);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::Widget2D::closeEvent(QCloseEvent* t_event)
+{
+	initView();
+	initData();
+	QWidget::closeEvent(t_event);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::Widget2D::changeImage(int t_index)
 {
 	try
 	{
@@ -158,8 +213,11 @@ void asclepios::gui::Widget2D::connectScroll() const
 //-----------------------------------------------------------------------------
 void asclepios::gui::Widget2D::disconnectScroll() const
 {
-	disconnect(m_scroll, &QScrollBar::valueChanged,
-	           this, &Widget2D::changeImage);
+	if (m_scroll)
+	{
+		disconnect(m_scroll, &QScrollBar::valueChanged,
+		           this, &Widget2D::changeImage);
+	}
 }
 
 //-----------------------------------------------------------------------------

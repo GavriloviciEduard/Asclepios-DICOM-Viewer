@@ -27,6 +27,11 @@ namespace asclepios::gui
 	signals:
 		void addNewThumbnail(core::Patient* t_patient,
 			core::Study* t_study, core::Series* t_series, core::Image* t_image);
+		void populateWidget(core::Series* t_series, core::Image* t_image,
+			const int& t_patientIndex, const int& t_studyIndex,
+			const int& t_seriesIndex, const int& t_imageIndex);
+		void refreshSliderValues(const int& t_patientIndex, const int& t_studyIndex,
+			const int& t_seriesIndex, const int& t_imageIndex, const int& t_seriesSize);
 
 	protected:
 		void run() override;

@@ -81,6 +81,9 @@ std::unique_ptr<asclepios::core::Image> asclepios::core::DicomReader::getReadIma
 	{
 		tempImage->setFrameOfRefernceID(getTagFromDataSet(DCM_FrameOfReferenceUID));
 	}
+	const auto [x, y] = getPixelSpacing();
+	tempImage->setPixelSpacingX(x);
+	tempImage->setPixelSpacingY(y);
 	return tempImage;
 }
 
@@ -128,4 +131,34 @@ std::tuple<int, int> asclepios::core::DicomReader::getWindowLevel() const
 	}
 	return std::make_tuple(static_cast<int>(window),
 	                       static_cast<int>(level));
+}
+
+//-----------------------------------------------------------------------------
+std::tuple<double, double> asclepios::core::DicomReader::getPixelSpacing() const
+{
+	auto pixelSpacing = getTagFromDataSet(DCM_PixelSpacing);
+	if (pixelSpacing.empty())
+	{
+		pixelSpacing = getTagFromDataSet(DCM_ImagerPixelSpacing);
+	}
+	if (!pixelSpacing.empty())
+	{
+		const auto separatorPosition = pixelSpacing.find('\\');
+		const auto x =
+			pixelSpacing.substr(0, pixelSpacing.find('\\'));
+		try
+		{
+			if (separatorPosition != pixelSpacing.length())
+			{
+				const auto y =
+					pixelSpacing.substr(separatorPosition + 1, pixelSpacing.length());
+				return std::make_tuple(std::stod(x), std::stod(y));
+			}
+		}
+		catch (std::exception& ex)
+		{
+			//todo log exception
+		}
+	}
+	return std::make_tuple(1, 1);
 }

@@ -14,7 +14,7 @@ namespace asclepios::gui
 		static vtkWidgetDICOM* New();
 		vtkTypeMacro(vtkWidgetDICOM, vtkImageViewer2);
 
-		vtkWidgetDICOM() = default;
+		vtkWidgetDICOM() :m_windowLevelFilter(std::make_unique<WindowLevelFilter>()) { }
 		~vtkWidgetDICOM() = default;
 
 		//getters

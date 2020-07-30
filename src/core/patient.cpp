@@ -9,6 +9,7 @@ asclepios::core::Study* asclepios::core::Patient::addStudy(std::unique_ptr<Study
 		m_studies.emplace_back(std::move(t_study));
 		index = m_studies.size() - 1;
 	}
+	m_studies.at(index)->setIndex(index);
 	return m_studies.at(index).get();
 }
 

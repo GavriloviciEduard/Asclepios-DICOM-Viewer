@@ -18,6 +18,7 @@ namespace asclepios::gui
 
 		//setters
 		void setImage(core::Image* t_image) { m_image = t_image; }
+		void setSeries(core::Series* t_series) { m_series = t_series; }
 		void setRenderWindow(const vtkSmartPointer<vtkRenderWindow>& t_renderWindow) { m_renderWindows[0] = t_renderWindow; }
 		void setRenderWindowsMPR(const vtkSmartPointer<vtkRenderWindow>& t_sagittal,
 			const vtkSmartPointer<vtkRenderWindow>& t_coronal,

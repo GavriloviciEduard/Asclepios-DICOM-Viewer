@@ -26,7 +26,7 @@ namespace asclepios::gui
 		void initImageReader();
 		void render() override;
 		void applyTransformation(const transformationType& t_type);
-		void updateOverlayZoomFactor() const;
+		void updateOverlayZoomFactor();
 		void updateOverlayHUValue(const int& x, const int& y);
 		void updateOvelayImageNumber(const int& t_current, const int& t_max, const int& t_numberOfSeries);
 		void updateOverlayWindowLevelApply(const int& t_window, const int& t_level, const bool& t_apply);

@@ -19,8 +19,17 @@ void asclepios::core::CoreController::readData(const std::string& t_filepath) co
 	catch (std::exception& ex)
 	{
 		//todo log exception
-		std::cout << ex.what() << '\n';
 	}
+}
+
+//-----------------------------------------------------------------------------
+int asclepios::core::CoreController::getLastSeriesSize() const
+{
+	auto* const image = m_coreRepository->getLastImage();
+	return image->getIsMultiFrame()
+		? image->getNumberOfFrames()
+		: static_cast<int>(m_coreRepository->
+			getLastSeries()->getSinlgeFrameImages().size());
 }
 
 //-----------------------------------------------------------------------------

@@ -11,6 +11,7 @@ void asclepios::core::CoreRepository::addPatient(std::unique_ptr<Patient> t_pati
 		index = m_patients.size() - 1;
 	}
 	m_lastPatient = m_patients.at(index).get();
+	m_lastPatient->setIndex(index);
 }
 
 //-----------------------------------------------------------------------------

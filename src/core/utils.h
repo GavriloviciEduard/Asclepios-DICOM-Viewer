@@ -9,7 +9,7 @@ constexpr auto iconapp = ":/res/icon_big.png";
 constexpr auto appBackground = ":/res/background.png";
 constexpr auto buttonMaximizeOff = ":/res/maximize-button1.png";
 constexpr auto buttonMaximizeOn = ":/res/maximize-button2.png";
-constexpr auto overlaysInformation = "overlays";
+constexpr auto overlaysInformation = "overlays.json";
 
 enum class transformationType
 {

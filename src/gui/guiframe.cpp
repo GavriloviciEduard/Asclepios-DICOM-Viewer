@@ -58,14 +58,7 @@ void asclepios::gui::GUIFrame::onClose()
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUIFrame::onMaximize()
 {
-	if (isMaximized())
-	{
-		showNormal();
-	}
-	else
-	{
-		showMaximized();
-	}
+	isMaximized() ? showNormal() : showMaximized();
 }
 
 //-----------------------------------------------------------------------------

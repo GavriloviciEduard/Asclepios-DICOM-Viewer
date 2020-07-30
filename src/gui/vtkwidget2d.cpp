@@ -60,7 +60,7 @@ void asclepios::gui::vtkWidget2D::setInteractor(const vtkSmartPointer<vtkRenderW
 //-----------------------------------------------------------------------------
 void asclepios::gui::vtkWidget2D::render()
 {
-	if (!m_imageReader || m_imageReader->GetMetaData())
+	if (!m_imageReader || !m_imageReader->GetMetaData())
 	{
 		return;
 	}
@@ -135,22 +135,23 @@ void asclepios::gui::vtkWidget2D::applyTransformation(const transformationType& 
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::vtkWidget2D::updateOverlayZoomFactor() const
+void asclepios::gui::vtkWidget2D::updateOverlayZoomFactor()
 {
 	const auto factor = m_dcmWidget->getZoomFactor();
 	std::stringstream zoom;
 	zoom << "Zoom: " << setprecision(2) << factor << '\n';
 	m_widgetOverlay->updateOverlayInCorner(2,
-	                                       std::to_string(static_cast<int>(overlayKey::zoom)),
-	                                       zoom.str());
+		std::to_string(static_cast<int>(overlayKey::zoom)),
+		zoom.str());
+	refreshOverlayInCorner(2);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::vtkWidget2D::updateOverlayMouseCoordinates(const int& x, const int& y) const
 {
-	std::string coord;
+	std::string coord = "MousePos: ";
 	coord.append("(").append(std::to_string(x)).
-	      append(", ").append(std::to_string(y)).append(")");
+	      append(", ").append(std::to_string(y)).append(")\n");
 	m_widgetOverlay->updateOverlayInCorner(2, "MousePos", coord);
 }
 
@@ -161,7 +162,9 @@ std::string asclepios::gui::vtkWidget2D::computeHUValueInPixel(const int& t_pixe
 	const auto nrTuples = scalars->GetNumberOfTuples();
 	if (t_pixel > 0 && t_pixel < nrTuples)
 	{
-		return std::to_string(scalars->GetTuple(t_pixel)[0]);
+		const auto str = std::to_string(scalars->GetTuple(t_pixel)[0]);
+		const auto pos = str.find('.');
+		return str.substr(0, pos + 3);
 	}
 	return {};
 }
@@ -195,7 +198,7 @@ void asclepios::gui::vtkWidget2D::updateOverlayHUValue(const int& x, const int& 
 		}
 		updateOverlayMouseCoordinates(x, y);
 		m_widgetOverlay->updateOverlayInCorner(2, "huValues",
-		                                       "HU " + computeHUValueInPixel((y - 1) * extentX + x));
+			"HU: " + computeHUValueInPixel((y - 1) * extentX + x));
 		refreshOverlayInCorner(2);
 	}
 }
@@ -208,7 +211,7 @@ void asclepios::gui::vtkWidget2D::updateOvelayImageNumber(const int& t_current, 
 	number.append("Series: " + std::to_string(t_numberOfSeries) + '\n')
 	      .append("Image: " + std::to_string(t_current) + "/" + std::to_string(t_max) + '\n');
 	m_widgetOverlay->updateOverlayInCorner(2,
-	                                       std::to_string(static_cast<int>(overlayKey::series)), number);
+		std::to_string(static_cast<int>(overlayKey::series)), number);
 	refreshOverlayInCorner(2);
 }
 
@@ -222,11 +225,11 @@ void asclepios::gui::vtkWidget2D::updateOverlayWindowLevelApply(const int& t_win
 	std::string window;
 	std::string level;
 	window.append("WL: " + std::to_string(m_dcmWidget->getWindowCenter()));
-	level.append(" / WW: " + std::to_string(m_dcmWidget->getWindowWidth() + '\n'));
+	level.append(" / WW: " + std::to_string(m_dcmWidget->getWindowWidth())).append("\n");
 	m_widgetOverlay->updateOverlayInCorner(2,
-	                                       std::to_string(static_cast<int>(overlayKey::window)), window);
+		std::to_string(static_cast<int>(overlayKey::window)), window);
 	m_widgetOverlay->updateOverlayInCorner(2,
-	                                       std::to_string(static_cast<int>(overlayKey::level)), level);
+		std::to_string(static_cast<int>(overlayKey::level)), level);
 	refreshOverlayInCorner(2);
 }
 
@@ -236,6 +239,7 @@ void asclepios::gui::vtkWidget2D::resetOverlay()
 	if (m_widgetOverlay)
 	{
 		m_widgetOverlay.release();
+		m_widgetOverlay = std::make_unique<vtkWidgetOverlay>();
 	}
 }
 
@@ -249,7 +253,7 @@ void asclepios::gui::vtkWidget2D::invertColors()
 //-----------------------------------------------------------------------------
 void asclepios::gui::vtkWidget2D::fitImage() const
 {
-	if (!m_dcmWidget || m_dcmWidget->GetImageActor())
+	if (!m_dcmWidget || !m_dcmWidget->GetImageActor())
 	{
 		throw std::runtime_error("dcmWidget is null!");
 	}

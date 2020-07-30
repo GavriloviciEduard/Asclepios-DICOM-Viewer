@@ -3,7 +3,6 @@
 #include <qfuture.h>
 #include <qscrollbar.h>
 #include <QVTKOpenGLNativeWidget.h>
-#include <vtkEventQtSlotConnect.h>
 #include "ui_widget2d.h"
 #include "vtkwidget2d.h"
 #include "vtkwidgetbase.h"
@@ -27,7 +26,7 @@ namespace asclepios::gui
 		void initView() override;
 		void initData() override;
 		void render() override;
-		void createActivationConnections() override;
+		void createConnections() override;
 		void resetView() override;
 		void setSliderValues(const int& t_min, const int& t_max, const int& t_value) override;
 
@@ -39,10 +38,14 @@ namespace asclepios::gui
 		void applyTransformation(const transformationType& t_type) const;
 		void refreshSliderValues(const int& t_patientIndex, const int& t_studyIndex,
 			const int& t_seriesIndex, const int& t_imagesInSeries, const int& t_seriesSize);
+		void setMaximized() const;
 
 	private slots :
-		void changeImage(int& t_index);
+		void changeImage(int t_index);
 		void renderFinished();
+
+	protected:
+		void closeEvent(QCloseEvent* t_event) override;
 
 	private:
 		Ui::Widget2D m_ui = {};

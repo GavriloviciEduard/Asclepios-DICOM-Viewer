@@ -25,38 +25,27 @@ void asclepios::gui::GUI::initView()
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUI::initData()
 {
+	//create file importer
+	m_filesImporter = std::make_shared<FilesImporter>(this);
+	m_filesImporter->startImporter();
+	
 	//create widget controller
 	m_widgetsController = std::make_unique<WidgetsController>();
 	m_widgetsController->createWidgets(WidgetsContainer::layouts::one);
+	m_widgetsController->setFilesImporter(m_filesImporter.get());
 	setCentralWidget(m_widgetsController->getWidgetsContainer());
-
-	//create file importer
-	m_filesImporter = std::make_unique<FilesImporter>(this);
-	m_filesImporter->startImporter();
-
+	
 	//create toolbars and widgets
 	m_thumbnailsWidget = new ThumbnailsWidget(this);
 	m_imageFunctionsTtoolbar = new ImageFunctionsToolbar(this);
 	m_ui.toolBarImageTransf->addWidget(m_imageFunctionsTtoolbar);
-	m_generalToolbar = new GeneralToolbar(this);
-	m_ui.toolBarButtons->addWidget(m_generalToolbar);
-	createLayoutMenu();
 	m_ui.toolBarThumbnails->addWidget(m_thumbnailsWidget);
-}
-
-void asclepios::gui::GUI::createLayoutMenu()
-{
-	m_layoutMenu = new LayoutMenu(this);
-	auto* const toolBt = m_generalToolbar->getUI().buttonLayout;
-	toolBt->setMenu(m_layoutMenu);
-	toolBt->setPopupMode(QToolButton::InstantPopup);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUI::createConnections() const
 {
 	connectGUIActions();
-	connectGeneralToolbar();
 	connectFilesImporter();
 }
 
@@ -72,22 +61,16 @@ void asclepios::gui::GUI::connectGUIActions() const
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::GUI::connectGeneralToolbar() const
-{
-	Q_UNUSED(connect(m_generalToolbar->getUI().buttonOpenFile,
-		&QPushButton::pressed, this, &asclepios::gui::GUI::onOpenFile));
-	Q_UNUSED(connect(m_generalToolbar->getUI().buttonOpenFolder,
-		&QPushButton::pressed, this, &asclepios::gui::GUI::onOpenFolder));
-	//todo connect mpr and volume to viewers
-	//todo connect image functions to viewers
-}
-
-//-----------------------------------------------------------------------------
 void asclepios::gui::GUI::connectFilesImporter() const
 {
 	Q_UNUSED(connect(m_filesImporter.get(),
 		&FilesImporter::addNewThumbnail,
-		m_thumbnailsWidget, &ThumbnailsWidget::addThumbnail));
+		m_thumbnailsWidget, 
+		&ThumbnailsWidget::addThumbnail));
+	Q_UNUSED(connect(m_filesImporter.get(),
+		&FilesImporter::populateWidget,
+		m_widgetsController.get(), 
+		&WidgetsController::populateWidget));
 }
 
 //-----------------------------------------------------------------------------

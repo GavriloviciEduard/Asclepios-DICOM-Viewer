@@ -11,6 +11,7 @@ asclepios::core::Series* asclepios::core::Study::addSeries(std::unique_ptr<Serie
 		index = m_series.size() - 1;
 		t_newSeries = true;
 	}
+	m_series.at(index)->setIndex(index);
 	return m_series.at(index).get();
 }
 

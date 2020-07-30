@@ -51,6 +51,7 @@ asclepios::core::Image* asclepios::core::Series::addSingleFrameImage(std::unique
 	}
 	auto it = m_singleFrameImages.begin();
 	std::advance(it, index);
+	it->get()->setIndex(index);
 	return it->get();
 }
 
@@ -67,6 +68,7 @@ asclepios::core::Image* asclepios::core::Series::addMultiFrameImage(std::unique_
 	}
 	auto it = m_multiFrameImages.begin();
 	std::advance(it, index);
+	it->get()->setIndex(index);
 	return it->get();
 }
 

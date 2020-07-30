@@ -99,10 +99,22 @@ void asclepios::gui::FilesImporter::importFiles()
 			m_coreController->getLastImage()->getIsMultiFrame())
 		{
 			emit addNewThumbnail(m_coreController->getLastPatient(),
-			                             m_coreController->getLastStudy(),
-			                             m_coreController->getLastSeries(),
-			                             m_coreController->getLastImage());
+				m_coreController->getLastStudy(),
+				m_coreController->getLastSeries(),
+				m_coreController->getLastImage());
+			
+			emit populateWidget(m_coreController->getLastSeries(),
+				m_coreController->getLastImage(),
+				m_coreController->getLastPatientIndex(),
+				m_coreController->getLastStudyIndex(),
+				m_coreController->getLastSeriesIndex(),
+				m_coreController->getLastImageIndex());
 		}
+		emit refreshSliderValues(m_coreController->getLastPatientIndex(),
+			m_coreController->getLastStudyIndex(),
+			m_coreController->getLastSeriesIndex(),
+			m_coreController->getLastImageIndex(),
+			m_coreController->getLastSeriesSize());
 		m_filesPaths.pop_front();
 		m_filesMutex.unlock();
 	}

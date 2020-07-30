@@ -120,9 +120,6 @@
     <ClCompile Include="widgetscontainer.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
-    <ClCompile Include="generaltoolbar.cpp">
-      <Filter>gui\source</Filter>
-    </ClCompile>
     <ClCompile Include="imagefunctionstoolbar.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
@@ -194,9 +191,6 @@
     <QtMoc Include="widgetscontainer.h">
       <Filter>gui\header</Filter>
     </QtMoc>
-    <QtMoc Include="generaltoolbar.h">
-      <Filter>gui\header</Filter>
-    </QtMoc>
     <QtMoc Include="imagefunctionstoolbar.h">
       <Filter>gui\header</Filter>
     </QtMoc>
@@ -236,9 +230,6 @@
       <Filter>qt_widgets\ui</Filter>
     </QtUic>
     <QtUic Include="widgetscontainer.ui">
-      <Filter>gui\ui</Filter>
-    </QtUic>
-    <QtUic Include="generaltoolbar.ui">
       <Filter>gui\ui</Filter>
     </QtUic>
     <QtUic Include="imagefunctionstoolbar.ui">

@@ -5,7 +5,7 @@ asclepios::gui::LayoutMenu::LayoutMenu(QWidget* parent)
 	: QMenu(parent)
 {
 	initView();
-	createConnections(parent);
+	createConnections(parent->parentWidget());
 }
 
 //-----------------------------------------------------------------------------

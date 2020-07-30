@@ -30,7 +30,10 @@ namespace asclepios::core
 		[[nodiscard]] export double getSliceLocation() const { return m_sliceLocation; }
 		[[nodiscard]] export int getAcquisitionNumber() const { return m_acquisitionNumber; }
 		[[nodiscard]] export bool getIsMultiFrame() const { return m_isMultiframe; }
-
+		[[nodiscard]] export int getIndex() const { return m_index; }
+		[[nodiscard]] export int getPixelSpacingX() const { return m_pixelSpacingX; }
+		[[nodiscard]] export int getPixelSpacingY() const { return m_pixelSpacingY; }
+		
 		/**
 		* Getter for image reader. If image reader is null is created.
 		*/
@@ -51,7 +54,10 @@ namespace asclepios::core
 		void export setSliceLocation(const double& t_sliceLocation) { m_sliceLocation = t_sliceLocation; }
 		void export setAcquisitionNumber(const int& t_acquisitionNumber) { m_acquisitionNumber = t_acquisitionNumber; }
 		void export setIsMultiFrame(const bool& t_isMultiframe) { m_isMultiframe = t_isMultiframe; }
-
+		void export setIndex(const int& t_index) { m_index = t_index; }
+		void export setPixelSpacingX(const double& t_spacing) { m_pixelSpacingX = t_spacing; }
+		void export setPixelSpacingY(const double& t_spacing) { m_pixelSpacingY = t_spacing; }
+		
 		/**
 		* Functor for set compare
 		*/
@@ -66,6 +72,7 @@ namespace asclepios::core
 		export bool equal(Image* t_image) const;
 
 	private:
+		std::size_t m_index = -1;
 		Series* m_parent = {};
 		std::string m_path = {};
 		std::string m_sopInstanceUid = {};
@@ -78,6 +85,8 @@ namespace asclepios::core
 		int m_columns = {};
 		int m_numberOfFrames = {};
 		double m_sliceLocation = {};
+		double m_pixelSpacingX = -1;
+		double m_pixelSpacingY = -1;
 		int m_acquisitionNumber = {};
 		bool m_isMultiframe = false;
 		vtkWeakPointer<vtkDICOMReader> m_imageReader = {};

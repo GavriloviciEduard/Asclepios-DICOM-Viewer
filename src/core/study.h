@@ -21,6 +21,7 @@ namespace asclepios::core
 		[[nodiscard]] std::string getDescription() const { return m_desctiption; }
 		[[nodiscard]] std::string getDate() const { return m_date; }
 		std::vector<std::unique_ptr<Series>>& getSeries() { return m_series; }
+		[[nodiscard]] int getIndex() const { return m_index; }
 
 		//setters
 		void setParentObject(Patient* t_parent) { m_parent = t_parent; }
@@ -28,6 +29,7 @@ namespace asclepios::core
 		void setID(const std::string& t_id) { m_id = t_id; }
 		void setDescription(const std::string& t_description) { m_desctiption = t_description; }
 		void setDate(const std::string& t_date) { m_date = t_date; }
+		void setIndex(const int& t_index) { m_index = t_index; }
 
 		[[nodiscard]] Series* addSeries(std::unique_ptr<Series> t_series, bool& t_newSeries);
 
@@ -36,6 +38,7 @@ namespace asclepios::core
 
 
 	private:
+		std::size_t m_index = -1;
 		Patient* m_parent = {};
 		std::string m_uid = {};
 		std::string m_id = {};

@@ -15,6 +15,8 @@ namespace asclepios::gui
 		explicit WidgetBase(QWidget* t_parent);
 		~WidgetBase() = default;
 
+		virtual void render() = 0;
+		
 		enum class WidgetType
 		{
 			none,
@@ -29,6 +31,7 @@ namespace asclepios::gui
 		[[nodiscard]] bool getIsImageLoaded() const { return m_isImageLoaded; }
 		[[nodiscard]] WidgetType getWidgetType() const { return m_widgetType; }
 		[[nodiscard]] QWidget* getTabWidget() const { return m_tabWidget; }
+		[[nodiscard]] vtkEventFilter* getvtkEventFilter() const { return m_vtkEvents.get(); }
 		[[nodiscard]] int getPatientIndex() const { return m_patientIndex; }
 		[[nodiscard]] int getStudyInex() const { return m_studyIndex; }
 		[[nodiscard]] int getSeriesIndex() const { return m_seriesIndex; }
@@ -57,10 +60,8 @@ namespace asclepios::gui
 
 		virtual void initView() = 0;
 		virtual void initData() = 0;
-		virtual void render() = 0;
-		virtual void createActivationConnections() = 0;
+		virtual void createConnections() = 0;
 		virtual void resetView() = 0;
-		virtual void setWindowLevel(const int& t_window, const int& t_level) = 0;
 		virtual void setSliderValues(const int& t_min, const int& t_max, const int& t_value) = 0;
 		void focusInEvent(QFocusEvent* event) override;
 	};

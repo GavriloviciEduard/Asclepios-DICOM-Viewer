@@ -83,10 +83,10 @@ void asclepios::gui::vtkWidgetOverlay::readOverlayInfo()
 		for (const auto& value : values)
 		{
 			m_overlays.emplace_back(std::make_unique<OverlayInfo>());
-			m_overlays.back()->setTextBefore(value.toObject().value("TextBefore").toString().toStdString());
-			m_overlays.back()->setTextAfter(value.toObject().value("TextAfter").toString().toStdString());
-			m_overlays.back()->setTagKey(value.toObject().value("TagKey").toString().toULong());
-			m_overlays.back()->setCorner(value.toObject().value("Corner").toString().toInt());
+			m_overlays.back()->setTextBefore(value.toObject()["TextBefore"].toString().toStdString());
+			m_overlays.back()->setTextAfter(value.toObject()["TextAfter"].toString().toStdString());
+			m_overlays.back()->setTagKey(value.toObject()["TagKey"].toInt());
+			m_overlays.back()->setCorner(value.toObject()["Corner"].toInt());
 		}
 	}
 }

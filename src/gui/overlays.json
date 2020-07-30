@@ -1,0 +1,101 @@
+{
+	"Overlay": 
+	[
+		{
+			"Corner" : 1,
+			"TagKey" : 524416,
+			"TextAfter" : "\n",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 1,
+			"TagKey" : 1048592,
+			"TextAfter" : "\n",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 1,
+			"TagKey" : 1048624,
+			"TextAfter" : "\n",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 1,
+			"TagKey" : 1048640,
+			"TextAfter" : "\n",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 1,
+			"TagKey" : 1052688,
+			"TextAfter" : "\n",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 1,
+			"TagKey" : 1048608,
+			"TextAfter" : "\n",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 1,
+			"TagKey" : 528432,
+			"TextAfter" : "\n",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 1,
+			"TagKey" : 528446,
+			"TextAfter" : "\n",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 2,
+			"TagKey" : 1001,
+			"TextAfter" : "\n",
+			"TextBefore" : "Zoom: "
+		},
+		{
+			"Corner" : 2,
+			"TagKey" : 1003,
+			"TextAfter" : "\n",
+			"TextBefore" : "Se: "
+		},
+		{
+			"Corner" : 2,
+			"TagKey" : 2625617,
+			"TextAfter" : "\n",
+			"TextBefore" : " / WW: "
+		},
+		{
+			"Corner" : 2,
+			"TagKey" : 2625616,
+			"TextAfter" : "",
+			"TextBefore" : "WL: "
+		},
+		{
+			"Corner" : 3,
+			"TagKey" : 1577297,
+			"TextAfter" : " mA",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 3,
+			"TagKey" : 1572960,
+			"TextAfter" : "kV ",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 0,
+			"TagKey" : 524320,
+			"TextAfter" : "",
+			"TextBefore" : ""
+		},
+		{
+			"Corner" : 0,
+			"TagKey" : 524338,
+			"TextAfter" : "",
+			"TextBefore" : "\n"
+		}
+	]
+}

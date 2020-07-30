@@ -48,6 +48,12 @@ asclepios::gui::WidgetBase* asclepios::gui::TabWidget::getActiveTabbedWidget() c
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::gui::TabWidget::setTabTitle(const int& t_index, const QString& t_name) const
+{
+	m_ui.tab->setTabText(t_index, t_name);
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::TabWidget::onFocus(const bool& t_flag)
 {
 	m_isActive = t_flag;
@@ -60,6 +66,12 @@ void asclepios::gui::TabWidget::onFocus(const bool& t_flag)
 		emit focused(this);
 	}
 	update();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::TabWidget::onMaximize()
+{
+	emit setMaximized(this);
 }
 
 //-----------------------------------------------------------------------------

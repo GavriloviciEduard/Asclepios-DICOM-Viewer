@@ -1,4 +1,6 @@
 #include "widgetscontroller.h"
+#include "filesimporter.h"
+#include "widget2d.h"
 
 asclepios::gui::WidgetsController::WidgetsController()
 {
@@ -34,6 +36,39 @@ void asclepios::gui::WidgetsController::setActiveWidget(TabWidget* t_widget)
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsController::setMaximize(TabWidget* t_widget) const
+{
+	const auto widgets = m_widgetsRepository->getWidgets();
+	t_widget->setIsMaximized(!t_widget->getIsMaximized());
+	for (const auto& widget : widgets)
+	{
+		if (t_widget != widget)
+		{
+			widget->setVisible(!t_widget->getIsMaximized());
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsController::populateWidget(core::Series* t_series, core::Image* t_image,
+	const int& t_patientIndex, const int& t_studyIndex, const int& t_seriesIndex, const int& t_imageIndex) const
+{
+	auto* const widget = findNextAvailableWidget();
+	if(widget)
+	{
+		auto* const widget2d = dynamic_cast<Widget2D*>(widget->getActiveTabbedWidget());
+		widget2d->setWidgetType(WidgetBase::WidgetType::widget2d);
+		widget2d->setSeries(t_series);
+		widget2d->setImage(t_image);
+		widget2d->setIndexes(t_patientIndex, t_studyIndex, t_seriesIndex, t_imageIndex);
+		widget2d->setIsImageLoaded(true);
+		widget2d->render();
+		Q_UNUSED(connect(m_filesImporter,&FilesImporter::refreshSliderValues,
+			widget2d,&Widget2D::refreshSliderValues));
+	}
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsController::createRemoveWidgets(const std::size_t& t_nrWidgets) const
 {
 	while (t_nrWidgets != m_widgetsRepository->getWidgets().size())
@@ -52,6 +87,8 @@ void asclepios::gui::WidgetsController::createConnections() const
 	{
 		Q_UNUSED(connect(widget, &TabWidget::focused, this,
 			&WidgetsController::setActiveWidget));
+		Q_UNUSED(connect(widget, &TabWidget::setMaximized, this,
+			&WidgetsController::setMaximize));
 	}
 }
 
@@ -63,8 +100,17 @@ void asclepios::gui::WidgetsController::resetConnections()
 	for (const auto& widget : widgets)
 	{
 		widget->onFocus(false);
+		widget->setIsMaximized(false);
+		widget->setVisible(true);
 		disconnect(widget, &TabWidget::focused, this,
 		           &WidgetsController::setActiveWidget);
+		disconnect(widget, &TabWidget::setMaximized, this,
+		           &WidgetsController::setMaximize);
+		if (auto* const widget2d = dynamic_cast<Widget2D*>(widget); widget2d)
+		{
+			disconnect(m_filesImporter, &FilesImporter::refreshSliderValues,
+				widget2d, &Widget2D::refreshSliderValues);
+		}
 	}
 }
 
@@ -74,6 +120,18 @@ asclepios::gui::TabWidget* asclepios::gui::WidgetsController::createNewWidget() 
 	auto* const widget = new TabWidget(m_widgetsContainer.get());
 	widget->createWidget2D();
 	return widget;
+}
+
+//-----------------------------------------------------------------------------
+asclepios::gui::TabWidget* asclepios::gui::WidgetsController::findNextAvailableWidget() const
+{
+	const auto widgets = m_widgetsRepository->getWidgets();
+	const auto it = std::find_if(widgets.begin(),
+		widgets.end(), [](TabWidget* t_widget)
+	{
+		return !t_widget->getActiveTabbedWidget()->getIsImageLoaded();
+	});
+	return it == widgets.end() ? nullptr : *it;
 }
 
 //-----------------------------------------------------------------------------
