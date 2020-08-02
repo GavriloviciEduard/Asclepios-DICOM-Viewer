@@ -37,8 +37,7 @@ namespace asclepios::gui
 	public slots:
 		void activateWidget(const bool& t_flag);
 		void applyTransformation(const transformationType& t_type) const;
-		void refreshScrollValues(const int& t_patientIndex, const int& t_studyIndex,
-			const int& t_seriesIndex, const int& t_imagesInSeries, const int& t_seriesSize);
+		void refreshScrollValues(core::Series* t_series);
 		void changeScrollValue(vtkObject* t_obj, unsigned long t_index, void*, void*) const;
 		void setMaximized() const;
 

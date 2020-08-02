@@ -6,6 +6,25 @@ asclepios::gui::WidgetBase::WidgetBase(QWidget* t_parent)
 {
 }
 
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetBase::startLoadingAnimation() const
+{
+	if(m_loadingAnimation)
+	{
+		m_loadingAnimation->start();
+	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetBase::stopLoadingAnimation()
+{
+	if(m_loadingAnimation)
+	{
+		m_loadingAnimation.reset();
+	}
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::WidgetBase::setIndexes(const int& t_patientIndex, const int& t_studyIndex,
                                             const int& t_seriesIndex, const int& t_imageIndex)
 {

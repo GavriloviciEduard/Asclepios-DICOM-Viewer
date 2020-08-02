@@ -23,6 +23,7 @@ namespace asclepios::gui
 		
 	public slots:
 		void onApplyTransformation(const transformationType& t_type) const;
+		void onShowThumbnailsWidget(const bool& t_flag) const;
 	
 		
 

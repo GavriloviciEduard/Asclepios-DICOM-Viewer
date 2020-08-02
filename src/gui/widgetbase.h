@@ -2,6 +2,8 @@
 
 #include <QWidget>
 #include <vtkRenderWindow.h>
+
+#include "loadinganimation.h"
 #include "vtkeventfilter.h"
 #include "series.h"
 
@@ -16,6 +18,8 @@ namespace asclepios::gui
 		~WidgetBase() = default;
 
 		virtual void render() = 0;
+		void startLoadingAnimation() const;
+		void stopLoadingAnimation();
 		
 		enum class WidgetType
 		{
@@ -51,6 +55,7 @@ namespace asclepios::gui
 		core::Image* m_image = {};
 		vtkSmartPointer<vtkRenderWindow> m_renderWindow[3] = {};
 		std::unique_ptr<vtkEventFilter> m_vtkEvents = {};
+		std::unique_ptr<LoadingAnimation> m_loadingAnimation = {};
 		bool m_isImageLoaded = false;
 		WidgetType m_widgetType = WidgetType::none;
 		int m_patientIndex = {};

@@ -71,6 +71,14 @@ void asclepios::gui::FilesImporter::parseFolders(FilesImporter* t_self)
 }
 
 //-----------------------------------------------------------------------------
+bool asclepios::gui::FilesImporter::newSeries() const
+{
+	return m_coreController->newSeriesAdded() ||
+		m_coreController->newImageAdded() &&
+		m_coreController->getLastImage()->getIsMultiFrame();
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::FilesImporter::run()
 {
 	while (m_isWorking)
@@ -96,27 +104,20 @@ void asclepios::gui::FilesImporter::importFiles()
 		m_filesMutex.lock();
 		m_coreController->
 			readData(m_filesPaths.front().toStdString());
-		if (m_coreController->newSeriesAdded() ||
-			m_coreController->newImageAdded() &&
-			m_coreController->getLastImage()->getIsMultiFrame())
+		if (newSeries())
 		{
 			emit addNewThumbnail(m_coreController->getLastPatient(),
 				m_coreController->getLastStudy(),
 				m_coreController->getLastSeries(),
 				m_coreController->getLastImage());
-			
 			emit populateWidget(m_coreController->getLastSeries(),
-				m_coreController->getLastImage(),
-				m_coreController->getLastPatientIndex(),
-				m_coreController->getLastStudyIndex(),
-				m_coreController->getLastSeriesIndex(),
-				m_coreController->getLastImageIndex());
+				m_coreController->getLastImage());
+			emit showThumbnailsWidget(true);
 		}
-		emit refreshSliderValues(m_coreController->getLastPatientIndex(),
-			m_coreController->getLastStudyIndex(),
-			m_coreController->getLastSeriesIndex(),
-			m_coreController->getLastImageIndex(),
-			m_coreController->getLastSeriesSize());
+		if(!m_coreController->getLastImage()->getIsMultiFrame())
+		{
+			emit refreshScrollValues(m_coreController->getLastSeries());
+		}
 		m_filesPaths.pop_front();
 		m_filesMutex.unlock();
 	}

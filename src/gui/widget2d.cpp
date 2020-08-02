@@ -4,6 +4,8 @@
 #include <QtConcurrent/QtConcurrent>
 #include "tabwidget.h"
 #include "vtkwidget2dinteractorstyle.h"
+#include "study.h"
+#include "patient.h"
 
 
 asclepios::gui::Widget2D::Widget2D(QWidget* parent)
@@ -50,6 +52,7 @@ void asclepios::gui::Widget2D::render()
 	{
 		try
 		{
+			startLoadingAnimation();
 			dynamic_cast<TabWidget*>(m_tabWidget)->setTabTitle(0,
 				m_series->getDescription().c_str());
 			auto* const vtkWidget = dynamic_cast<vtkWidget2D*>(m_vtkWidget.get());
@@ -134,21 +137,19 @@ void asclepios::gui::Widget2D::applyTransformation(const transformationType& t_t
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::refreshScrollValues(const int& t_patientIndex, const int& t_studyIndex,
-                                                   const int& t_seriesIndex, const int& t_imagesInSeries,
-                                                   const int& t_seriesSize)
+void asclepios::gui::Widget2D::refreshScrollValues(core::Series* t_series)
 {
-	if (canScrollBeRefreshed(t_patientIndex, t_studyIndex, t_seriesIndex))
+	auto* const study = t_series->getParentObject();
+	if (canScrollBeRefreshed(study->getParentObject()->getIndex(),
+		study->getIndex(), t_series->getIndex()))
 	{
 		if (!m_image->getIsMultiFrame())
 		{
-			setSliderValues(0, t_seriesSize - 1,
-			                t_imagesInSeries <= m_scroll->value() &&
-			                t_seriesSize > 1 && t_imagesInSeries > 0
-				                ? m_scroll->value() + 1
-				                : m_scroll->value());
+			const auto size = static_cast<int>(t_series->getSinlgeFrameImages().size());
+			setSliderValues(0, size - 1,
+				size <= m_scroll->value() ? m_scroll->value() + 1 : m_scroll->value());
 			dynamic_cast<vtkWidget2D*>(m_vtkWidget.get())->updateOvelayImageNumber(0,
-				t_seriesSize,
+				size,
 				std::stoi(m_series->getNumber()));
 		}
 	}
@@ -177,15 +178,20 @@ void asclepios::gui::Widget2D::renderFinished()
 	m_vtkWidget->setInteractor(m_qtvtkWidget->
 		GetRenderWindow()->GetInteractor());
 	m_vtkWidget->render();
-	m_scroll->setMaximum(m_image->getIsMultiFrame()
-		                     ? m_image->getNumberOfFrames() - 1
-		                     : static_cast<int>(m_series->getSinlgeFrameImages().size()) - 1);
+	auto const max = m_image->getIsMultiFrame()
+		? m_image->getNumberOfFrames() - 1
+		: static_cast<int>(m_series->getSinlgeFrameImages().size()) - 1;
+	m_scroll->setMaximum(max);
+	dynamic_cast<vtkWidget2D*>(m_vtkWidget.get())
+		->updateOvelayImageNumber(0, max + 1,
+			std::stoi(m_series->getNumber()));
 	connectScroll();
 	m_scroll->setVisible(m_scroll->maximum() > 1);
 	m_tabWidget->setAcceptDrops(true);
 	m_future = {};
 	disconnect(this, &Widget2D::imageReaderInitialized,
 	           this, &Widget2D::renderFinished);
+	stopLoadingAnimation();
 }
 
 //-----------------------------------------------------------------------------
@@ -244,7 +250,7 @@ void asclepios::gui::Widget2D::disconnectScroll() const
 	{
 		m_scrollConnection->Disconnect(
 			m_qtvtkWidget->GetRenderWindow()
-			             ->GetInteractor()->GetInteractorStyle(),
+			->GetInteractor()->GetInteractorStyle(),
 			vtkCustomEvents::changeScrollValue,
 			this, SLOT(changeScrollValue(vtkObject*, unsigned long, void*, void*)));
 	}
@@ -302,6 +308,6 @@ void asclepios::gui::Widget2D::initImageReader(vtkWidget2D* t_vtkWidget2D, Widge
 bool asclepios::gui::Widget2D::canScrollBeRefreshed(const int& t_patientIndex, const int& t_studyIndex,
                                                     const int& t_seriesIndex) const
 {
-	return m_vtkWidget && m_vtkWidget->getImage() && t_patientIndex == m_patientIndex && t_patientIndex != -1 &&
-		t_studyIndex == m_studyIndex && t_studyIndex != -1 && m_seriesIndex == t_seriesIndex && t_seriesIndex != -1;
+	return m_vtkWidget && m_vtkWidget->getImage() && t_patientIndex == m_patientIndex &&
+		t_studyIndex == m_studyIndex && m_seriesIndex == t_seriesIndex;
 }

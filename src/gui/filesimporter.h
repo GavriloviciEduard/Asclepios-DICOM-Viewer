@@ -27,11 +27,9 @@ namespace asclepios::gui
 	signals:
 		void addNewThumbnail(core::Patient* t_patient,
 			core::Study* t_study, core::Series* t_series, core::Image* t_image);
-		void populateWidget(core::Series* t_series, core::Image* t_image,
-			const int& t_patientIndex, const int& t_studyIndex,
-			const int& t_seriesIndex, const int& t_imageIndex);
-		void refreshSliderValues(const int& t_patientIndex, const int& t_studyIndex,
-			const int& t_seriesIndex, const int& t_imageIndex, const int& t_seriesSize);
+		void populateWidget(core::Series* t_series, core::Image* t_image);
+		void refreshScrollValues(core::Series* t_series);
+		void showThumbnailsWidget(const bool& t_flag);
 
 	protected:
 		void run() override;
@@ -51,5 +49,6 @@ namespace asclepios::gui
 
 		void importFiles();
 		static void parseFolders(FilesImporter* t_self);
+		[[nodiscard]] bool newSeries() const;
 	};
 }

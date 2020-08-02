@@ -104,6 +104,7 @@
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="guiframe.cpp" />
     <ClCompile Include="layoutmenu.cpp" />
+    <ClCompile Include="loadinganimation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="overlayinfo.cpp" />
     <ClCompile Include="patienttab.cpp" />
@@ -132,6 +133,7 @@
     <QtUic Include="gui.ui" />
     <QtUic Include="guiframe.ui" />
     <QtUic Include="layoutMenu.ui" />
+    <QtUic Include="loadinganimation.ui" />
     <QtUic Include="patienttab.ui" />
     <QtUic Include="studylist.ui" />
     <QtUic Include="tabwidget.ui" />
@@ -147,6 +149,7 @@
     <QtMoc Include="guiframe.h" />
     <QtMoc Include="framelesswindow.h" />
     <QtMoc Include="filemenu.h" />
+    <QtMoc Include="loadinganimation.h" />
     <ClInclude Include="overlayinfo.h" />
     <ClInclude Include="vtkwidget2d.h" />
     <ClInclude Include="vtkwidget2dinteractorstyle.h" />

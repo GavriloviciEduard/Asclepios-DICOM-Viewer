@@ -32,9 +32,7 @@ namespace asclepios::gui
 	public slots:
 		void setActiveWidget(TabWidget* t_widget);
 		void setMaximize(TabWidget* t_widget) const;
-		void populateWidget(core::Series* t_series, core::Image* t_image,
-			const int& t_patientIndex, const int& t_studyIndex,
-			const int& t_seriesIndex, const int& t_imageIndex) const;
+		void populateWidget(core::Series* t_series, core::Image* t_image) const;
 
 	private:
 		std::unique_ptr<WidgetsRepository> m_widgetsRepository = {};
