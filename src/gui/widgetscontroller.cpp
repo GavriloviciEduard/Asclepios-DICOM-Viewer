@@ -26,6 +26,42 @@ void asclepios::gui::WidgetsController::createWidgets(const WidgetsContainer::la
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsController::applyTransformation(const transformationType& t_type) const
+{
+	if (auto* const widget2d = dynamic_cast<Widget2D*>(m_activeWidget->getTabbedWidget());
+		widget2d && widget2d->getWidgetType() == WidgetBase::WidgetType::widget2d
+		&& widget2d->getFuture().isFinished() && widget2d->getImage())
+	{
+		dynamic_cast<vtkWidget2D*>(widget2d->getWidgetVTK())->applyTransformation(t_type);
+	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsController::resetData() const
+{
+	waitForRenderingThreads();
+	const auto widgets = m_widgetsRepository->getWidgets();
+	for (const auto& widget : widgets)
+	{
+		if(widget->getTabbedWidget()->getImage())
+		{
+			widget->resetWidget();
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsController::waitForRenderingThreads() const
+{
+	const auto widgets = m_widgetsRepository->getWidgets();
+	for (const auto& widget : widgets)
+	{
+		dynamic_cast<Widget2D*>(widget->getTabbedWidget())
+			->getFuture().waitForFinished();
+	}
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsController::setActiveWidget(TabWidget* t_widget)
 {
 	if (m_activeWidget)
@@ -64,7 +100,7 @@ void asclepios::gui::WidgetsController::populateWidget(core::Series* t_series, c
 		widget2d->setIsImageLoaded(true);
 		widget2d->render();
 		Q_UNUSED(connect(m_filesImporter,&FilesImporter::refreshSliderValues,
-			widget2d,&Widget2D::refreshSliderValues));
+			widget2d,&Widget2D::refreshScrollValues));
 	}
 }
 
@@ -106,10 +142,10 @@ void asclepios::gui::WidgetsController::resetConnections()
 		           &WidgetsController::setActiveWidget);
 		disconnect(widget, &TabWidget::setMaximized, this,
 		           &WidgetsController::setMaximize);
-		if (auto* const widget2d = dynamic_cast<Widget2D*>(widget); widget2d)
+		if (auto* const widget2d = dynamic_cast<Widget2D*>(widget->getTabbedWidget()); widget2d)
 		{
 			disconnect(m_filesImporter, &FilesImporter::refreshSliderValues,
-				widget2d, &Widget2D::refreshSliderValues);
+				widget2d, &Widget2D::refreshScrollValues);
 		}
 	}
 }

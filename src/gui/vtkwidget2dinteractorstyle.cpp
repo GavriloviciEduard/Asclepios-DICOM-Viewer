@@ -97,18 +97,18 @@ void asclepios::gui::vtkWidget2DInteractorStyle::changeImage(int& t_index)
 		{
 			m_image = m_series->getSingleFrameImageByIndex(t_index);
 			refreshImage();
-			Interactor->InvokeEvent(imageChanged);
 			if (m_image->getModality() == "MR")
 			{
 				m_widget2D->updateOverlayWindowLevelApply(m_image->getWindowWidth(),
-				                                          m_image->getWindowCenter(), false);;
+					m_image->getWindowCenter(), false);
 			}
 		}
 		else
 		{
 			m_widget2D->getDCMWidget()->SetSlice(t_index);
-			Interactor->InvokeEvent(imageChanged, &t_index);
 		}
+		m_currentImageIndex = t_index;
+		Interactor->GetInteractorStyle()->InvokeEvent(changeScrollValue);
 		updateOvelayImageNumber(t_index);
 	}
 	else

@@ -83,6 +83,6 @@ std::size_t asclepios::core::Series::findImageIndex(
 	const std::set<std::unique_ptr<Image>, Image::imageCompare>& t_images, Image* t_image)
 {
 	auto const it = std::find_if(t_images.begin(), t_images.end(),
-	                             [&](const std::unique_ptr<Image>& image) { return t_image->equal(t_image); });
+	                             [&](const std::unique_ptr<Image>& image) { return image->equal(t_image); });
 	return std::distance(t_images.begin(), it);
 }

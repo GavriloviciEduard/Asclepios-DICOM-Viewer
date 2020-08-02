@@ -38,5 +38,5 @@ bool asclepios::core::Image::isLess(Image* t_lhs, Image* t_rhs)
 	{
 		return t_lhs->getAcquisitionNumber() < t_rhs->getAcquisitionNumber();
 	}
-	return t_rhs->getSliceLocation() > t_lhs->getSliceLocation();
+	return t_lhs->getSliceLocation() < t_rhs->getSliceLocation();
 }

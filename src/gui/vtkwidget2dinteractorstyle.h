@@ -14,6 +14,9 @@ namespace asclepios::gui
 		vtkWidget2DInteractorStyle() = default;
 		~vtkWidget2DInteractorStyle() = default;
 
+		//getters
+		[[nodiscard]] int getCurrentImageIndex() const { return  m_currentImageIndex; }
+
 		//setters
 		void setWidget(vtkWidget2D* t_widget) { m_widget2D = t_widget; }
 		void setSeries(core::Series* t_series) { m_series = t_series; }
@@ -38,6 +41,7 @@ namespace asclepios::gui
 		vtkWidget2D* m_widget2D = {};
 		core::Series* m_series = {};
 		core::Image* m_image = {};
+		int m_currentImageIndex = {};
 
 		void refreshImage() const;
 		void updateOverlayWindowLevelApply() const;

@@ -78,6 +78,21 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -120,9 +135,6 @@
     <ClCompile Include="widgetscontainer.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
-    <ClCompile Include="imagefunctionstoolbar.cpp">
-      <Filter>gui\source</Filter>
-    </ClCompile>
     <ClCompile Include="vtkwidgetbase.cpp">
       <Filter>vtk_widgets\source</Filter>
     </ClCompile>
@@ -154,6 +166,9 @@
       <Filter>gui\source</Filter>
     </ClCompile>
     <ClCompile Include="framelesswindow.cpp">
+      <Filter>gui\source</Filter>
+    </ClCompile>
+    <ClCompile Include="filemenu.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,9 +206,6 @@
     <QtMoc Include="widgetscontainer.h">
       <Filter>gui\header</Filter>
     </QtMoc>
-    <QtMoc Include="imagefunctionstoolbar.h">
-      <Filter>gui\header</Filter>
-    </QtMoc>
     <QtMoc Include="widgetscontroller.h">
       <Filter>widgets_controller\header</Filter>
     </QtMoc>
@@ -201,6 +213,9 @@
       <Filter>gui\header</Filter>
     </QtMoc>
     <QtMoc Include="framelesswindow.h">
+      <Filter>gui\header</Filter>
+    </QtMoc>
+    <QtMoc Include="filemenu.h">
       <Filter>gui\header</Filter>
     </QtMoc>
   </ItemGroup>
@@ -232,7 +247,7 @@
     <QtUic Include="widgetscontainer.ui">
       <Filter>gui\ui</Filter>
     </QtUic>
-    <QtUic Include="imagefunctionstoolbar.ui">
+    <QtUic Include="filemenu.ui">
       <Filter>gui\ui</Filter>
     </QtUic>
   </ItemGroup>

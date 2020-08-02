@@ -8,6 +8,7 @@ asclepios::gui::TabWidget::TabWidget(QWidget* parent)
 	: QWidget(parent)
 {
 	m_ui.setupUi(this);
+	setStyleSheet(inActiveTabStyle);
 }
 
 //-----------------------------------------------------------------------------
@@ -23,14 +24,15 @@ void asclepios::gui::TabWidget::createWidget2D()
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::TabWidget::resetWidget() const
+void asclepios::gui::TabWidget::resetWidget()
 {
 	delete m_tabbedWidget;
+	m_tabbedWidget = nullptr;
 	while (m_ui.tab->count())
 	{
 		delete m_ui.tab->widget(0);
 	}
-	//todo set title
+	createWidget2D();
 }
 
 //-----------------------------------------------------------------------------
@@ -59,12 +61,19 @@ void asclepios::gui::TabWidget::onFocus(const bool& t_flag)
 	m_isActive = t_flag;
 	auto* const tab = dynamic_cast<QTabWidget*>(this->findChild<QTabWidget*>("tab"));
 	tab->setProperty("active", t_flag);
-	style()->unpolish(tab);
-	style()->polish(tab);
 	if (m_isActive)
 	{
+		tab->setStyleSheet(activeTabStyle);
+		setStyleSheet(activeTabStyle);
 		emit focused(this);
 	}
+	else
+	{
+		tab->setStyleSheet(inActiveTabStyle);
+		setStyleSheet(inActiveTabStyle);
+	}
+	style()->unpolish(tab);
+	style()->polish(tab);
 	update();
 }
 

@@ -22,18 +22,30 @@ namespace asclepios::gui
 			threeColumnOneRight
 		};
 
+		//getters
+		Ui::WidgetsContainer getUI() const { return m_ui; }
+
 		//setters
-		void setWidgetReference(std::vector<TabWidget*>* t_widgetsReference)
-		{ m_widgetsReference = t_widgetsReference; }
+		void setWidgetReference(std::vector<TabWidget*>* t_widgetsReference) {
+			m_widgetsReference = t_widgetsReference; }
+
 		void setLayout(const layouts& t_layout) const;
+		
+	signals:
+		void applyTransformation(const transformationType& t_type);
+		void closePatients();
+
+	private slots:
+		void onApplyTransformation();
+		void onClosePatients();
 
 	private:
 		Ui::WidgetsContainer m_ui = {};
 		std::vector<TabWidget*>* m_widgetsReference = {};
-		QGridLayout* m_layoutAsGrid = {};
+
 
 		void initView();
-		void initData();
+		void setProperties() const;
 
 		void one() const;
 		void twoRowOneBottom() const;

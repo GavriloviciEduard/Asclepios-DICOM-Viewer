@@ -13,14 +13,11 @@
   <property name="windowTitle">
    <string>PatientTab</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="styleSheet">
-   <string notr="true">QTabWidget
-{
-	background-color:#36393f;
-	color : white;
-	border: 0px;
-}
-</string>
+   <string notr="true"/>
   </property>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

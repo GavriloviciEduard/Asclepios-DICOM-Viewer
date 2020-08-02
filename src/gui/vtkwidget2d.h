@@ -11,7 +11,7 @@ namespace asclepios::gui
 	class vtkWidget2D final : public vtkWidgetBase
 	{
 	public:
-		vtkWidget2D() : m_widgetOverlay(std::make_unique<vtkWidgetOverlay>()) {}
+		vtkWidget2D() = default;
 		~vtkWidget2D() = default;
 
 		//getters

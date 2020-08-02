@@ -1,17 +1,20 @@
 #include "layoutmenu.h"
-#include "gui.h"
+
+#include "guiframe.h"
+
 
 asclepios::gui::LayoutMenu::LayoutMenu(QWidget* parent)
 	: QMenu(parent)
 {
 	initView();
-	createConnections(parent->parentWidget());
+	createConnections(parent);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::LayoutMenu::initView()
 {
 	m_ui.setupUi(this);
+	setTitle("Layouts");
 }
 
 //-----------------------------------------------------------------------------
@@ -19,9 +22,9 @@ void asclepios::gui::LayoutMenu::createConnections(QWidget* parent) const
 {
 	Q_UNUSED(connect(this, &QMenu::triggered,
 		this, &LayoutMenu::onActionTriggered));
-	auto* const receiver = dynamic_cast<GUI*>(parent);
+	auto* const receiver = dynamic_cast<GUIFrame*>(parent);
 	Q_UNUSED(connect(this, &LayoutMenu::changeLayout,
-		receiver, &GUI::onChangeLayout));
+		receiver, &GUIFrame::onChangeLayout));
 }
 
 //-----------------------------------------------------------------------------s

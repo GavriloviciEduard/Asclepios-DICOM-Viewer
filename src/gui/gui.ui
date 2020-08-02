@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>909</width>
-    <height>693</height>
+    <width>923</width>
+    <height>798</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,12 +15,6 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>250</width>
-    <height>0</height>
-   </size>
   </property>
   <property name="contextMenuPolicy">
    <enum>Qt::PreventContextMenu</enum>
@@ -31,7 +25,7 @@
   <property name="styleSheet">
    <string notr="true">QMenuBar
 {
-	background-color: #2f3136;
+	background-color:  #2a2a2b;
 	color : white;
 }
 
@@ -43,35 +37,20 @@ QMenu
 
 #toolBarThumbnails 
 {
-	 background-color: #2f3136;
-	 border: 0.5px solid #3b3b41;
-	 margin:5px;
+	 background-color:  #2a2a2b;
 }
 
 #toolBarButtons
 {
-	 background-color: #2f3136;
+	 background-color:  #2a2a2b;
 	 border: 0px ;
 	 margin:5px;
 }
 
 #toolBarImageTransf
 {
-	background-color: #2f3136;
-	border: 0px ;
+	background-color:  #2a2a2b;
 }
-
-QToolBar::handle:vertical 
-{
-  border-top:1px grey;
-}
-
-QToolBar::handle:horizontal 
-{
-  border-left:1px grey;
-  padding-right: 5px;
-}
-
 
 QMenuBar::item:selected,
 QMenu::item:selected
@@ -110,109 +89,10 @@ QMenu::item:pressed
     </property>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>909</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpenDICOMfile"/>
-    <addaction name="actionOpenDICOMfolder"/>
-   </widget>
-   <widget class="QMenu" name="menuImageOperations">
-    <property name="title">
-     <string>Image</string>
-    </property>
-    <addaction name="actionFlip_horizontal"/>
-    <addaction name="actionFlip_vertical"/>
-    <addaction name="actionRotate_left"/>
-    <addaction name="actionRotate_right"/>
-    <addaction name="actionInvert"/>
-    <addaction name="actionSARS_CoV_2_detection"/>
-   </widget>
-   <widget class="QMenu" name="menu3D">
-    <property name="title">
-     <string>3D</string>
-    </property>
-    <addaction name="actionMultiplanar_reconstruction_MPR"/>
-    <addaction name="action3D_volume_rendering"/>
-   </widget>
-   <widget class="asclepios::gui::LayoutMenu" name="menuLayouts">
-    <property name="title">
-     <string>Layouts</string>
-    </property>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuLayouts"/>
-   <addaction name="menuImageOperations"/>
-   <addaction name="menu3D"/>
-  </widget>
-  <widget class="QToolBar" name="toolBarImageTransf">
-   <property name="contextMenuPolicy">
-    <enum>Qt::NoContextMenu</enum>
-   </property>
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="movable">
-    <bool>false</bool>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::LeftToolBarArea</set>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="sizeGripEnabled">
     <bool>false</bool>
    </property>
-  </widget>
-  <widget class="QToolBar" name="toolBarThumbnails">
-   <property name="minimumSize">
-    <size>
-     <width>250</width>
-     <height>250</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>250</width>
-     <height>16777215</height>
-    </size>
-   </property>
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="movable">
-    <bool>false</bool>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>RightToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
   </widget>
   <action name="actionOpenDICOMfile">
    <property name="icon">
@@ -222,6 +102,9 @@ QMenu::item:pressed
    <property name="text">
     <string>Open DICOM file</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
   </action>
   <action name="actionOpenDICOMfolder">
    <property name="icon">
@@ -230,6 +113,9 @@ QMenu::item:pressed
    </property>
    <property name="text">
     <string>Open DICOM folder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionMultiplanar_reconstruction_MPR">
@@ -304,15 +190,20 @@ QMenu::item:pressed
     <string>SARS-CoV-2 detection</string>
    </property>
   </action>
+  <action name="actionClose_all_patients">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/closeAll_icon.png</normaloff>:/res/closeAll_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close all patients</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>asclepios::gui::LayoutMenu</class>
-   <extends>QMenu</extends>
-   <header>layoutmenu.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="gui.qrc"/>
  </resources>

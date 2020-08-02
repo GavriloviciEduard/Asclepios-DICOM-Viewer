@@ -17,7 +17,7 @@ namespace asclepios::gui
 
 	public:
 		explicit PatientTab(QWidget* parent = Q_NULLPTR);
-		~PatientTab() = default;
+		~PatientTab();
 
 		//getters
 		[[nodiscard]] QString getPatientName() const { return m_patientName; }

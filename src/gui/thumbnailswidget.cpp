@@ -18,9 +18,18 @@ void asclepios::gui::ThumbnailsWidget::initView()
 void asclepios::gui::ThumbnailsWidget::initData()
 {
 	m_patientsTabs = new QTabWidget(this);
-	m_patientsTabs->setTabPosition(QTabWidget::West);
+	m_patientsTabs->setTabPosition(QTabWidget::East);
 	m_patientsTabs->setObjectName("ThumbnailsPatients");
 	layout()->addWidget(m_patientsTabs);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::ThumbnailsWidget::resetData() const
+{
+	while (m_patientsTabs->count())
+	{
+		delete m_patientsTabs->widget(0);
+	}
 }
 
 //-----------------------------------------------------------------------------

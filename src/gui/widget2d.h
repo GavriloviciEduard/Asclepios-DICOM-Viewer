@@ -3,6 +3,7 @@
 #include <qfuture.h>
 #include <qscrollbar.h>
 #include <QVTKOpenGLNativeWidget.h>
+#include <vtkEventQtSlotConnect.h>
 #include "ui_widget2d.h"
 #include "vtkwidget2d.h"
 #include "vtkwidgetbase.h"
@@ -36,8 +37,9 @@ namespace asclepios::gui
 	public slots:
 		void activateWidget(const bool& t_flag);
 		void applyTransformation(const transformationType& t_type) const;
-		void refreshSliderValues(const int& t_patientIndex, const int& t_studyIndex,
+		void refreshScrollValues(const int& t_patientIndex, const int& t_studyIndex,
 			const int& t_seriesIndex, const int& t_imagesInSeries, const int& t_seriesSize);
+		void changeScrollValue(vtkObject* t_obj, unsigned long t_index, void*, void*) const;
 		void setMaximized() const;
 
 	private slots :
@@ -50,14 +52,16 @@ namespace asclepios::gui
 	private:
 		Ui::Widget2D m_ui = {};
 		QVTKOpenGLNativeWidget* m_qtvtkWidget = {};
-		std::unique_ptr<vtkWidgetBase> m_vtkWidget;
+		std::unique_ptr<vtkWidgetBase> m_vtkWidget = {};
+		vtkSmartPointer<vtkEventQtSlotConnect> m_scrollConnection = {};
 		QScrollBar* m_scroll = {};
 		QFuture<void> m_future = {};
 
-		void connectScroll() const;
+		void connectScroll();
 		void disconnectScroll() const;
 		void resetWidgets();
 		void resetScroll();
+		void setScrollStyle() const;
 		static void initImageReader(vtkWidget2D* t_vtkWidget2D, Widget2D* t_self);
 		[[nodiscard]] bool canScrollBeRefreshed(const int& t_patientIndex, const int& t_studyIndex,
 		                                        const int& t_seriesIndex) const;

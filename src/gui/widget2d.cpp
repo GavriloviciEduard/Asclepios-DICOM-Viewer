@@ -33,6 +33,7 @@ void asclepios::gui::Widget2D::initData()
 	delete m_scroll;
 	delete m_qtvtkWidget;
 	m_scroll = new QScrollBar(Qt::Vertical, this);
+	setScrollStyle();
 	m_renderWindow[0] =
 		vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
 	m_vtkWidget = std::make_unique<vtkWidget2D>();
@@ -45,7 +46,7 @@ void asclepios::gui::Widget2D::initData()
 //-----------------------------------------------------------------------------
 void asclepios::gui::Widget2D::render()
 {
-	if(m_qtvtkWidget && m_vtkWidget && m_renderWindow->Get())
+	if (m_qtvtkWidget && m_vtkWidget && m_renderWindow->Get())
 	{
 		try
 		{
@@ -133,7 +134,7 @@ void asclepios::gui::Widget2D::applyTransformation(const transformationType& t_t
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::refreshSliderValues(const int& t_patientIndex, const int& t_studyIndex,
+void asclepios::gui::Widget2D::refreshScrollValues(const int& t_patientIndex, const int& t_studyIndex,
                                                    const int& t_seriesIndex, const int& t_imagesInSeries,
                                                    const int& t_seriesSize)
 {
@@ -142,13 +143,25 @@ void asclepios::gui::Widget2D::refreshSliderValues(const int& t_patientIndex, co
 		if (!m_image->getIsMultiFrame())
 		{
 			setSliderValues(0, t_seriesSize - 1,
-				t_imagesInSeries <= m_scroll->value() &&
-				t_seriesSize > 1 && t_imagesInSeries > 0
-				? m_scroll->value() + 1
-				: m_scroll->value());
-			/*dynamic_cast<vtkWidget2D*>(m_vtkWidget.get())->updateOvelayImageNumber(1,
-				t_seriesSize, std::stoi(m_series->getNumber()));*/
+			                t_imagesInSeries <= m_scroll->value() &&
+			                t_seriesSize > 1 && t_imagesInSeries > 0
+				                ? m_scroll->value() + 1
+				                : m_scroll->value());
+			dynamic_cast<vtkWidget2D*>(m_vtkWidget.get())->updateOvelayImageNumber(0,
+				t_seriesSize,
+				std::stoi(m_series->getNumber()));
 		}
+	}
+}
+
+void asclepios::gui::Widget2D::changeScrollValue(vtkObject* t_obj , unsigned long , void*, void*) const
+{
+	const QSignalBlocker blocker(m_scroll);
+	auto* const  style =
+		dynamic_cast<vtkWidget2DInteractorStyle*>(t_obj);
+	if(style)
+	{
+		m_scroll->setValue(style->getCurrentImageIndex());
 	}
 }
 
@@ -165,13 +178,14 @@ void asclepios::gui::Widget2D::renderFinished()
 		GetRenderWindow()->GetInteractor());
 	m_vtkWidget->render();
 	m_scroll->setMaximum(m_image->getIsMultiFrame()
-		? m_image->getNumberOfFrames() - 1
-		: static_cast<int>(m_series->getSinlgeFrameImages().size()) - 1);
+		                     ? m_image->getNumberOfFrames() - 1
+		                     : static_cast<int>(m_series->getSinlgeFrameImages().size()) - 1);
 	connectScroll();
+	m_scroll->setVisible(m_scroll->maximum() > 1);
 	m_tabWidget->setAcceptDrops(true);
 	m_future = {};
 	disconnect(this, &Widget2D::imageReaderInitialized,
-		this, &Widget2D::renderFinished);
+	           this, &Widget2D::renderFinished);
 }
 
 //-----------------------------------------------------------------------------
@@ -190,7 +204,7 @@ void asclepios::gui::Widget2D::changeImage(int t_index)
 		auto* interactorStyle =
 			dynamic_cast<vtkWidget2DInteractorStyle*>(
 				m_qtvtkWidget->GetRenderWindow()->
-				               GetInteractor()->GetInteractorStyle());
+				GetInteractor()->GetInteractorStyle());
 		if (interactorStyle)
 		{
 			activateWidget(true);
@@ -204,8 +218,16 @@ void asclepios::gui::Widget2D::changeImage(int t_index)
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::connectScroll() const
+void asclepios::gui::Widget2D::connectScroll()
 {
+	if (!m_scrollConnection)
+	{
+		m_scrollConnection = vtkSmartPointer<vtkEventQtSlotConnect>::New();
+	}
+	m_scrollConnection->Connect(
+		m_qtvtkWidget->GetRenderWindow()->GetInteractor()->GetInteractorStyle(),
+		vtkCustomEvents::changeScrollValue, this,
+		SLOT(changeScrollValue(vtkObject*, unsigned long, void*, void*)));
 	Q_UNUSED(connect(m_scroll, &QScrollBar::valueChanged,
 		this, &Widget2D::changeImage));
 }
@@ -217,6 +239,14 @@ void asclepios::gui::Widget2D::disconnectScroll() const
 	{
 		disconnect(m_scroll, &QScrollBar::valueChanged,
 		           this, &Widget2D::changeImage);
+	}
+	if (m_scrollConnection)
+	{
+		m_scrollConnection->Disconnect(
+			m_qtvtkWidget->GetRenderWindow()
+			             ->GetInteractor()->GetInteractorStyle(),
+			vtkCustomEvents::changeScrollValue,
+			this, SLOT(changeScrollValue(vtkObject*, unsigned long, void*, void*)));
 	}
 }
 
@@ -246,6 +276,18 @@ void asclepios::gui::Widget2D::resetScroll()
 	else
 	{
 		m_scroll = new QScrollBar(Qt::Vertical, this);
+		setScrollStyle();
+	}
+}
+
+void asclepios::gui::Widget2D::setScrollStyle() const
+{
+	m_scroll->hide();
+	QFile file(scroll2DStyle);
+	if (file.open(QFile::ReadOnly))
+	{
+		const QString styleSheet = QLatin1String(file.readAll());
+		m_scroll->setStyleSheet(styleSheet);
 	}
 }
 

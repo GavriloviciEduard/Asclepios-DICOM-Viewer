@@ -22,11 +22,13 @@ namespace asclepios::gui
 		explicit ThumbnailsWidget(QWidget* parent = Q_NULLPTR);
 		~ThumbnailsWidget() = default;
 
+		void resetData() const;
+
 	public slots:
 		void addThumbnail(core::Patient* t_patient,
-		                  core::Study* t_study,
-		                  core::Series* t_series,
-		                  core::Image* t_image) const;
+			core::Study* t_study,
+			core::Series* t_series,
+			core::Image* t_image) const;
 
 	private:
 		Ui::ThumbnailsWidget m_ui = {};
@@ -35,12 +37,12 @@ namespace asclepios::gui
 		void initView();
 		void initData();
 		[[nodiscard]] bool tryInsertExistingItem(core::Patient* t_patient,
-		                                         core::Study* t_study,
-		                                         core::Series* t_series,
-		                                         core::Image* t_image) const;
+			core::Study* t_study,
+			core::Series* t_series,
+			core::Image* t_image) const;
 		void insertNewItem(core::Patient* t_patient,
-		                   core::Study* t_study,
-		                   core::Series* t_series,
-		                   core::Image* t_image) const;
+			core::Study* t_study,
+			core::Series* t_series,
+			core::Image* t_image) const;
 	};
 }

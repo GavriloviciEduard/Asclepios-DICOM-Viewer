@@ -98,11 +98,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="corneroverlay.cpp" />
+    <ClCompile Include="filemenu.cpp" />
     <ClCompile Include="filesimporter.cpp" />
     <ClCompile Include="framelesswindow.cpp" />
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="guiframe.cpp" />
-    <ClCompile Include="imagefunctionstoolbar.cpp" />
     <ClCompile Include="layoutmenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="overlayinfo.cpp" />
@@ -128,9 +128,9 @@
     <QtMoc Include="gui.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="filemenu.ui" />
     <QtUic Include="gui.ui" />
     <QtUic Include="guiframe.ui" />
-    <QtUic Include="imagefunctionstoolbar.ui" />
     <QtUic Include="layoutMenu.ui" />
     <QtUic Include="patienttab.ui" />
     <QtUic Include="studylist.ui" />
@@ -146,6 +146,7 @@
     <ClInclude Include="corneroverlay.h" />
     <QtMoc Include="guiframe.h" />
     <QtMoc Include="framelesswindow.h" />
+    <QtMoc Include="filemenu.h" />
     <ClInclude Include="overlayinfo.h" />
     <ClInclude Include="vtkwidget2d.h" />
     <ClInclude Include="vtkwidget2dinteractorstyle.h" />
@@ -155,7 +156,6 @@
     <ClInclude Include="windowlevelfilter.h" />
     <QtMoc Include="filesimporter.h" />
     <QtMoc Include="layoutmenu.h" />
-    <QtMoc Include="imagefunctionstoolbar.h" />
     <QtMoc Include="thumbnailswidget.h" />
     <QtMoc Include="patienttab.h" />
     <QtMoc Include="studylist.h" />

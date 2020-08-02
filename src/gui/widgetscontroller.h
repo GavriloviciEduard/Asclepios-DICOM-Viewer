@@ -25,7 +25,10 @@ namespace asclepios::gui
 		void setFilesImporter(FilesImporter* t_importer) { m_filesImporter = t_importer; }
 
 		void createWidgets(const WidgetsContainer::layouts& t_layout);
-
+		void applyTransformation(const transformationType& t_type) const;
+		void resetData() const;
+		void waitForRenderingThreads() const;
+		
 	public slots:
 		void setActiveWidget(TabWidget* t_widget);
 		void setMaximize(TabWidget* t_widget) const;

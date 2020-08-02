@@ -31,8 +31,8 @@ namespace asclepios::core
 		[[nodiscard]] export int getAcquisitionNumber() const { return m_acquisitionNumber; }
 		[[nodiscard]] export bool getIsMultiFrame() const { return m_isMultiframe; }
 		[[nodiscard]] export int getIndex() const { return m_index; }
-		[[nodiscard]] export int getPixelSpacingX() const { return m_pixelSpacingX; }
-		[[nodiscard]] export int getPixelSpacingY() const { return m_pixelSpacingY; }
+		[[nodiscard]] export double getPixelSpacingX() const { return m_pixelSpacingX; }
+		[[nodiscard]] export double getPixelSpacingY() const { return m_pixelSpacingY; }
 		
 		/**
 		* Getter for image reader. If image reader is null is created.

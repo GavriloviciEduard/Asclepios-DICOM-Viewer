@@ -15,6 +15,8 @@ void asclepios::gui::FilesImporter::stopImporter()
 	m_isWorking = false;
 	quit();
 	wait();
+	m_filesPaths.clear();
+	m_foldersPaths.clear();
 }
 
 //-----------------------------------------------------------------------------

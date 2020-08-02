@@ -27,6 +27,8 @@ namespace asclepios::core
 		[[nodiscard]] bool newSeriesAdded() const { return m_coreRepository->newSeriesAdded(); }
 		[[nodiscard]] bool newImageAdded() const { return m_coreRepository->newImageAdded(); }
 
+		void resetData();
+
 	private:
 		std::unique_ptr<CoreRepository> m_coreRepository = {};
 		std::unique_ptr<DicomReader> m_dicomReader = {};

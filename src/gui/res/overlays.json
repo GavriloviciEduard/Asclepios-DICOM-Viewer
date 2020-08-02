@@ -65,13 +65,13 @@
 			"Corner" : 2,
 			"TagKey" : 2625617,
 			"TextAfter" : "\n",
-			"TextBefore" : " / WinWidth: "
+			"TextBefore" : " / WW: "
 		},
 		{
 			"Corner" : 2,
 			"TagKey" : 2625616,
 			"TextAfter" : "",
-			"TextBefore" : "WinLevel: "
+			"TextBefore" : "WL: "
 		},
 		{
 			"Corner" : 3,

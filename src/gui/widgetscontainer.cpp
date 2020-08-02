@@ -4,7 +4,20 @@ asclepios::gui::WidgetsContainer::WidgetsContainer(QWidget* t_parent)
 	: QWidget(t_parent)
 {
 	initView();
-	initData();
+	setProperties();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsContainer::onApplyTransformation()
+{
+	emit applyTransformation(static_cast<transformationType>(sender()
+		->property("transformation").toInt()));
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsContainer::onClosePatients()
+{
+	emit closePatients();
 }
 
 //-----------------------------------------------------------------------------
@@ -39,47 +52,56 @@ void asclepios::gui::WidgetsContainer::initView()
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::WidgetsContainer::initData()
+void asclepios::gui::WidgetsContainer::setProperties() const
 {
-	m_layoutAsGrid = dynamic_cast<QGridLayout*>(layout());
+	m_ui.buttonInvert->setProperty("transformation",
+		static_cast<int>(transformationType::invert));
+	m_ui.buttonFlipHorizontal->setProperty("transformation",
+		static_cast<int>(transformationType::flipHorizontal));
+	m_ui.buttonFlipVerical->setProperty("transformation",
+		static_cast<int>(transformationType::flipVertical));
+	m_ui.buttonRotateLeft->setProperty("transformation",
+		static_cast<int>(transformationType::rotateLeft));
+	m_ui.buttonRotateRight->setProperty("transformation",
+		static_cast<int>(transformationType::rotateRight));
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsContainer::one() const
 {
-	layout()->addWidget(*&m_widgetsReference->at(0));
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(0), 0, 0);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsContainer::twoRowOneBottom() const
 {
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(0), 0, 0);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(1), 0, 1);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(2), 1, 0, 1, 2);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(0), 0, 0);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(1), 0, 1);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(2), 1, 0, 1, 2);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsContainer::twoColumnOneRight() const
 {
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(0), 0, 0);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(1), 1, 0);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(2), 0, 1, 2, 1);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(0), 0, 0);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(1), 1, 0);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(2), 0, 1, 2, 1);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsContainer::threeRowOneBottom() const
 {
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(0), 0, 0);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(1), 0, 1);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(2), 0, 2);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(3), 1, 0, 1, 3);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(0), 0, 0);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(1), 0, 1);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(2), 0, 2);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(3), 1, 0, 1, 3);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsContainer::threeColumnOneRight() const
 {
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(0), 0, 0);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(1), 1, 0);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(2), 2, 0);
-	m_layoutAsGrid->addWidget(*&m_widgetsReference->at(3), 0, 1, 3, 1);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(0), 0, 0);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(1), 1, 0);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(2), 2, 0);
+	m_ui.gridLayout->addWidget(*&m_widgetsReference->at(3), 0, 1, 3, 1);
 }

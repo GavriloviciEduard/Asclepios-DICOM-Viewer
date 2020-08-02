@@ -13,7 +13,7 @@ namespace asclepios::gui
 		~TabWidget() = default;
 
 		void createWidget2D();
-		void resetWidget() const;
+		void resetWidget();
 
 		//getters
 		[[nodiscard]] WidgetBase::WidgetType getWidgetType() const;

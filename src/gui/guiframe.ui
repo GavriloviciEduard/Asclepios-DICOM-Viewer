@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1316</width>
-    <height>799</height>
+    <height>805</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,21 +60,59 @@
 #labelTitle 
 {
   font-weight: bold;
-   color: grey;
+   color:  white;
 }
 #GUIFrame
 {
-	background-color: #2f3136;
+	background-color: #2a2a2b ;
 }
 #widgetTopBar
 {
-	background-color: #2f3136;
+	background-color: #695085;
 }
 #icon
 {
 	margin-top: 5px;
 	margin-right:5px;
 	margin-bottom:5px;
+}
+
+QScrollBar:vertical {
+background: #2f3136;
+width: 5px;
+margin: 0;
+}
+
+QScrollBar::handle:vertical {
+background: #888;
+}
+
+QScrollBar::handle:hover:vertical {
+  background: #555;
+}
+
+QScrollBar::add-line:vertical {
+height: 0px;
+}
+
+QScrollBar::sub-line:vertical {
+height: 0px;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+height: 0px;
+background: none;
+}
+QMenuBar
+{
+background-color: #695085;
+color : white;
+}
+
+QMenu
+{
+background-color:#2a2a2c;
+color : white;
 }</string>
   </property>
   <property name="lineWidth">
@@ -98,10 +136,16 @@
    </property>
    <item>
     <widget class="QWidget" name="widgetTopBar" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>34</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>40</height>
+       <height>34</height>
       </size>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -137,9 +181,41 @@
         <item>
          <widget class="QLabel" name="icon">
           <property name="text">
-           <string>PlaceHolder</string>
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="gui.qrc">:/res/icon_small.png</pixmap>
+          </property>
+          <property name="wordWrap">
+           <bool>false</bool>
           </property>
          </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="layoutMenu">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <property name="topMargin">
+           <number>8</number>
+          </property>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
          <widget class="QLabel" name="labelTitle">
@@ -171,14 +247,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>45</width>
-            <height>26</height>
+            <width>49</width>
+            <height>30</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>45</width>
-            <height>26</height>
+            <width>49</width>
+            <height>30</height>
            </size>
           </property>
           <property name="focusPolicy">
@@ -208,14 +284,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>45</width>
-            <height>26</height>
+            <width>49</width>
+            <height>30</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>45</width>
-            <height>26</height>
+            <width>49</width>
+            <height>30</height>
            </size>
           </property>
           <property name="focusPolicy">
@@ -226,6 +302,12 @@
           </property>
           <property name="toolTip">
            <string>Maximize</string>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
           </property>
           <property name="iconSize">
            <size>
@@ -245,14 +327,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>45</width>
-            <height>26</height>
+            <width>49</width>
+            <height>30</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>45</width>
-            <height>26</height>
+            <width>49</width>
+            <height>30</height>
            </size>
           </property>
           <property name="focusPolicy">
@@ -293,7 +375,7 @@
        <number>0</number>
       </property>
       <property name="topMargin">
-       <number>15</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
        <number>0</number>

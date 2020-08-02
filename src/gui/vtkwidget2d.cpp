@@ -83,7 +83,6 @@ void asclepios::gui::vtkWidget2D::render()
 	createvtkWidgetOverlay();
 	m_dcmWidget->GetRenderWindow()->Render();
 	updateOverlayZoomFactor();
-	m_dcmWidget->GetRenderWindow()->GetInteractor()->InvokeEvent(imageChanged);
 }
 
 //-----------------------------------------------------------------------------
@@ -107,11 +106,11 @@ void asclepios::gui::vtkWidget2D::applyTransformation(const transformationType& 
 		{
 		case transformationType::flipHorizontal:
 			camera->SetPosition(cameraPosition[0],
-			                    cameraPosition[1], -cameraPosition[2]);
+				cameraPosition[1], -cameraPosition[2]);
 			break;
 		case transformationType::flipVertical:
 			camera->SetPosition(cameraPosition[0],
-			                    cameraPosition[1], -cameraPosition[2]);
+				cameraPosition[1], -cameraPosition[2]);
 			camera->Roll(180);
 			break;
 		case transformationType::rotateLeft:
@@ -149,9 +148,9 @@ void asclepios::gui::vtkWidget2D::updateOverlayZoomFactor()
 //-----------------------------------------------------------------------------
 void asclepios::gui::vtkWidget2D::updateOverlayMouseCoordinates(const int& x, const int& y) const
 {
-	std::string coord = "MousePos: ";
-	coord.append("(").append(std::to_string(x)).
-	      append(", ").append(std::to_string(y)).append(")\n");
+	std::string coord = "Cord:";
+	coord.append(" X: ").append(std::to_string(x)).
+	      append(" Y: ").append(std::to_string(y)).append("\n");
 	m_widgetOverlay->updateOverlayInCorner(2, "MousePos", coord);
 }
 
@@ -207,9 +206,13 @@ void asclepios::gui::vtkWidget2D::updateOverlayHUValue(const int& x, const int& 
 void asclepios::gui::vtkWidget2D::updateOvelayImageNumber(const int& t_current, const int& t_max,
                                                           const int& t_numberOfSeries)
 {
+	if(!m_widgetOverlay)
+	{
+		m_widgetOverlay = std::make_unique<vtkWidgetOverlay>();
+	}
 	std::string number;
 	number.append("Series: " + std::to_string(t_numberOfSeries) + '\n')
-	      .append("Image: " + std::to_string(t_current) + "/" + std::to_string(t_max) + '\n');
+		.append("Image: " + std::to_string(t_current + 1) +"/" + std::to_string(t_max) + '\n');
 	m_widgetOverlay->updateOverlayInCorner(2,
 		std::to_string(static_cast<int>(overlayKey::series)), number);
 	refreshOverlayInCorner(2);

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FileMenu</class>
+ <widget class="QMenu" name="FileMenu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>163</width>
+    <height>116</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>FileMenu</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMenu 
+{
+ color:white
+}
+QMenu::item
+{      
+	color: grey;
+}
+QMenu::item:selected
+{
+	border-style: none;
+	background-color:  rgba(128, 128, 128, 0.2);
+}
+QMenu::item:pressed 
+{
+  	border-style: none;
+	background-color: rgba(128, 128, 128, 0.3);
+}</string>
+  </property>
+  <property name="tearOffEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="title">
+   <string>File</string>
+  </property>
+  <action name="actionOpenFile">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/icon_file.png</normaloff>:/res/icon_file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
+  </action>
+  <action name="actionOpenFolder">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/icon_folder.png</normaloff>:/res/icon_folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open folder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionCloseAllPatients">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/closeAll_icon.png</normaloff>:/res/closeAll_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close all patients</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <addaction name="actionOpenFile"/>
+  <addaction name="actionOpenFolder"/>
+  <addaction name="actionCloseAllPatients"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="gui.qrc"/>
+ </resources>
+ <connections/>
+</ui>

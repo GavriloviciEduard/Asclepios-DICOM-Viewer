@@ -1,6 +1,8 @@
 #pragma once
 
+#include "filemenu.h"
 #include "framelesswindow.h"
+#include "layoutmenu.h"
 #include "ui_guiframe.h"
 
 namespace asclepios::gui
@@ -14,6 +16,12 @@ namespace asclepios::gui
 
 		void setContent(QWidget* t_widget);
 
+	public slots:
+		void onChangeLayout(const WidgetsContainer::layouts& t_layout) const;
+		void onOpenFile() const;
+		void onOpenFolder() const;
+		void onCloseAllPatients() const;
+
 	protected:
 		void updateMaximizeButton(const bool& maximized) const;
 		void changeEvent(QEvent* t_event) override;
@@ -26,8 +34,11 @@ namespace asclepios::gui
 	private:
 		Ui::GUIFrame m_ui = {};
 		QWidget* m_childWidget = {};
+		LayoutMenu* m_layoutMenu = {};
+		FileMenu* m_fileMenu = {};
 
 		
 		void initView();
+		void createMenuBar();
 	};
 }

@@ -9,7 +9,15 @@ constexpr auto iconapp = ":/res/icon_big.png";
 constexpr auto appBackground = ":/res/background.png";
 constexpr auto buttonMaximizeOff = ":/res/maximize-button1.png";
 constexpr auto buttonMaximizeOn = ":/res/maximize-button2.png";
-constexpr auto overlaysInformation = "overlays.json";
+constexpr auto overlaysInformation = "res/overlays.json";
+constexpr auto scroll2DStyle = "res/scroll2d.css";
+constexpr auto activeTabStyle =
+	"QTabBar::tab{background-color:#695085; border-top-left-radius: 4px; border-top-right-radius: 4px; min-height: 15px; min-width: 80px; color:white;} QTabWidget::pane[active=\"true\"] { border:2px solid #695085;}";
+constexpr auto inActiveTabStyle =
+	"QTabBar::tab {background-color:#423352; border-top- left-radius: 4px; border-top-right-radius: 4px; min-height: 15px; min-width: 80px;color:white;} QTabWidget::pane[active = \"false\"] { border: 2px solid #423352;}";
+constexpr auto menuBarStyle =
+	"QMenuBar::item:selected{border-style: none;background-color:rgba(128, 128, 128, 0.2);}QMenuBar::item:pressed{border-style: none;background-color:rgba(128, 128, 128, 0.3);}";
+
 
 enum class transformationType
 {
@@ -35,7 +43,7 @@ enum class overlayKey
 
 enum vtkCustomEvents : unsigned long
 {
-	imageChanged = vtkCommand::UserEvent + 1,
+	changeScrollValue = vtkCommand::UserEvent + 1,
 };
 
 namespace asclepios::core

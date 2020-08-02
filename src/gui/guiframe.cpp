@@ -1,6 +1,9 @@
 #include "guiframe.h"
 #include <QDesktopWidget>
 #include <QPushButton>
+#include <QMenuBar>
+
+#include "gui.h"
 #include "utils.h"
 
 asclepios::gui::GUIFrame::GUIFrame(QWidget* parent) :
@@ -50,6 +53,30 @@ void asclepios::gui::GUIFrame::changeEvent(QEvent* t_event)
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onChangeLayout(const WidgetsContainer::layouts& t_layout) const
+{
+	dynamic_cast<GUI*>(m_childWidget)->onChangeLayout(t_layout);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onOpenFile() const
+{
+	dynamic_cast<GUI*>(m_childWidget)->onOpenFile();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onOpenFolder() const
+{
+	dynamic_cast<GUI*>(m_childWidget)->onOpenFolder();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onCloseAllPatients() const
+{
+	dynamic_cast<GUI*>(m_childWidget)->onCloseAllPatients();
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::GUIFrame::onClose()
 {
 	close();
@@ -79,4 +106,18 @@ void asclepios::gui::GUIFrame::initView()
 	setTitleBar(m_ui.widgetTopBar);
 	ignoreWidget(m_ui.labelTitle);
 	ignoreWidget(m_ui.icon);
+	createMenuBar();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::createMenuBar()
+{
+	QMenuBar* mainMenu = new QMenuBar();
+	m_fileMenu = new FileMenu(this);
+	mainMenu->addMenu(m_fileMenu);
+	m_layoutMenu = new LayoutMenu(this);
+	mainMenu->addMenu(m_layoutMenu);
+	mainMenu->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Preferred);
+	m_ui.layoutMenu->addWidget(mainMenu);
+	mainMenu->setStyleSheet(menuBarStyle);
 }

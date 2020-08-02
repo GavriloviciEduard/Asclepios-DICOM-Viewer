@@ -1,16 +1,30 @@
 #include "patienttab.h"
 
-asclepios::gui::PatientTab::PatientTab(QWidget *parent)
+asclepios::gui::PatientTab::PatientTab(QWidget* parent)
 	: QTabWidget(parent)
 {
 	initView();
 }
 
 //-----------------------------------------------------------------------------
+asclepios::gui::PatientTab::~PatientTab()
+{
+	for (int i = 0; i < count(); i++)
+	{
+		auto* const item = dynamic_cast<StudyList*>(widget(i));
+		const auto futures = item->getFutures();
+		for (auto future : futures)
+		{
+			future.waitForFinished();
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::PatientTab::initView()
 {
 	m_ui.setupUi(this);
-	setTabPosition(West);
+	setTabPosition(East);
 }
 
 //-----------------------------------------------------------------------------
@@ -19,7 +33,7 @@ asclepios::gui::StudyList* asclepios::gui::PatientTab::getStudyTab(const QString
 	for (int i = 0; i < count(); i++)
 	{
 		auto* const item = dynamic_cast<StudyList*>(widget(i));
-		if(item->getStudy()->getUID() == t_studyuid.toStdString())
+		if (item->getStudy()->getUID() == t_studyuid.toStdString())
 		{
 			return item;
 		}

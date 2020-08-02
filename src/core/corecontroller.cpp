@@ -33,6 +33,13 @@ int asclepios::core::CoreController::getLastSeriesSize() const
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::core::CoreController::resetData()
+{
+	m_coreRepository.reset();
+	m_coreRepository = std::make_unique<CoreRepository>();
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::core::CoreController::initData()
 {
 	m_coreRepository = std::make_unique<CoreRepository>();

@@ -22,14 +22,14 @@ void asclepios::gui::StudyList::initView()
 	setFlow(LeftToRight);
 	setResizeMode(Adjust);
 	setViewMode(IconMode);
-	setSpacing(2);
+	setSpacing(4);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::StudyList::insertNewSeries(core::Series* t_series, core::Image* t_image)
 {
 	auto* newSeriesItem = new SeriesItem(this);
-	newSeriesItem->setSizeHint(QSize(185, 210));
+	newSeriesItem->setSizeHint(QSize(155, 200));
 	newSeriesItem->setText(getDescription(m_study, t_series));
 	newSeriesItem->setData(Qt::UserRole, createMimeData(t_series, t_image));
 	qRegisterMetaType<QVector<int>>("QVector<int>");
