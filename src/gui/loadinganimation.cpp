@@ -1,9 +1,7 @@
 #include "loadinganimation.h"
-#include <QMovie>
-#include <QLabel>
 
-asclepios::gui::LoadingAnimation::LoadingAnimation(QWidget *parent)
-	: QWidget(parent)
+asclepios::gui::LoadingAnimation::LoadingAnimation(QWidget* parent)
+	: QDialog(parent)
 {
 	initView();
 }
@@ -12,14 +10,9 @@ asclepios::gui::LoadingAnimation::LoadingAnimation(QWidget *parent)
 void asclepios::gui::LoadingAnimation::initView()
 {
 	m_ui.setupUi(this);
-	hide();
-}
-
-//-----------------------------------------------------------------------------
-void asclepios::gui::LoadingAnimation::start()
-{
-	QMovie* movie = new QMovie(":/loading");
-	m_ui.label->setMovie(movie);
-	movie->start();
-	show();
+	setWindowFlags(Qt::FramelessWindowHint
+		| Qt::WindowSystemMenuHint | Qt::Dialog);
+	m_ui.label->setMovie(&m_movie);
+	m_movie.setFileName(":/loading");
+	m_movie.start();
 }

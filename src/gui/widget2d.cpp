@@ -52,7 +52,10 @@ void asclepios::gui::Widget2D::render()
 	{
 		try
 		{
-			startLoadingAnimation();
+			if(m_image->getIsMultiFrame())
+			{
+				startLoadingAnimation();
+			}
 			dynamic_cast<TabWidget*>(m_tabWidget)->setTabTitle(0,
 				m_series->getDescription().c_str());
 			auto* const vtkWidget = dynamic_cast<vtkWidget2D*>(m_vtkWidget.get());
@@ -137,7 +140,7 @@ void asclepios::gui::Widget2D::applyTransformation(const transformationType& t_t
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::refreshScrollValues(core::Series* t_series)
+void asclepios::gui::Widget2D::refreshScrollValues(core::Series* t_series, core::Image* t_image)
 {
 	auto* const study = t_series->getParentObject();
 	if (canScrollBeRefreshed(study->getParentObject()->getIndex(),
@@ -146,8 +149,12 @@ void asclepios::gui::Widget2D::refreshScrollValues(core::Series* t_series)
 		if (!m_image->getIsMultiFrame())
 		{
 			const auto size = static_cast<int>(t_series->getSinlgeFrameImages().size());
-			setSliderValues(0, size - 1,
-				size <= m_scroll->value() ? m_scroll->value() + 1 : m_scroll->value());
+			const auto value =
+				(t_image->getIndex() <= m_scroll->value() 
+				&& size > 1 && t_image->getIndex() > 0)
+				? m_scroll->value() + 1
+				: m_scroll->value();
+			setSliderValues(0, size - 1, value);
 			dynamic_cast<vtkWidget2D*>(m_vtkWidget.get())->updateOvelayImageNumber(0,
 				size,
 				std::stoi(m_series->getNumber()));
@@ -186,7 +193,7 @@ void asclepios::gui::Widget2D::renderFinished()
 		->updateOvelayImageNumber(0, max + 1,
 			std::stoi(m_series->getNumber()));
 	connectScroll();
-	m_scroll->setVisible(m_scroll->maximum() > 1);
+	m_scroll->setVisible(m_scroll->maximum());
 	m_tabWidget->setAcceptDrops(true);
 	m_future = {};
 	disconnect(this, &Widget2D::imageReaderInitialized,
@@ -236,6 +243,15 @@ void asclepios::gui::Widget2D::connectScroll()
 		SLOT(changeScrollValue(vtkObject*, unsigned long, void*, void*)));
 	Q_UNUSED(connect(m_scroll, &QScrollBar::valueChanged,
 		this, &Widget2D::changeImage));
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::Widget2D::startLoadingAnimation()
+{
+	m_loadingAnimation = std::make_unique<LoadingAnimation>(this);
+	m_loadingAnimation->setWindowFlags(Qt::Widget);
+	layout()->addWidget(m_loadingAnimation.get());
+	m_loadingAnimation->show();
 }
 
 //-----------------------------------------------------------------------------

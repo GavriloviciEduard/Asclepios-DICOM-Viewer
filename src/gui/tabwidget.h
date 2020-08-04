@@ -5,6 +5,7 @@
 
 namespace asclepios::gui
 {
+	class Widget2D;
 	class TabWidget final : public QWidget
 	{
 	Q_OBJECT
@@ -37,11 +38,17 @@ namespace asclepios::gui
 
 	protected:
 		void focusInEvent(QFocusEvent* event) override;
+		void dragEnterEvent(QDragEnterEvent* event) override;
+		void dragLeaveEvent(QDragLeaveEvent* event) override;
+		void dropEvent(QDropEvent* event) override;
 
 	private:
 		Ui::TabWidget m_ui = {};
 		WidgetBase* m_tabbedWidget = {};
 		bool m_isActive = false;
 		bool m_isMaximized = false;
+
+		void populateWidget(core::Series* t_series, core::Image* t_image);
+		[[nodiscard]] std::tuple<core::Series*, core::Image*> getDropData(const QString& t_data);
 	};
 }

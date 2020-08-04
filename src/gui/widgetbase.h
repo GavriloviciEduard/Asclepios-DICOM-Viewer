@@ -2,7 +2,6 @@
 
 #include <QWidget>
 #include <vtkRenderWindow.h>
-
 #include "loadinganimation.h"
 #include "vtkeventfilter.h"
 #include "series.h"
@@ -18,9 +17,7 @@ namespace asclepios::gui
 		~WidgetBase() = default;
 
 		virtual void render() = 0;
-		void startLoadingAnimation() const;
-		void stopLoadingAnimation();
-		
+			
 		enum class WidgetType
 		{
 			none,
@@ -68,6 +65,8 @@ namespace asclepios::gui
 		virtual void createConnections() = 0;
 		virtual void resetView() = 0;
 		virtual void setSliderValues(const int& t_min, const int& t_max, const int& t_value) = 0;
+		virtual void startLoadingAnimation() = 0;
+		void stopLoadingAnimation();
 		void focusInEvent(QFocusEvent* event) override;
 	};
 }

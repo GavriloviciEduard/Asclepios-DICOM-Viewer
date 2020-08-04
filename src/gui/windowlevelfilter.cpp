@@ -23,7 +23,7 @@ void asclepios::gui::WindowLevelFilter::setWindowWidthCenter(const int& t_width,
 		int sign = 1;
 		if (level < 0)
 		{
-			level *= 1;
+			level *= -1;
 		}
 		if (m_invert)
 		{

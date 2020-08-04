@@ -41,6 +41,11 @@ std::unique_ptr<asclepios::core::Study> asclepios::core::DicomReader::getReadStu
 //-----------------------------------------------------------------------------
 std::unique_ptr<asclepios::core::Series> asclepios::core::DicomReader::getReadSeries() const
 {
+	const auto modality = getTagFromDataSet(DCM_Modality);
+	if (!isModalitySupported(modality))
+	{
+		return nullptr;
+	}
 	auto tempSeries = std::make_unique<Series>();
 	tempSeries->setUID(getTagFromDataSet(DCM_SeriesInstanceUID));
 	tempSeries->setDate(getTagFromDataSet(DCM_SeriesDate));
@@ -54,10 +59,6 @@ std::unique_ptr<asclepios::core::Series> asclepios::core::DicomReader::getReadSe
 std::unique_ptr<asclepios::core::Image> asclepios::core::DicomReader::getReadImage() const
 {
 	const auto modality = getTagFromDataSet(DCM_Modality);
-	if (!isModalitySupported(modality))
-	{
-		throw std::runtime_error("Modality is not supported!");
-	}
 	auto tempImage = std::make_unique<Image>();
 	tempImage->setModality(modality);
 	tempImage->setImagePath(m_filePath);
@@ -84,6 +85,8 @@ std::unique_ptr<asclepios::core::Image> asclepios::core::DicomReader::getReadIma
 	const auto [x, y] = getPixelSpacing();
 	tempImage->setPixelSpacingX(x);
 	tempImage->setPixelSpacingY(y);
+	const auto instanceNumber = getTagFromDataSet(DCM_InstanceNumber);
+	tempImage->setInstanceNumber(instanceNumber.empty() ? 0 : std::stoi(instanceNumber));
 	return tempImage;
 }
 

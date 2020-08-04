@@ -37,7 +37,7 @@ namespace asclepios::gui
 	public slots:
 		void activateWidget(const bool& t_flag);
 		void applyTransformation(const transformationType& t_type) const;
-		void refreshScrollValues(core::Series* t_series);
+		void refreshScrollValues(core::Series* t_series, core::Image* t_image);
 		void changeScrollValue(vtkObject* t_obj, unsigned long t_index, void*, void*) const;
 		void setMaximized() const;
 
@@ -57,6 +57,7 @@ namespace asclepios::gui
 		QFuture<void> m_future = {};
 
 		void connectScroll();
+		void startLoadingAnimation() override;
 		void disconnectScroll() const;
 		void resetWidgets();
 		void resetScroll();

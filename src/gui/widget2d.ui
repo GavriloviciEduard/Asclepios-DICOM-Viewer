@@ -14,7 +14,10 @@
    <string>widget2D</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">#Widget2D
+{	
+	background:black;
+}</string>
   </property>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

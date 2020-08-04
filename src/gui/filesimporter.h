@@ -28,7 +28,7 @@ namespace asclepios::gui
 		void addNewThumbnail(core::Patient* t_patient,
 			core::Study* t_study, core::Series* t_series, core::Image* t_image);
 		void populateWidget(core::Series* t_series, core::Image* t_image);
-		void refreshScrollValues(core::Series* t_series);
+		void refreshScrollValues(core::Series* t_series, core::Image* t_image);
 		void showThumbnailsWidget(const bool& t_flag);
 
 	protected:

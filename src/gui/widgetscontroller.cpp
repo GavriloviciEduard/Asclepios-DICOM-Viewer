@@ -101,8 +101,8 @@ void asclepios::gui::WidgetsController::populateWidget(core::Series* t_series, c
 			t_image->getIndex());
 		widget2d->setIsImageLoaded(true);
 		widget2d->render();
-		Q_UNUSED(connect(m_filesImporter,&FilesImporter::refreshScrollValues,
-			widget2d,&Widget2D::refreshScrollValues));
+		Q_UNUSED(connect(m_filesImporter, &FilesImporter::refreshScrollValues,
+			widget2d, &Widget2D::refreshScrollValues));
 	}
 }
 

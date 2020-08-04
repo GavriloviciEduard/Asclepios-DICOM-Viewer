@@ -1,21 +1,21 @@
 #pragma once
 
-#include <QWidget>
 #include "ui_loadinganimation.h"
+#include <qmovie.h>
+#include <qdialog.h>
 
 namespace asclepios::gui
 {
-	class LoadingAnimation final : public QWidget
+	class LoadingAnimation final : public QDialog
 	{
 	Q_OBJECT
 	public:
 		explicit LoadingAnimation(QWidget* parent = Q_NULLPTR);
 		~LoadingAnimation() = default;
 
-		void start();
-
 	private:
-		Ui::LoadingAnimation m_ui;
+		Ui::LoadingAnimation m_ui = {};
+		QMovie m_movie {};
 
 		void initView();
 	};

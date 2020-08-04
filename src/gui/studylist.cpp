@@ -5,6 +5,8 @@
 #include <QMimeData>
 #include <dcmtk/dcmimgle/dcmimage.h>
 #include <QtConcurrent/qtconcurrentrun.h>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include "smartdjdecoderregistration.h"
 
 asclepios::gui::StudyList::StudyList(QWidget* parent)
@@ -50,9 +52,19 @@ QString asclepios::gui::StudyList::getDescription(core::Study* t_study,
 	return description;
 }
 
+//-----------------------------------------------------------------------------
 QString asclepios::gui::StudyList::createMimeData(core::Series* t_series, core::Image* t_image)
 {
-	return {};
+	QString series;
+	QString image;
+	series.sprintf("%16p", t_series);
+	image.sprintf("%16p", t_image);
+	QJsonDocument data;
+	QJsonObject obj;
+	obj.insert("Series", series);
+	obj.insert("Image", image);
+	data.setObject(obj);
+	return data.toJson();
 }
 
 //-----------------------------------------------------------------------------

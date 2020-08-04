@@ -1,5 +1,6 @@
 #include "widgetbase.h"
 #include <QFocusEvent>
+#include <QThread>
 
 asclepios::gui::WidgetBase::WidgetBase(QWidget* t_parent)
 	: QWidget(t_parent), m_tabWidget(t_parent)
@@ -7,19 +8,12 @@ asclepios::gui::WidgetBase::WidgetBase(QWidget* t_parent)
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::WidgetBase::startLoadingAnimation() const
-{
-	if(m_loadingAnimation)
-	{
-		m_loadingAnimation->start();
-	}
-}
-
-//-----------------------------------------------------------------------------
 void asclepios::gui::WidgetBase::stopLoadingAnimation()
 {
 	if(m_loadingAnimation)
 	{
+		m_loadingAnimation->hide();
+		m_loadingAnimation->close();
 		m_loadingAnimation.reset();
 	}
 }

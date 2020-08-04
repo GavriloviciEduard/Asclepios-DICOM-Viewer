@@ -114,9 +114,11 @@ void asclepios::gui::FilesImporter::importFiles()
 				m_coreController->getLastImage());
 			emit showThumbnailsWidget(true);
 		}
-		if(!m_coreController->getLastImage()->getIsMultiFrame())
+		auto* const lastImage = m_coreController->getLastImage();
+		if(lastImage && !lastImage->getIsMultiFrame())
 		{
-			emit refreshScrollValues(m_coreController->getLastSeries());
+			emit refreshScrollValues(m_coreController->getLastSeries(),
+				m_coreController->getLastImage());
 		}
 		m_filesPaths.pop_front();
 		m_filesMutex.unlock();

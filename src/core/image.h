@@ -33,6 +33,7 @@ namespace asclepios::core
 		[[nodiscard]] export int getIndex() const { return m_index; }
 		[[nodiscard]] export double getPixelSpacingX() const { return m_pixelSpacingX; }
 		[[nodiscard]] export double getPixelSpacingY() const { return m_pixelSpacingY; }
+		[[nodiscard]] export int getInstanceNumber() const { return m_instanceNumber; }
 		
 		/**
 		* Getter for image reader. If image reader is null is created.
@@ -57,6 +58,7 @@ namespace asclepios::core
 		void export setIndex(const int& t_index) { m_index = t_index; }
 		void export setPixelSpacingX(const double& t_spacing) { m_pixelSpacingX = t_spacing; }
 		void export setPixelSpacingY(const double& t_spacing) { m_pixelSpacingY = t_spacing; }
+		void export setInstanceNumber(const int& t_number) { m_instanceNumber = t_number; }
 		
 		/**
 		* Functor for set compare
@@ -79,6 +81,7 @@ namespace asclepios::core
 		std::string m_classUid = {};
 		std::string m_frameOfReferenceId = {};
 		std::string m_modality = {};
+		int m_instanceNumber = {};
 		int m_windowsCenter = {};
 		int m_windowWidth = {};
 		int m_rows = {};

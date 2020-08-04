@@ -81,6 +81,9 @@ void asclepios::gui::GUI::disconnectFilesImporter() const
 	           &FilesImporter::populateWidget,
 	           m_widgetsController.get(),
 	           &WidgetsController::populateWidget);
+	disconnect(m_filesImporter.get(),
+	           &FilesImporter::showThumbnailsWidget,
+	           this, &GUI::onShowThumbnailsWidget);
 }
 
 //-----------------------------------------------------------------------------
@@ -145,8 +148,8 @@ void asclepios::gui::GUI::onShowThumbnailsWidget(const bool& t_flag) const
 void asclepios::gui::GUI::onCloseAllPatients() const
 {
 	QApplication::setOverrideCursor(Qt::WaitCursor);
-	onShowThumbnailsWidget(false);
 	disconnectFilesImporter();
+	onShowThumbnailsWidget(false);
 	m_filesImporter->stopImporter();
 	m_widgetsController->resetData();
 	m_thumbnailsWidget->resetData();

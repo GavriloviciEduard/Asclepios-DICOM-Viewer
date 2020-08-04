@@ -24,6 +24,14 @@ void asclepios::core::CoreRepository::addStudy(std::unique_ptr<Study> t_study)
 //-----------------------------------------------------------------------------
 void asclepios::core::CoreRepository::addSeries(std::unique_ptr<Series> t_series)
 {
+	if (!t_series)
+	{
+		m_lastSeries = nullptr;
+		m_lastImage = nullptr;
+		m_newSeries = false;
+		m_newImage = false;
+		return;
+	}
 	t_series->setParentObject(m_lastStudy);
 	m_lastSeries = m_lastStudy->addSeries(std::move(t_series), m_newSeries);
 }
@@ -33,6 +41,8 @@ void asclepios::core::CoreRepository::addImage(std::unique_ptr<Image> t_image)
 {
 	if (!t_image)
 	{
+		m_lastImage = nullptr;
+		m_newImage = false;
 		return;
 	}
 	t_image->setParentObject(m_lastSeries);
