@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>250</width>
-    <height>184</height>
+    <width>211</width>
+    <height>160</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">QMenu 
 {
-	background-image:url(:/res/background.png)
+ color:white
 }
 QMenu::item
 {      
@@ -44,23 +44,32 @@ QMenu::item:pressed
    <property name="text">
     <string>One</string>
    </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
   </action>
   <action name="actionTwoInRowOneBottom">
-   <property name="icon">
-    <iconset resource="gui.qrc">
-     <normaloff>:/res/1.png</normaloff>:/res/1.png</iconset>
-   </property>
-   <property name="text">
-    <string>Two in row one bottom</string>
-   </property>
-  </action>
-  <action name="actionTwoInColumnOneRight">
    <property name="icon">
     <iconset resource="gui.qrc">
      <normaloff>:/res/2.png</normaloff>:/res/2.png</iconset>
    </property>
    <property name="text">
+    <string>Two in row one bottom</string>
+   </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
+  </action>
+  <action name="actionTwoInColumnOneRight">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/1.png</normaloff>:/res/1.png</iconset>
+   </property>
+   <property name="text">
     <string>Two in column one right</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
    </property>
   </action>
   <action name="actionThreeInRowOneBottom">
@@ -71,6 +80,9 @@ QMenu::item:pressed
    <property name="text">
     <string>Three in row one bottom</string>
    </property>
+   <property name="shortcut">
+    <string>F4</string>
+   </property>
   </action>
   <action name="actionThreeInColumnOneRight">
    <property name="icon">
@@ -79,6 +91,9 @@ QMenu::item:pressed
    </property>
    <property name="text">
     <string>Three in column one right</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
    </property>
   </action>
   <addaction name="actionOne"/>

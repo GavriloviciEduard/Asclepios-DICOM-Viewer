@@ -7,4 +7,4 @@ A basic DICOM Viewer written in C++ and QT.
 - [Visualization Toolkit - VTK](https://vtk.org/)
 - [Imebra: DICOM C++ Library](https://imebra.com/)
 - [DICOM for VTK](http://dgobbi.github.io/vtk-dicom/)
-- [FramelessHelper](https://github.com/qtdevs/FramelessHelper)
+- [Qt-Nice-Frameless-Window](https://github.com/Bringer-of-Light/Qt-Nice-Frameless-Window)

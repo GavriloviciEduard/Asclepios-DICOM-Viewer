@@ -1,0 +1,26 @@
+QScrollBar:vertical {
+background: #000000;
+width: 5px;
+margin: 0;
+}
+
+QScrollBar::handle:vertical {
+background: #888;
+}
+
+QScrollBar::handle:hover:vertical {
+  background: #555;
+}
+
+QScrollBar::add-line:vertical {
+height: 0px;
+}
+
+QScrollBar::sub-line:vertical {
+height: 0px;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+height: 0px;
+background: none;
+}
