@@ -62,6 +62,17 @@ void asclepios::core::CoreRepository::deletePatient(Patient* t_patient)
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::core::CoreRepository::resetLastPatientData()
+{
+	m_lastPatient = nullptr;
+	m_lastStudy = nullptr;
+	m_lastSeries = nullptr;
+	m_lastImage = nullptr;
+	m_newSeries = false;
+	m_newImage = false;
+}
+
+//-----------------------------------------------------------------------------
 std::size_t asclepios::core::CoreRepository::findPatient(Patient* t_patient)
 {
 	const auto it = std::find_if(m_patients.begin(),

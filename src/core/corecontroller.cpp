@@ -49,6 +49,7 @@ void asclepios::core::CoreController::initData()
 //-----------------------------------------------------------------------------
 void asclepios::core::CoreController::insertDataInRepo() const
 {
+	m_coreRepository->resetLastPatientData();
 	m_coreRepository->addPatient(m_dicomReader->getReadPatient());
 	m_coreRepository->addStudy(m_dicomReader->getReadStudy());
 	m_coreRepository->addSeries(m_dicomReader->getReadSeries());

@@ -146,7 +146,6 @@ void asclepios::gui::TabWidget::populateWidget(core::Series* t_series, core::Ima
 		t_image->getIndex());
 	widget->setIsImageLoaded(true);
 	widget->render();
-	//todo connect refresh slider
 	if(!m_isActive)
 	{
 		auto* ev = new QFocusEvent(QEvent::FocusIn,

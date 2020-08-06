@@ -25,8 +25,6 @@ namespace asclepios::gui
 		void onApplyTransformation(const transformationType& t_type) const;
 		void onShowThumbnailsWidget(const bool& t_flag) const;
 	
-		
-
 	private:
 		Ui::guiClass m_ui = {};
 		std::shared_ptr<FilesImporter> m_filesImporter = {};

@@ -159,6 +159,18 @@
     <ClCompile Include="loadinganimation.cpp">
       <Filter>gui\source</Filter>
     </ClCompile>
+    <ClCompile Include="vtkwidget3dinteractorstyle.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="transferfunction.cpp">
+      <Filter>utils\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidget3d.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkboxwidget3dcallbackcpp.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui.h">
@@ -282,6 +294,18 @@
       <Filter>vtk_widgets\header</Filter>
     </ClInclude>
     <ClInclude Include="vtkwidget2dinteractorstyle.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidget3dinteractorstyle.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="transferfunction.h">
+      <Filter>utils\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidget3d.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkboxwidget3dcallback.h">
       <Filter>vtk_widgets\header</Filter>
     </ClInclude>
   </ItemGroup>

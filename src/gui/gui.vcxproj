@@ -111,9 +111,13 @@
     <ClCompile Include="studylist.cpp" />
     <ClCompile Include="tabwidget.cpp" />
     <ClCompile Include="thumbnailswidget.cpp" />
+    <ClCompile Include="transferfunction.cpp" />
+    <ClCompile Include="vtkboxwidget3dcallbackcpp.cpp" />
     <ClCompile Include="vtkeventfilter.cpp" />
     <ClCompile Include="vtkwidget2d.cpp" />
     <ClCompile Include="vtkwidget2dinteractorstyle.cpp" />
+    <ClCompile Include="vtkwidget3d.cpp" />
+    <ClCompile Include="vtkwidget3dinteractorstyle.cpp" />
     <ClCompile Include="vtkwidgetbase.cpp" />
     <ClCompile Include="vtkwidgetdicom.cpp" />
     <ClCompile Include="vtkwidgetoverlay.cpp" />
@@ -151,8 +155,12 @@
     <QtMoc Include="filemenu.h" />
     <QtMoc Include="loadinganimation.h" />
     <ClInclude Include="overlayinfo.h" />
+    <ClInclude Include="transferfunction.h" />
+    <ClInclude Include="vtkboxwidget3dcallback.h" />
     <ClInclude Include="vtkwidget2d.h" />
     <ClInclude Include="vtkwidget2dinteractorstyle.h" />
+    <ClInclude Include="vtkwidget3d.h" />
+    <ClInclude Include="vtkwidget3dinteractorstyle.h" />
     <ClInclude Include="vtkwidgetdicom.h" />
     <ClInclude Include="vtkwidgetoverlay.h" />
     <ClInclude Include="vtkwidgetoverlaycallback.h" />

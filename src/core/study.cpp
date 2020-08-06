@@ -20,8 +20,8 @@ std::size_t asclepios::core::Study::findSeriesIndex(Series* t_series)
 {
 	const auto it = std::find_if(m_series.begin(),
 		m_series.end(), [&t_series](const std::unique_ptr<Series>& series)
-	{
-		return t_series->getUID() == series->getUID();
-	});
-	return  std::distance(m_series.begin(), it);
+		{
+			return t_series->getUID() == series->getUID();
+		});
+	return std::distance(m_series.begin(), it);
 }
