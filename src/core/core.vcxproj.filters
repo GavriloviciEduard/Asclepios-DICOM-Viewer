@@ -1,89 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="utils">
+      <UniqueIdentifier>{a3b5d25b-958c-4e4a-a14d-0da1e4ae7abc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\model">
-      <UniqueIdentifier>{a30b8043-f52a-4498-afc0-e6a636d36df3}</UniqueIdentifier>
+    <Filter Include="utils\header">
+      <UniqueIdentifier>{e2b6b025-0b55-4461-bb82-2d388246db73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{bbb5a372-cee1-4450-9e72-d5a6568c68f6}</UniqueIdentifier>
+    <Filter Include="utils\source">
+      <UniqueIdentifier>{dd4a7a19-9950-4bad-b857-847d6413350c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\model">
-      <UniqueIdentifier>{d05043fb-48f0-42a4-be72-a0908a1a86cd}</UniqueIdentifier>
+    <Filter Include="model">
+      <UniqueIdentifier>{f783f809-7ade-4f9d-8c4e-ec5b7a7ec18d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\repository">
-      <UniqueIdentifier>{a8790f0c-7068-4d4e-8d8a-22f1358e35cc}</UniqueIdentifier>
+    <Filter Include="model\source">
+      <UniqueIdentifier>{0b7416ff-34b0-466e-8fc0-992d1f924bdd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\repository">
-      <UniqueIdentifier>{beea5092-88ee-458f-bd16-34750c54bf7f}</UniqueIdentifier>
+    <Filter Include="model\header">
+      <UniqueIdentifier>{27a928a4-6aa1-4881-8ab9-eb6d08da49de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\controller">
-      <UniqueIdentifier>{12b5304e-e988-4cba-ade8-4e1f8426a30f}</UniqueIdentifier>
+    <Filter Include="repository">
+      <UniqueIdentifier>{91b39f40-5c11-4b0e-a8f6-98f3cc5844ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\controller">
-      <UniqueIdentifier>{a89ecd0b-da42-488e-aed1-d3afa6522918}</UniqueIdentifier>
+    <Filter Include="repository\header">
+      <UniqueIdentifier>{336659b9-05b9-4e12-a286-a7837e8c7bca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\utils">
-      <UniqueIdentifier>{e159b2c7-f9c4-4f48-b95a-23f05ba2971c}</UniqueIdentifier>
+    <Filter Include="repository\source">
+      <UniqueIdentifier>{f86c795e-685b-4ee6-a1d7-f2aa7a7dbdb5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\utils">
-      <UniqueIdentifier>{b1ebffcf-2f14-4b82-a1db-78ba3557eac4}</UniqueIdentifier>
+    <Filter Include="controller">
+      <UniqueIdentifier>{9916ee40-4532-4ea5-9d11-1030d38544e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controller\source">
+      <UniqueIdentifier>{c24c81c2-d84a-481e-9c94-50669981c1c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controller\header">
+      <UniqueIdentifier>{a2cc536f-c3ce-4b5e-88d3-db290b649d33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="image.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="patient.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="series.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="study.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="corerepository.cpp">
-      <Filter>Source Files\repository</Filter>
-    </ClCompile>
-    <ClCompile Include="corecontroller.cpp">
-      <Filter>Source Files\controller</Filter>
-    </ClCompile>
     <ClCompile Include="dicomreader.cpp">
-      <Filter>Source Files\utils</Filter>
+      <Filter>utils\source</Filter>
     </ClCompile>
     <ClCompile Include="smartdjdecoderregistration.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>utils\source</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="patient.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="series.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="study.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="corerepository.cpp">
+      <Filter>repository\source</Filter>
+    </ClCompile>
+    <ClCompile Include="corecontroller.cpp">
+      <Filter>controller\source</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>utils\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="image.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="patient.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="series.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="study.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="corerepository.h">
-      <Filter>Header Files\repository</Filter>
-    </ClInclude>
-    <ClInclude Include="corecontroller.h">
-      <Filter>Header Files\controller</Filter>
-    </ClInclude>
     <ClInclude Include="dicomreader.h">
-      <Filter>Header Files\utils</Filter>
+      <Filter>utils\header</Filter>
+    </ClInclude>
+    <ClInclude Include="smartdjdecoderregistration.h">
+      <Filter>utils\header</Filter>
     </ClInclude>
     <ClInclude Include="utils.h">
-      <Filter>Header Files\utils</Filter>
+      <Filter>utils\header</Filter>
     </ClInclude>
-    <ClInclude Include="smartdjdecoderregistration.h" />
+    <ClInclude Include="image.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="patient.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="series.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="study.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="corerepository.h">
+      <Filter>repository\header</Filter>
+    </ClInclude>
+    <ClInclude Include="corecontroller.h">
+      <Filter>controller\header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

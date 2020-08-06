@@ -6,21 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>909</width>
-    <height>693</height>
+    <width>923</width>
+    <height>798</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>250</width>
-    <height>0</height>
-   </size>
+  <property name="contextMenuPolicy">
+   <enum>Qt::PreventContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>gui</string>
@@ -28,35 +25,32 @@
   <property name="styleSheet">
    <string notr="true">QMenuBar
 {
-	background-color: #18263a;
+	background-color:  #2a2a2b;
 	color : white;
 }
 
 QMenu
 {
-	background-color:#233a54;
+	background-color:#2a2a2c;
 	color : white;
 }
 
-QToolBar 
+#toolBarThumbnails 
 {
-	 background-color: #18263a;
+	 background-color:  #2a2a2b;
+}
+
+#toolBarButtons
+{
+	 background-color:  #2a2a2b;
 	 border: 0px ;
 	 margin:5px;
 }
 
-
-QToolBar::handle:vertical 
+#toolBarImageTransf
 {
-  border-top:1px grey;
+	background-color:  #2a2a2b;
 }
-
-QToolBar::handle:horizontal 
-{
-  border-left:1px grey;
-  padding-right: 5px;
-}
-
 
 QMenuBar::item:selected,
 QMenu::item:selected
@@ -77,83 +71,23 @@ QMenu::item:pressed
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2"/>
-  </widget>
-  <widget class="QToolBar" name="toolBarButtons">
-   <property name="minimumSize">
-    <size>
-     <width>0</width>
-     <height>0</height>
-    </size>
-   </property>
-   <property name="contextMenuPolicy">
-    <enum>Qt::NoContextMenu</enum>
-   </property>
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::TopToolBarArea</set>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>36</width>
-     <height>36</height>
-    </size>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>909</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <property name="leftMargin">
+     <number>0</number>
     </property>
-    <addaction name="actionOpenDICOMfile"/>
-    <addaction name="actionOpenDICOMfolder"/>
-   </widget>
-   <addaction name="menuFile"/>
-  </widget>
-  <widget class="QToolBar" name="toolBarThumbnails">
-   <property name="minimumSize">
-    <size>
-     <width>250</width>
-     <height>250</height>
-    </size>
-   </property>
-   <property name="contextMenuPolicy">
-    <enum>Qt::NoContextMenu</enum>
-   </property>
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="movable">
-    <bool>true</bool>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::LeftToolBarArea</set>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="sizeGripEnabled">
@@ -168,6 +102,9 @@ QMenu::item:pressed
    <property name="text">
     <string>Open DICOM file</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
   </action>
   <action name="actionOpenDICOMfolder">
    <property name="icon">
@@ -176,6 +113,93 @@ QMenu::item:pressed
    </property>
    <property name="text">
     <string>Open DICOM folder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionMultiplanar_reconstruction_MPR">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/mpr_icon.png</normaloff>:/res/mpr_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Multiplanar reconstruction</string>
+   </property>
+  </action>
+  <action name="action3D_volume_rendering">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/3d_icon.png</normaloff>:/res/3d_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>3D volume rendering</string>
+   </property>
+  </action>
+  <action name="actionFlip_horizontal">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/fliphorizontal_icon.png</normaloff>:/res/fliphorizontal_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Flip horizontal</string>
+   </property>
+  </action>
+  <action name="actionFlip_vertical">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/flipvertical_icon.png</normaloff>:/res/flipvertical_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Flip vertical</string>
+   </property>
+  </action>
+  <action name="actionRotate_left">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/rotateleft_icon.png</normaloff>:/res/rotateleft_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate left</string>
+   </property>
+  </action>
+  <action name="actionRotate_right">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/rotateright_icon.png</normaloff>:/res/rotateright_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate right</string>
+   </property>
+  </action>
+  <action name="actionInvert">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/invert_icon.png</normaloff>:/res/invert_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Invert</string>
+   </property>
+  </action>
+  <action name="actionSARS_CoV_2_detection">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/coronavirus_icon.png</normaloff>:/res/coronavirus_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>SARS-CoV-2 detection</string>
+   </property>
+  </action>
+  <action name="actionClose_all_patients">
+   <property name="icon">
+    <iconset resource="gui.qrc">
+     <normaloff>:/res/closeAll_icon.png</normaloff>:/res/closeAll_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close all patients</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
   </action>
  </widget>

@@ -2,7 +2,6 @@
 
 vtkSmartPointer<vtkDICOMReader> asclepios::core::Image::getImageReader() const
 {
-	//todo this is blocking the first time, must be made async
 	if (m_imageReader)
 	{
 		return vtkSmartPointer<vtkDICOMReader>(m_imageReader);
@@ -35,9 +34,9 @@ bool asclepios::core::Image::equal(Image* t_image) const
 //-----------------------------------------------------------------------------
 bool asclepios::core::Image::isLess(Image* t_lhs, Image* t_rhs)
 {
-	if (t_lhs->getSliceLocation() == t_rhs->getSliceLocation())
+	if(t_lhs->getInstanceNumber() == t_rhs->getInstanceNumber())
 	{
-		return t_lhs->getAcquisitionNumber() < t_rhs->getAcquisitionNumber();
+		return t_lhs->getSliceLocation() < t_rhs->getSliceLocation();
 	}
-	return t_rhs->getSliceLocation() > t_lhs->getSliceLocation();
+	return t_lhs->getInstanceNumber() < t_rhs->getInstanceNumber();
 }

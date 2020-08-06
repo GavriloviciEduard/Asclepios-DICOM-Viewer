@@ -11,6 +11,7 @@ void asclepios::core::CoreRepository::addPatient(std::unique_ptr<Patient> t_pati
 		index = m_patients.size() - 1;
 	}
 	m_lastPatient = m_patients.at(index).get();
+	m_lastPatient->setIndex(index);
 }
 
 //-----------------------------------------------------------------------------
@@ -23,6 +24,14 @@ void asclepios::core::CoreRepository::addStudy(std::unique_ptr<Study> t_study)
 //-----------------------------------------------------------------------------
 void asclepios::core::CoreRepository::addSeries(std::unique_ptr<Series> t_series)
 {
+	if (!t_series)
+	{
+		m_lastSeries = nullptr;
+		m_lastImage = nullptr;
+		m_newSeries = false;
+		m_newImage = false;
+		return;
+	}
 	t_series->setParentObject(m_lastStudy);
 	m_lastSeries = m_lastStudy->addSeries(std::move(t_series), m_newSeries);
 }
@@ -32,6 +41,8 @@ void asclepios::core::CoreRepository::addImage(std::unique_ptr<Image> t_image)
 {
 	if (!t_image)
 	{
+		m_lastImage = nullptr;
+		m_newImage = false;
 		return;
 	}
 	t_image->setParentObject(m_lastSeries);
@@ -48,6 +59,17 @@ void asclepios::core::CoreRepository::deletePatient(Patient* t_patient)
 	{
 		m_patients.erase(m_patients.begin() + index);
 	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::core::CoreRepository::resetLastPatientData()
+{
+	m_lastPatient = nullptr;
+	m_lastStudy = nullptr;
+	m_lastSeries = nullptr;
+	m_lastImage = nullptr;
+	m_newSeries = false;
+	m_newImage = false;
 }
 
 //-----------------------------------------------------------------------------

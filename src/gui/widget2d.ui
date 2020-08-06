@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget2D</class>
+ <widget class="asclepios::gui::WidgetBase" name="Widget2D">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>widget2D</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Widget2D
+{	
+	background:black;
+}</string>
+  </property>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>asclepios::gui::WidgetBase</class>
+   <extends>QWidget</extends>
+   <header>widgetbase.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

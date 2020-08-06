@@ -26,5 +26,6 @@ namespace asclepios::core
 		[[nodiscard]] std::string getTagFromDataSet(const DcmTagKey& tagKey) const;
 		[[nodiscard]] static bool isModalitySupported(const std::string& t_modality);
 		[[nodiscard]] std::tuple<int, int> getWindowLevel() const;
+		[[nodiscard]] std::tuple<double, double> getPixelSpacing() const;
 	};
 }

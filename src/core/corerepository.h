@@ -30,6 +30,7 @@ namespace asclepios::core
 		//delete
 		void deletePatient(Patient* t_patient);
 		void deleteAllPatients() { m_patients.clear(); }
+		void resetLastPatientData();
 
 		//find
 		[[nodiscard]] std::size_t findPatient(Patient* t_patient);

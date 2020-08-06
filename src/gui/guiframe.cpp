@@ -1,9 +1,13 @@
 #include "guiframe.h"
-#include "utils.h"
+#include <QDesktopWidget>
 #include <QPushButton>
+#include <QMenuBar>
 
-asclepios::gui::GUIFrame::GUIFrame(QWidget* parent) : QFrame(
-	parent, Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::Dialog)
+#include "gui.h"
+#include "utils.h"
+
+asclepios::gui::GUIFrame::GUIFrame(QWidget* parent) :
+	Frameless(parent)
 {
 	initView();
 }
@@ -31,37 +35,89 @@ void asclepios::gui::GUIFrame::updateMaximizeButton(const bool& maximized) const
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::changeEvent(QEvent* t_event)
+{
+	if (t_event->type() == QEvent::WindowStateChange)
+	{
+		auto* event = dynamic_cast<QWindowStateChangeEvent*>(t_event);
+		if (event->oldState() & Qt::WindowMaximized && !isMaximized())
+		{
+			updateMaximizeButton(false);
+		}
+		else if (isMaximized())
+		{
+			updateMaximizeButton(true);
+		}
+	}
+	t_event->accept();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onChangeLayout(const WidgetsContainer::layouts& t_layout) const
+{
+	dynamic_cast<GUI*>(m_childWidget)->onChangeLayout(t_layout);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onOpenFile() const
+{
+	dynamic_cast<GUI*>(m_childWidget)->onOpenFile();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onOpenFolder() const
+{
+	dynamic_cast<GUI*>(m_childWidget)->onOpenFolder();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onCloseAllPatients() const
+{
+	dynamic_cast<GUI*>(m_childWidget)->onCloseAllPatients();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onClose()
+{
+	close();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onMaximize()
+{
+	isMaximized() ? showNormal() : showMaximized();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUIFrame::onMinimize()
+{
+	showMinimized();
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::GUIFrame::initView()
 {
 	m_ui.setupUi(this);
-	setUpFramelessHelper();
-	createConnections();
-	showMaximized();
+	setAutoFillBackground(false);
 	m_ui.maximizeButton->setIcon(QIcon(buttonMaximizeOn));
 	m_ui.icon->setPixmap(QPixmap::fromImage(QImage(iconTitleBar)));
+	updateMaximizeButton(true);
+	setResizeableAreaWidth(8);
+	setTitleBar(m_ui.widgetTopBar);
+	ignoreWidget(m_ui.labelTitle);
+	ignoreWidget(m_ui.icon);
+	createMenuBar();
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::GUIFrame::createConnections() const
+void asclepios::gui::GUIFrame::createMenuBar()
 {
-	Q_UNUSED(connect(m_ui.minimizeButton, &QPushButton::clicked,
-		m_helper.get(), &FramelessHelper::triggerMinimizeButtonAction));
-	Q_UNUSED(connect(m_ui.maximizeButton, &QPushButton::clicked,
-		m_helper.get(), &FramelessHelper::triggerMaximizeButtonAction));
-	Q_UNUSED(connect(m_ui.closeButton, &QPushButton::clicked,
-		m_helper.get(), &FramelessHelper::triggerCloseButtonAction));
-	Q_UNUSED(connect(m_helper.get(), &FramelessHelper::maximizedChanged,
-		this, &GUIFrame::updateMaximizeButton));
-}
-
-//-----------------------------------------------------------------------------
-void asclepios::gui::GUIFrame::setUpFramelessHelper()
-{
-	m_helper = std::make_unique<FramelessHelper>(this);
-	m_helper->setDraggableMargins(3, 3, 3, 3);
-	m_helper->setMaximizedMargins(3, 3, 3, 3);
-	m_helper->setTitleBarHeight(32);
-	m_helper->addExcludeItem(m_ui.minimizeButton);
-	m_helper->addExcludeItem(m_ui.maximizeButton);
-	m_helper->addExcludeItem(m_ui.closeButton);
+	QMenuBar* mainMenu = new QMenuBar();
+	m_fileMenu = new FileMenu(this);
+	mainMenu->addMenu(m_fileMenu);
+	m_layoutMenu = new LayoutMenu(this);
+	mainMenu->addMenu(m_layoutMenu);
+	mainMenu->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Preferred);
+	m_ui.layoutMenu->addWidget(mainMenu);
+	mainMenu->setStyleSheet(menuBarStyle);
 }

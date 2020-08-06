@@ -14,6 +14,7 @@ asclepios::gui::GUI::~GUI()
 	{
 		m_filesImporter->stopImporter();
 	}
+	m_widgetsController->waitForRenderingThreads();
 }
 
 //-----------------------------------------------------------------------------
@@ -25,37 +26,77 @@ void asclepios::gui::GUI::initView()
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUI::initData()
 {
-	m_filesImporter = std::make_unique<FilesImporter>(this);
+	//create file importer
+	m_filesImporter =
+		std::make_shared<FilesImporter>(this);
 	m_filesImporter->startImporter();
-	m_thumbnailsWidget = new ThumbnailsWidget(this);
-	m_buttonsWidget = new ButtonsWidget(this);
-	m_ui.toolBarButtons->addWidget(m_buttonsWidget);
-	m_ui.toolBarThumbnails->addWidget(m_thumbnailsWidget);
+	//create widget controller
+	m_widgetsController =
+		std::make_unique<WidgetsController>();
+	m_widgetsController
+		->createWidgets(WidgetsContainer::layouts::twoRowOneBottom);
+	m_widgetsController
+		->setFilesImporter(m_filesImporter.get());
+	auto* const widgetsContainer
+		= m_widgetsController->getWidgetsContainer();
+	setCentralWidget(widgetsContainer);
+	//create toolbars and widgets
+	m_thumbnailsWidget = new ThumbnailsWidget();
+	onShowThumbnailsWidget(false);
+	widgetsContainer->getUI().widgetPatients
+	                ->layout()->addWidget(m_thumbnailsWidget);
 }
 
 //-----------------------------------------------------------------------------
 void asclepios::gui::GUI::createConnections() const
 {
-	connectGUIActions();
-	connectButtonsWidgetActions();
+	connectFilesImporter();
+	connectFunctions();
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::GUI::connectGUIActions() const
+void asclepios::gui::GUI::connectFilesImporter() const
 {
-	Q_UNUSED(connect(m_ui.actionOpenDICOMfile,
-		&QAction::triggered, this, &asclepios::gui::GUI::onOpenFile));
-	Q_UNUSED(connect(m_ui.actionOpenDICOMfolder,
-		&QAction::triggered, this, &asclepios::gui::GUI::onOpenFolder))
+	Q_UNUSED(connect(m_filesImporter.get(),
+		&FilesImporter::addNewThumbnail,
+		m_thumbnailsWidget,
+		&ThumbnailsWidget::addThumbnail));
+	Q_UNUSED(connect(m_filesImporter.get(),
+		&FilesImporter::populateWidget,
+		m_widgetsController.get(),
+		&WidgetsController::populateWidget));
+	Q_UNUSED(connect(m_filesImporter.get(),
+		&FilesImporter::showThumbnailsWidget,
+		this, &GUI::onShowThumbnailsWidget));
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::GUI::connectButtonsWidgetActions() const
+void asclepios::gui::GUI::disconnectFilesImporter() const
 {
-	Q_UNUSED(connect(m_buttonsWidget->getUI().buttonOpenFile,
-		&QPushButton::pressed, this, &asclepios::gui::GUI::onOpenFile));
-	Q_UNUSED(connect(m_buttonsWidget->getUI().buttonOpenFolder,
-		&QPushButton::pressed, this, &asclepios::gui::GUI::onOpenFolder));
+	disconnect(m_filesImporter.get(),
+	           &FilesImporter::addNewThumbnail,
+	           m_thumbnailsWidget,
+	           &ThumbnailsWidget::addThumbnail);
+	disconnect(m_filesImporter.get(),
+	           &FilesImporter::populateWidget,
+	           m_widgetsController.get(),
+	           &WidgetsController::populateWidget);
+	disconnect(m_filesImporter.get(),
+	           &FilesImporter::showThumbnailsWidget,
+	           this, &GUI::onShowThumbnailsWidget);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::connectFunctions() const
+{
+	auto* const widgetsContainer =
+		m_widgetsController->getWidgetsContainer();
+	Q_UNUSED(connect(widgetsContainer,
+		&WidgetsContainer::applyTransformation,
+		this, &GUI::onApplyTransformation));
+	Q_UNUSED(connect(widgetsContainer,
+		&WidgetsContainer::closePatients,
+		this, &GUI::onCloseAllPatients));
 }
 
 //-----------------------------------------------------------------------------
@@ -81,4 +122,39 @@ void asclepios::gui::GUI::onOpenFolder()
 	{
 		m_filesImporter->addFolders(filedialog->selectedFiles());
 	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::onChangeLayout(const WidgetsContainer::layouts& t_layout) const
+{
+	m_widgetsController->createWidgets(t_layout);
+	QApplication::restoreOverrideCursor();
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::onApplyTransformation(const transformationType& t_type) const
+{
+	m_widgetsController->applyTransformation(t_type);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::onShowThumbnailsWidget(const bool& t_flag) const
+{
+	m_widgetsController->getWidgetsContainer()
+		->getUI().widgetPatients->setVisible(t_flag);
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::onCloseAllPatients() const
+{
+	QApplication::setOverrideCursor(Qt::WaitCursor);
+	disconnectFilesImporter();
+	onShowThumbnailsWidget(false);
+	m_filesImporter->stopImporter();
+	m_widgetsController->resetData();
+	m_thumbnailsWidget->resetData();
+	m_filesImporter->getCoreController()->resetData();
+	connectFilesImporter();
+	m_filesImporter->startImporter();
+	QApplication::restoreOverrideCursor();
 }

@@ -1,5 +1,4 @@
 #include "corecontroller.h"
-#include <iostream>
 
 asclepios::core::CoreController::CoreController()
 {
@@ -19,8 +18,25 @@ void asclepios::core::CoreController::readData(const std::string& t_filepath) co
 	catch (std::exception& ex)
 	{
 		//todo log exception
-		std::cout << ex.what() << '\n';
 	}
+}
+
+//-----------------------------------------------------------------------------
+int asclepios::core::CoreController::getLastSeriesSize() const
+{
+	auto* const image = m_coreRepository->getLastImage();
+	return image->getIsMultiFrame()
+		? image->getNumberOfFrames()
+		: static_cast<int>(m_coreRepository->
+			getLastSeries()->getSinlgeFrameImages().size());
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::core::CoreController::resetData()
+{
+	m_coreRepository.reset();
+	m_coreRepository = nullptr;
+	m_coreRepository = std::make_unique<CoreRepository>();
 }
 
 //-----------------------------------------------------------------------------
@@ -33,8 +49,12 @@ void asclepios::core::CoreController::initData()
 //-----------------------------------------------------------------------------
 void asclepios::core::CoreController::insertDataInRepo() const
 {
+	m_coreRepository->resetLastPatientData();
 	m_coreRepository->addPatient(m_dicomReader->getReadPatient());
 	m_coreRepository->addStudy(m_dicomReader->getReadStudy());
 	m_coreRepository->addSeries(m_dicomReader->getReadSeries());
-	m_coreRepository->addImage(m_dicomReader->getReadImage());
+	if(m_coreRepository->getLastSeries())
+	{
+		m_coreRepository->addImage(m_dicomReader->getReadImage());
+	}
 }
