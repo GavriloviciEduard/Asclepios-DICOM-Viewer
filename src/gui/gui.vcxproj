@@ -111,6 +111,7 @@
     <ClCompile Include="studylist.cpp" />
     <ClCompile Include="tabwidget.cpp" />
     <ClCompile Include="thumbnailswidget.cpp" />
+    <ClCompile Include="toolbarwidget3d.cpp" />
     <ClCompile Include="transferfunction.cpp" />
     <ClCompile Include="vtkboxwidget3dcallbackcpp.cpp" />
     <ClCompile Include="vtkeventfilter.cpp" />
@@ -123,6 +124,7 @@
     <ClCompile Include="vtkwidgetoverlay.cpp" />
     <ClCompile Include="vtkwidgetoverlaycallback.cpp" />
     <ClCompile Include="widget2d.cpp" />
+    <ClCompile Include="widget3d.cpp" />
     <ClCompile Include="widgetbase.cpp" />
     <ClCompile Include="widgetscontainer.cpp" />
     <ClCompile Include="widgetscontroller.cpp" />
@@ -142,7 +144,9 @@
     <QtUic Include="studylist.ui" />
     <QtUic Include="tabwidget.ui" />
     <QtUic Include="thumbnailswidget.ui" />
+    <QtUic Include="toolbarwidget3d.ui" />
     <QtUic Include="widget2d.ui" />
+    <QtUic Include="widget3d.ui" />
     <QtUic Include="widgetscontainer.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +159,7 @@
     <QtMoc Include="filemenu.h" />
     <QtMoc Include="loadinganimation.h" />
     <ClInclude Include="overlayinfo.h" />
+    <QtMoc Include="toolbarwidget3d.h" />
     <ClInclude Include="transferfunction.h" />
     <ClInclude Include="vtkboxwidget3dcallback.h" />
     <ClInclude Include="vtkwidget2d.h" />
@@ -164,6 +169,7 @@
     <ClInclude Include="vtkwidgetdicom.h" />
     <ClInclude Include="vtkwidgetoverlay.h" />
     <ClInclude Include="vtkwidgetoverlaycallback.h" />
+    <QtMoc Include="widget3d.h" />
     <ClInclude Include="windowlevelfilter.h" />
     <QtMoc Include="filesimporter.h" />
     <QtMoc Include="layoutmenu.h" />

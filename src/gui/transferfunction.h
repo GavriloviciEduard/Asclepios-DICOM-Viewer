@@ -64,7 +64,6 @@ namespace asclepios::gui
 		//getters
 		[[nodiscard]] int getWindow() const { return m_window; }
 		[[nodiscard]] int getLevel() const { return m_level; }
-		[[nodiscard]] int getIsosurfaceValue() const { return m_isoValue; }
 		[[nodiscard]] double getAmbient() const { return m_ambient; }
 		[[nodiscard]] double getDiffuse() const { return m_diffuse; }
 		[[nodiscard]] double getSpecular() const { return m_specular; }
@@ -76,13 +75,11 @@ namespace asclepios::gui
 		//setters
 		void setWindow(const int& t_window) { m_window = t_window; }
 		void setLevel(const int& t_level) { m_level = t_level; }
-		void setIsosurfaceValue(const int& t_value) { m_isoValue += t_value; }
 		void setAmbient(const double& t_ambient) { m_ambient = t_ambient; }
 		void setDiffuse(const double& t_diffuse) { m_diffuse = t_diffuse; }
 		void setSpecular(const double& t_specular) { m_specular = t_specular; }
 		void setSpecularPower(const double& t_specularPower) { m_specularPower = t_specularPower; }
 		void setHasShade(const bool& t_shade) { m_shade = t_shade; }
-		void setIsosurfaceFunction(const int& t_value);
 		void setMaximumIntensityProjectionFunction(const int& t_windowCenter, const int& t_windowWidth);
 
 		void updateWindowLevel(const double& t_window, const double& t_level);
@@ -92,7 +89,6 @@ namespace asclepios::gui
 	private:
 		int m_window = {};
 		int m_level = {};
-		int m_isoValue = 0;
 		double m_ambient = 0.1;
 		double m_diffuse = 0.9;
 		double m_specular = 1.0;

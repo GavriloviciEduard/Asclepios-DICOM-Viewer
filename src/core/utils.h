@@ -11,6 +11,7 @@ constexpr auto buttonMaximizeOff = ":/res/maximize-button1.png";
 constexpr auto buttonMaximizeOn = ":/res/maximize-button2.png";
 constexpr auto overlaysInformation = "res/overlays.json";
 constexpr auto scroll2DStyle = "res/scroll2d.css";
+constexpr auto filters3dDir = "res/filters3d";
 constexpr auto activeTabStyle =
 	"QTabBar::tab{background-color:#695085; border-top-left-radius: 4px; border-top-right-radius: 4px; min-height: 15px; min-width: 80px; color:white;} QTabWidget::pane[active=\"true\"] { border:2px solid #695085;}";
 constexpr auto inActiveTabStyle =

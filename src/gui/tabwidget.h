@@ -14,6 +14,7 @@ namespace asclepios::gui
 		~TabWidget() = default;
 
 		void createWidget2D();
+		void createWidgetMPR3D(const WidgetBase::WidgetType& t_type);
 		void resetWidget();
 
 		//getters
@@ -31,6 +32,7 @@ namespace asclepios::gui
 	public slots:
 		void onFocus(const bool& t_flag);
 		void onMaximize();
+		void closeWidget(const int& t_index) const;
 		
 	signals:
 		void focused(TabWidget* t_widget);
@@ -50,5 +52,6 @@ namespace asclepios::gui
 
 		void populateWidget(core::Series* t_series, core::Image* t_image);
 		[[nodiscard]] std::tuple<core::Series*, core::Image*> getDropData(const QString& t_data);
+		[[nodiscard]] bool canCreateWidgetMPR3D() const;
 	};
 }

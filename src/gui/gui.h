@@ -21,9 +21,11 @@ namespace asclepios::gui
 		void onOpenFile();
 		void onOpenFolder();
 		
+		
 	public slots:
 		void onApplyTransformation(const transformationType& t_type) const;
 		void onShowThumbnailsWidget(const bool& t_flag) const;
+		void onCreateWidget3D() const;
 	
 	private:
 		Ui::guiClass m_ui = {};

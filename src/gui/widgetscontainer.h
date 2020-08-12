@@ -34,10 +34,12 @@ namespace asclepios::gui
 	signals:
 		void applyTransformation(const transformationType& t_type);
 		void closePatients();
+		void createWidget3D();
 
 	private slots:
 		void onApplyTransformation();
 		void onClosePatients();
+		void onCreateWidget3D();
 
 	private:
 		Ui::WidgetsContainer m_ui = {};

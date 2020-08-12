@@ -25,6 +25,16 @@ void asclepios::gui::WidgetsController::createWidgets(const WidgetsContainer::la
 	(*m_widgetsRepository->getWidgets().begin())->onFocus(true);
 }
 
+void asclepios::gui::WidgetsController::createWidgetMPR3D(const WidgetBase::WidgetType& t_type) const
+{
+	if (!m_activeWidget || !m_activeWidget->getTabbedWidget()->getSeries()
+		|| !m_activeWidget->getTabbedWidget()->getImage())
+	{
+		return;
+	}
+	m_activeWidget->createWidgetMPR3D(t_type);
+}
+
 //-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsController::applyTransformation(const transformationType& t_type) const
 {
@@ -92,17 +102,21 @@ void asclepios::gui::WidgetsController::populateWidget(core::Series* t_series, c
 	if (widget)
 	{
 		auto* const widget2d = dynamic_cast<Widget2D*>(widget->getActiveTabbedWidget());
+		if(!widget2d)
+		{
+			return;
+		}
 		widget2d->setWidgetType(WidgetBase::WidgetType::widget2d);
 		widget2d->setSeries(t_series);
 		widget2d->setImage(t_image);
 		auto* const study = t_series->getParentObject();
 		widget2d->setIndexes(study->getParentObject()->getIndex(),
-			study->getIndex(), t_series->getIndex(),
-			t_image->getIndex());
+		                     study->getIndex(), t_series->getIndex(),
+		                     t_image->getIndex());
 		widget2d->setIsImageLoaded(true);
 		widget2d->render();
 		Q_UNUSED(connect(m_filesImporter, &FilesImporter::refreshScrollValues,
-			widget2d, &Widget2D::refreshScrollValues));
+			widget2d, &Widget2D::onRefreshScrollValues));
 	}
 }
 
@@ -147,7 +161,7 @@ void asclepios::gui::WidgetsController::resetConnections()
 		if (auto* const widget2d = dynamic_cast<Widget2D*>(widget->getTabbedWidget()); widget2d)
 		{
 			disconnect(m_filesImporter, &FilesImporter::refreshScrollValues,
-			           widget2d, &Widget2D::refreshScrollValues);
+			           widget2d, &Widget2D::onRefreshScrollValues);
 		}
 	}
 }

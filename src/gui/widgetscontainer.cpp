@@ -21,6 +21,12 @@ void asclepios::gui::WidgetsContainer::onClosePatients()
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsContainer::onCreateWidget3D()
+{
+	emit createWidget3D();
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsContainer::setLayout(const layouts& t_layout) const
 {
 	switch (t_layout)

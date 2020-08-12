@@ -17,23 +17,16 @@ namespace asclepios::gui
 		~vtkWidget3D() = default;
 
 		//getters
-		[[nodiscard]] bool getIsIsosurfaceActive() const { return m_isIsosurfaceActive; }
-		[[nodiscard]] bool getIsMaximumIntensityProjectionActive() const { return m_isMaximumIntensityProjectionActive; }
 		[[nodiscard]] vtkSmartVolumeMapper* getvtkWidget3DSmartVolumeMapper() const { return m_mapper; }
 
 		//setters
-		void setIsIsosurfaceActive(const bool& t_flag);
-		void setIsMaximumIntensityProjectionActive(const bool& t_flag);
 		void setInteractor(const vtkSmartPointer<vtkRenderWindowInteractor>& t_interactor) override { m_interactor = t_interactor; }
-		void setFilter(const QString& t_filePath) const;
-
+		void setFilter(const QString& t_filePath);
 		void render() override;
-		void activateBoxWidget(const bool& t_flag) const;
+		void activateBoxWidget(const bool& t_flag);
 		void updateFilter() const;
 
 	private:
-		bool m_isIsosurfaceActive = false;
-		bool m_isMaximumIntensityProjectionActive = false;
 		std::unique_ptr<TransferFunction> m_transferFunction = {};
 		vtkSmartPointer<vtkWidget3DInteractorStyle> m_interactorStyle = {};
 		vtkSmartPointer<vtkSmartVolumeMapper> m_mapper;

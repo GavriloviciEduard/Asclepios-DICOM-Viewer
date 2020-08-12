@@ -447,8 +447,8 @@ background-color: rgba(128, 128, 128, 0.5);
    <slot>onApplyTransformation()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>30</x>
-     <y>294</y>
+     <x>32</x>
+     <y>412</y>
     </hint>
     <hint type="destinationlabel">
      <x>-177</x>
@@ -463,8 +463,8 @@ background-color: rgba(128, 128, 128, 0.5);
    <slot>onApplyTransformation()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>369</y>
+     <x>33</x>
+     <y>444</y>
     </hint>
     <hint type="destinationlabel">
      <x>-367</x>
@@ -479,8 +479,8 @@ background-color: rgba(128, 128, 128, 0.5);
    <slot>onApplyTransformation()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>27</x>
-     <y>443</y>
+     <x>29</x>
+     <y>486</y>
     </hint>
     <hint type="destinationlabel">
      <x>-226</x>
@@ -511,8 +511,8 @@ background-color: rgba(128, 128, 128, 0.5);
    <slot>onApplyTransformation()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>596</y>
+     <x>37</x>
+     <y>570</y>
     </hint>
     <hint type="destinationlabel">
      <x>-432</x>
@@ -527,8 +527,8 @@ background-color: rgba(128, 128, 128, 0.5);
    <slot>onClosePatients()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>30</x>
-     <y>675</y>
+     <x>32</x>
+     <y>244</y>
     </hint>
     <hint type="destinationlabel">
      <x>-278</x>
@@ -536,9 +536,26 @@ background-color: rgba(128, 128, 128, 0.5);
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>buttonVolume</sender>
+   <signal>clicked()</signal>
+   <receiver>WidgetsContainer</receiver>
+   <slot>onCreateWidget3D()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>18</x>
+     <y>273</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-213</x>
+     <y>602</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onApplyTransformation()</slot>
   <slot>onClosePatients()</slot>
+  <slot>onCreateWidget3D()</slot>
  </slots>
 </ui>

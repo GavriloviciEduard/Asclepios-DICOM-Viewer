@@ -65,7 +65,7 @@ void asclepios::gui::Widget2D::render()
 			m_tabWidget->setAcceptDrops(false);
 			m_future = QtConcurrent::run(initImageReader, vtkWidget, this);
 			Q_UNUSED(connect(this, &Widget2D::imageReaderInitialized,
-				this, &Widget2D::renderFinished));
+				this, &Widget2D::onRenderFinished));
 		}
 		catch (std::exception& ex)
 		{
@@ -82,10 +82,10 @@ void asclepios::gui::Widget2D::createConnections()
 	m_qtvtkWidget->installEventFilter(m_vtkEvents.get());
 	Q_UNUSED(connect(m_vtkEvents.get(),
 		&vtkEventFilter::activateWidget,
-		this, &Widget2D::activateWidget));
+		this, &Widget2D::onActivateWidget));
 	Q_UNUSED(connect(m_vtkEvents.get(),
 		&vtkEventFilter::setMaximized,
-		this, &Widget2D::setMaximized));
+		this, &Widget2D::onSetMaximized));
 }
 
 //-----------------------------------------------------------------------------
@@ -114,7 +114,7 @@ void asclepios::gui::Widget2D::setSliderValues(const int& t_min, const int& t_ma
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::activateWidget(const bool& t_flag)
+void asclepios::gui::Widget2D::onActivateWidget(const bool& t_flag)
 {
 	if (t_flag)
 	{
@@ -126,7 +126,7 @@ void asclepios::gui::Widget2D::activateWidget(const bool& t_flag)
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::applyTransformation(const transformationType& t_type) const
+void asclepios::gui::Widget2D::onApplyTransformation(const transformationType& t_type) const
 {
 	if (m_vtkWidget && m_image)
 	{
@@ -140,7 +140,7 @@ void asclepios::gui::Widget2D::applyTransformation(const transformationType& t_t
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::refreshScrollValues(core::Series* t_series, core::Image* t_image)
+void asclepios::gui::Widget2D::onRefreshScrollValues(core::Series* t_series, core::Image* t_image)
 {
 	auto* const study = t_series->getParentObject();
 	if (canScrollBeRefreshed(study->getParentObject()->getIndex(),
@@ -162,7 +162,7 @@ void asclepios::gui::Widget2D::refreshScrollValues(core::Series* t_series, core:
 	}
 }
 
-void asclepios::gui::Widget2D::changeScrollValue(vtkObject* t_obj , unsigned long , void*, void*) const
+void asclepios::gui::Widget2D::onChangeScrollValue(vtkObject* t_obj , unsigned long , void*, void*) const
 {
 	const QSignalBlocker blocker(m_scroll);
 	auto* const  style =
@@ -174,13 +174,16 @@ void asclepios::gui::Widget2D::changeScrollValue(vtkObject* t_obj , unsigned lon
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::setMaximized() const
+void asclepios::gui::Widget2D::onSetMaximized() const
 {
-	dynamic_cast<TabWidget*>(m_tabWidget)->onMaximize();
+	if(m_tabWidget)
+	{
+		dynamic_cast<TabWidget*>(m_tabWidget)->onMaximize();
+	}
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::renderFinished()
+void asclepios::gui::Widget2D::onRenderFinished()
 {
 	m_vtkWidget->setInteractor(m_qtvtkWidget->
 		GetRenderWindow()->GetInteractor());
@@ -197,7 +200,7 @@ void asclepios::gui::Widget2D::renderFinished()
 	m_tabWidget->setAcceptDrops(true);
 	m_future = {};
 	disconnect(this, &Widget2D::imageReaderInitialized,
-	           this, &Widget2D::renderFinished);
+	           this, &Widget2D::onRenderFinished);
 	stopLoadingAnimation();
 }
 
@@ -210,7 +213,7 @@ void asclepios::gui::Widget2D::closeEvent(QCloseEvent* t_event)
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::Widget2D::changeImage(int t_index)
+void asclepios::gui::Widget2D::onChangeImage(int t_index)
 {
 	try
 	{
@@ -220,7 +223,7 @@ void asclepios::gui::Widget2D::changeImage(int t_index)
 				GetInteractor()->GetInteractorStyle());
 		if (interactorStyle)
 		{
-			activateWidget(true);
+			onActivateWidget(true);
 			interactorStyle->changeImage(t_index);
 		}
 	}
@@ -239,10 +242,10 @@ void asclepios::gui::Widget2D::connectScroll()
 	}
 	m_scrollConnection->Connect(
 		m_qtvtkWidget->GetRenderWindow()->GetInteractor()->GetInteractorStyle(),
-		vtkCustomEvents::changeScrollValue, this,
-		SLOT(changeScrollValue(vtkObject*, unsigned long, void*, void*)));
+		changeScrollValue, this,
+		SLOT(onChangeScrollValue(vtkObject*, unsigned long, void*, void*)));
 	Q_UNUSED(connect(m_scroll, &QScrollBar::valueChanged,
-		this, &Widget2D::changeImage));
+		this, &Widget2D::onChangeImage));
 }
 
 //-----------------------------------------------------------------------------
@@ -260,15 +263,15 @@ void asclepios::gui::Widget2D::disconnectScroll() const
 	if (m_scroll)
 	{
 		disconnect(m_scroll, &QScrollBar::valueChanged,
-		           this, &Widget2D::changeImage);
+		           this, &Widget2D::onChangeImage);
 	}
 	if (m_scrollConnection)
 	{
 		m_scrollConnection->Disconnect(
 			m_qtvtkWidget->GetRenderWindow()
 			->GetInteractor()->GetInteractorStyle(),
-			vtkCustomEvents::changeScrollValue,
-			this, SLOT(changeScrollValue(vtkObject*, unsigned long, void*, void*)));
+			changeScrollValue,
+			this, SLOT(onChangeScrollValue(vtkObject*, unsigned long, void*, void*)));
 	}
 }
 

@@ -9,6 +9,8 @@
 #include "vtkwidgetbase.h"
 #include "widgetbase.h"
 
+
+
 namespace asclepios::gui
 {
 	class Widget2D final : public WidgetBase
@@ -24,26 +26,21 @@ namespace asclepios::gui
 		[[nodiscard]] QScrollBar* getScrollBar() const { return m_scroll; }
 		[[nodiscard]] QFuture<void> getFuture() const { return m_future; }
 		
-		void initView() override;
-		void initData() override;
 		void render() override;
-		void createConnections() override;
-		void resetView() override;
-		void setSliderValues(const int& t_min, const int& t_max, const int& t_value) override;
-
+		
 	signals:
 		void imageReaderInitialized();
 		
 	public slots:
-		void activateWidget(const bool& t_flag);
-		void applyTransformation(const transformationType& t_type) const;
-		void refreshScrollValues(core::Series* t_series, core::Image* t_image);
-		void changeScrollValue(vtkObject* t_obj, unsigned long t_index, void*, void*) const;
-		void setMaximized() const;
+		void onActivateWidget(const bool& t_flag);
+		void onApplyTransformation(const transformationType& t_type) const;
+		void onRefreshScrollValues(core::Series* t_series, core::Image* t_image);
+		void onChangeScrollValue(vtkObject* t_obj, unsigned long t_index, void*, void*) const;
+		void onSetMaximized() const;
 
 	private slots :
-		void changeImage(int t_index);
-		void renderFinished();
+		void onChangeImage(int t_index);
+		void onRenderFinished();
 
 	protected:
 		void closeEvent(QCloseEvent* t_event) override;
@@ -56,12 +53,17 @@ namespace asclepios::gui
 		QScrollBar* m_scroll = {};
 		QFuture<void> m_future = {};
 
+		void initView() override;
+		void initData() override;
+		void createConnections() override;
+		void resetView() override;
 		void connectScroll();
 		void startLoadingAnimation() override;
 		void disconnectScroll() const;
 		void resetWidgets();
 		void resetScroll();
 		void setScrollStyle() const;
+		void setSliderValues(const int& t_min, const int& t_max, const int& t_value) override;
 		static void initImageReader(vtkWidget2D* t_vtkWidget2D, Widget2D* t_self);
 		[[nodiscard]] bool canScrollBeRefreshed(const int& t_patientIndex, const int& t_studyIndex,
 		                                        const int& t_seriesIndex) const;

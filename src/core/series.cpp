@@ -1,5 +1,7 @@
 #include "series.h"
 #include <algorithm>
+#include <vtkDICOMSorter.h>
+#include <vtkStringArray.h>
 
 asclepios::core::Image* asclepios::core::Series::getNextSingleFrameImage(Image* t_image)
 {
@@ -36,6 +38,34 @@ asclepios::core::Image* asclepios::core::Series::getSingleFrameImageByIndex(cons
 		return it->get();
 	}
 	throw std::runtime_error("Index is out of bounds!");
+}
+
+//-----------------------------------------------------------------------------
+vtkSmartPointer<vtkDICOMReader> asclepios::core::Series::getReaderForAllSingleFrameImages()
+{
+	if (m_readerSingleFrame)
+	{
+		return vtkSmartPointer<vtkDICOMReader>(m_readerSingleFrame);
+	}
+	vtkNew<vtkDICOMReader> newReader;
+	vtkNew<vtkStringArray> sinleFramesImages;
+	vtkNew<vtkDICOMSorter> sorter;
+	int count = 0;
+	for (const auto& image : m_singleFrameImages)
+	{
+		const auto path = image->getImagePath();
+		if (!path.empty())
+		{
+			sinleFramesImages->InsertValue(count++, path);
+		}
+	}
+	sorter->SetInputFileNames(sinleFramesImages);
+	sorter->Update();
+	newReader->SetFileNames(sorter->GetFileNamesForSeries(0));
+	newReader->SetDataByteOrderToLittleEndian();
+	newReader->Update(0);
+	m_readerSingleFrame = newReader;
+	return vtkSmartPointer<vtkDICOMReader>(newReader);
 }
 
 //-----------------------------------------------------------------------------

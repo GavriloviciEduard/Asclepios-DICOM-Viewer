@@ -97,6 +97,9 @@ void asclepios::gui::GUI::connectFunctions() const
 	Q_UNUSED(connect(widgetsContainer,
 		&WidgetsContainer::closePatients,
 		this, &GUI::onCloseAllPatients));
+	Q_UNUSED(connect(widgetsContainer,
+		&WidgetsContainer::createWidget3D,
+		this, &GUI::onCreateWidget3D));
 }
 
 //-----------------------------------------------------------------------------
@@ -122,6 +125,12 @@ void asclepios::gui::GUI::onOpenFolder()
 	{
 		m_filesImporter->addFolders(filedialog->selectedFiles());
 	}
+}
+
+//-----------------------------------------------------------------------------
+void asclepios::gui::GUI::onCreateWidget3D() const
+{
+	m_widgetsController->createWidgetMPR3D(WidgetBase::WidgetType::widget3d);
 }
 
 //-----------------------------------------------------------------------------
