@@ -14,7 +14,7 @@ namespace asclepios::gui
 	Q_OBJECT
 	public:
 		explicit Widget3D(QWidget* parent = Q_NULLPTR);
-		~Widget3D() = default;
+		~Widget3D() { m_future.waitForFinished(); }
 
 		//getters
 		[[nodiscard]] QFuture<void> getFuture() const { return m_future; }
@@ -24,13 +24,15 @@ namespace asclepios::gui
 	signals:
 		void finishedRenderAsync();
 
+	protected:
+		bool eventFilter(QObject* watched, QEvent* event) override;
+
 	private slots:
 		void onfilterChanged(const QString& t_filter) const;
 		void onCropPressed(const bool& t_pressed) const;
 		void onActivateWidget(const bool& t_flag);
 		void onSetMaximized() const;
 		void onFinishedRenderAsync();
-		
 
 	private:
 		Ui::Widget3D m_ui = {};

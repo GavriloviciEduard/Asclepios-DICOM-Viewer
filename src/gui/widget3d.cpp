@@ -3,6 +3,7 @@
 #include <QFocusEvent>
 #include <vtkRendererCollection.h>
 #include <vtkGenericOpenGLRenderWindow.h>
+#include <QKeyEvent>
 #include <QtConcurrent/qtconcurrentrun.h>
 
 asclepios::gui::Widget3D::Widget3D(QWidget* parent)
@@ -23,6 +24,8 @@ void asclepios::gui::Widget3D::render()
 	}
 	try
 	{
+		m_toolbar->getUI().toolButtonCrop->setVisible(false);
+		m_toolbar->getUI().comboBoxFilters->setVisible(false);
 		startLoadingAnimation();
 		m_vtkWidget->setImage(m_image);
 		m_vtkWidget->setSeries(m_series);
@@ -35,6 +38,39 @@ void asclepios::gui::Widget3D::render()
 	{
 		//todo log
 	}
+}
+
+//-----------------------------------------------------------------------------
+bool asclepios::gui::Widget3D::eventFilter(QObject* watched, QEvent* event)
+{
+	if (event->type() == QEvent::KeyPress)
+	{
+		auto* const keyEvent = dynamic_cast<QKeyEvent*>(event);
+		const int key = keyEvent->key();
+		auto* const combo = m_toolbar->getUI().comboBoxFilters;
+		switch (key)
+		{
+		case Qt::Key_Left:
+			{
+				const int currentIndex = combo->currentIndex();
+				combo->setCurrentIndex(!combo->currentIndex()
+					                       ? combo->count() - 1
+					                       : currentIndex - 1);
+				break;
+			}
+		case Qt::Key_Right:
+			{
+				const int currentIndex = combo->currentIndex();
+				combo->setCurrentIndex(currentIndex == combo->count() - 1
+					                       ? 0
+					                       : currentIndex + 1);
+				break;
+			}
+		default:
+			break;
+		}
+	}
+	return QWidget::eventFilter(watched, event);
 }
 
 //-----------------------------------------------------------------------------
@@ -60,7 +96,7 @@ void asclepios::gui::Widget3D::onActivateWidget(const bool& t_flag)
 	if (t_flag)
 	{
 		auto* event = new QFocusEvent(QEvent::FocusIn,
-		                              Qt::FocusReason::MouseFocusReason);
+			Qt::FocusReason::MouseFocusReason);
 		focusInEvent(event);
 		delete event;
 	}
@@ -90,6 +126,9 @@ void asclepios::gui::Widget3D::onFinishedRenderAsync()
 	stopLoadingAnimation();
 	disconnect(this, &Widget3D::finishedRenderAsync,
 	           this, &Widget3D::onFinishedRenderAsync);
+	m_toolbar->getUI().toolButtonCrop->setVisible(true);
+	m_toolbar->getUI().comboBoxFilters->setVisible(true);
+	installEventFilter(this);
 }
 
 //-----------------------------------------------------------------------------
