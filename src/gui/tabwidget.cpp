@@ -8,6 +8,7 @@
 #include <patient.h>
 #include "widget2d.h"
 #include "widget3d.h"
+#include "widgetmpr.h"
 
 asclepios::gui::TabWidget::TabWidget(QWidget* parent)
 	: QWidget(parent)
@@ -47,8 +48,8 @@ void asclepios::gui::TabWidget::createWidgetMPR3D(const WidgetBase::WidgetType& 
 	}
 	else
 	{
+		widget = new WidgetMPR(this);
 		name = "MPR";
-		return;
 	}
 	widget->setSeries(m_tabbedWidget->getSeries());
 	widget->setImage(m_tabbedWidget->getImage());
@@ -125,7 +126,6 @@ void asclepios::gui::TabWidget::closeWidget(const int& t_index) const
 {
 	//todo delete only when thread finished
 	delete m_ui.tab->widget(t_index);
-
 }
 
 //-----------------------------------------------------------------------------

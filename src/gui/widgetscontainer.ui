@@ -552,10 +552,27 @@ background-color: rgba(128, 128, 128, 0.5);
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>buttonMPR</sender>
+   <signal>clicked()</signal>
+   <receiver>WidgetsContainer</receiver>
+   <slot>onCreateWidgetMPR()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>30</x>
+     <y>317</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-213</x>
+     <y>215</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onApplyTransformation()</slot>
   <slot>onClosePatients()</slot>
   <slot>onCreateWidget3D()</slot>
+  <slot>onCreateWidgetMPR()</slot>
  </slots>
 </ui>

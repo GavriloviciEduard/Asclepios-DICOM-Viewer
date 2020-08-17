@@ -1,31 +1,34 @@
 <RCC>
-  <qresource prefix="/">
-    <file>res/0.png</file>
-    <file>res/1.png</file>
-    <file>res/2.png</file>
-    <file>res/3.png</file>
-    <file>res/4.png</file>
-    <file>res/crop_icon.png</file>
-    <file>res/close-button1.png</file>
-    <file>res/close-button2.png</file>
-    <file>res/closeAll_icon.png</file>
-    <file>res/coronavirus_icon.png</file>
-    <file>res/fliphorizontal_icon.png</file>
-    <file>res/flipvertical_icon.png</file>
-    <file>res/invert_icon.png</file>
-    <file>res/rotateleft_icon.png</file>
-    <file>res/rotateright_icon.png</file>
-    <file>res/3d_icon.png</file>
-    <file>res/mpr_icon.png</file>
-    <file>res/icon_big.png</file>
-    <file>res/icon_file.png</file>
-    <file>res/icon_folder.png</file>
-    <file>res/icon_layout.png</file>
-    <file>res/icon_small.png</file>
-    <file>res/maximize-button1.png</file>
-    <file>res/maximize-button2.png</file>
-    <file>res/minimize-button1.png</file>
-    <file>res/arrow_icon.png</file>
-    <file alias="loading">res/loading_gif.gif</file>
-  </qresource>
+    <qresource prefix="/">
+        <file>res/0.png</file>
+        <file>res/1.png</file>
+        <file>res/2.png</file>
+        <file>res/3.png</file>
+        <file>res/4.png</file>
+        <file>res/crop_icon.png</file>
+        <file>res/close-button1.png</file>
+        <file>res/icon_reslice.png</file>
+        <file>res/reset_icon.png</file>
+        <file>res/close-button2.png</file>
+        <file>res/closeAll_icon.png</file>
+        <file>res/coronavirus_icon.png</file>
+        <file>res/fliphorizontal_icon.png</file>
+        <file>res/flipvertical_icon.png</file>
+        <file>res/invert_icon.png</file>
+        <file>res/rotateleft_icon.png</file>
+        <file>res/rotateright_icon.png</file>
+        <file>res/3d_icon.png</file>
+        <file>res/mpr_icon.png</file>
+        <file>res/icon_big.png</file>
+        <file>res/icon_file.png</file>
+        <file>res/icon_folder.png</file>
+        <file>res/icon_layout.png</file>
+        <file>res/icon_small.png</file>
+        <file>res/maximize-button1.png</file>
+        <file>res/maximize-button2.png</file>
+        <file>res/minimize-button1.png</file>
+        <file>res/arrow_icon.png</file>
+        <file alias="loading">res/loading_gif.gif</file>
+        <file alias="closeTab">res/closeTab_icon.png</file>
+    </qresource>
 </RCC>

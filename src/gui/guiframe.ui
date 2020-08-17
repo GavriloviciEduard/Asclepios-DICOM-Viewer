@@ -28,13 +28,13 @@
 #minimizeButton:hover, #maximizeButton:hover
 {
   border-style: none;
-  background-color:  rgba(128, 128, 128, 0.2);
+  background-color:  rgba(128, 128, 128, 0.5);
 }
 
 #minimizeButton:pressed, #maximizeButton:pressed
 {
   	border-style: none;
-	background-color: rgba(128, 128, 128, 0.3);
+	background-color: rgba(128, 128, 128, 0.6);
   
 }
 
@@ -64,11 +64,11 @@
 }
 #GUIFrame
 {
-	background-color: #2a2a2b ;
+	background-color: #121212 ;
 }
 #widgetTopBar
 {
-	background-color: #695085;
+	background-color: #bb86fc;
 }
 #icon
 {
@@ -105,7 +105,7 @@ background: none;
 }
 QMenuBar
 {
-background-color: #695085;
+background-color: #bb86fc;
 color : white;
 }
 
@@ -113,6 +113,11 @@ QMenu
 {
 background-color:#2a2a2c;
 color : white;
+}
+
+QMenuBar::item:selected,
+QMenu::item:selected {
+	background-color:  rgba(128, 128, 128, 0.5);
 }</string>
   </property>
   <property name="lineWidth">

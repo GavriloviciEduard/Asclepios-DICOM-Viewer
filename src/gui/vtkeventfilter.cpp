@@ -1,6 +1,5 @@
 #include "vtkeventfilter.h"
-
-#include <iostream>
+#include <QVariant>
 #include <QEvent>
 
 bool asclepios::gui::vtkEventFilter::eventFilter(QObject* t_watched, QEvent* t_event)
@@ -8,9 +7,10 @@ bool asclepios::gui::vtkEventFilter::eventFilter(QObject* t_watched, QEvent* t_e
 	if (t_event->type() == t_event->MouseButtonPress ||
 		t_event->type() == t_event->Wheel)
 	{
-		emit activateWidget(true);
+		t_watched->setProperty("activate", true);
+		emit activateWidget(true, t_watched);
 	}
-	if(t_event->type() == t_event->MouseButtonDblClick)
+	if (t_event->type() == t_event->MouseButtonDblClick)
 	{
 		emit setMaximized();
 	}

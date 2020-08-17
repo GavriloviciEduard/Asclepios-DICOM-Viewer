@@ -28,6 +28,7 @@ namespace asclepios::core
 		[[nodiscard]] export std::set<std::unique_ptr<Image>, Image::imageCompare>& getMultiFrameImages() { return m_multiFrameImages; }
 		[[nodiscard]] export int getIndex() const { return m_index; }
 		[[nodiscard]] export vtkSmartPointer<vtkDICOMReader> getReaderForAllSingleFrameImages();
+		[[nodiscard]] export vtkSmartPointer<vtkDICOMMetaData> getMetaDataForSeries();
 		
 		//setters
 		export void setParentObject(Study* t_parent) { m_parent = t_parent; }
@@ -61,6 +62,7 @@ namespace asclepios::core
 		std::string m_date = {};
 		std::string m_number = {};
 		vtkWeakPointer<vtkDICOMReader> m_readerSingleFrame = {};
+		vtkSmartPointer<vtkDICOMMetaData> m_metaDataSingleFrame = {};
 		std::set<std::unique_ptr<Image>, Image::imageCompare> m_singleFrameImages = {};
 		std::set<std::unique_ptr<Image>, Image::imageCompare> m_multiFrameImages = {};
 

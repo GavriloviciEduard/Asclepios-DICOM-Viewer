@@ -100,6 +100,9 @@ void asclepios::gui::GUI::connectFunctions() const
 	Q_UNUSED(connect(widgetsContainer,
 		&WidgetsContainer::createWidget3D,
 		this, &GUI::onCreateWidget3D));
+	Q_UNUSED(connect(widgetsContainer,
+		&WidgetsContainer::createWidgetMPR,
+		this, &GUI::onCreateWidgetMPR));
 }
 
 //-----------------------------------------------------------------------------
@@ -134,6 +137,12 @@ void asclepios::gui::GUI::onCreateWidget3D() const
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::gui::GUI::onCreateWidgetMPR() const
+{
+	m_widgetsController->createWidgetMPR3D(WidgetBase::WidgetType::widgetmpr);
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::GUI::onChangeLayout(const WidgetsContainer::layouts& t_layout) const
 {
 	m_widgetsController->createWidgets(t_layout);
@@ -150,7 +159,7 @@ void asclepios::gui::GUI::onApplyTransformation(const transformationType& t_type
 void asclepios::gui::GUI::onShowThumbnailsWidget(const bool& t_flag) const
 {
 	m_widgetsController->getWidgetsContainer()
-		->getUI().widgetPatients->setVisible(t_flag);
+	                   ->getUI().widgetPatients->setVisible(t_flag);
 }
 
 //-----------------------------------------------------------------------------

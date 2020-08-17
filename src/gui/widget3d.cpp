@@ -175,7 +175,6 @@ void asclepios::gui::Widget3D::createConnections()
 			this, &Widget3D::onCropPressed));
 	}
 	setFocusPolicy(Qt::FocusPolicy::WheelFocus);
-
 	m_qtvtkWidget->installEventFilter(m_vtkEvents.get());
 	Q_UNUSED(connect(m_vtkEvents.get(),
 		&vtkEventFilter::activateWidget,

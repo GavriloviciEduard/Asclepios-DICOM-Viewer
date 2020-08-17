@@ -27,6 +27,12 @@ void asclepios::gui::WidgetsContainer::onCreateWidget3D()
 }
 
 //-----------------------------------------------------------------------------
+void asclepios::gui::WidgetsContainer::onCreateWidgetMPR()
+{
+	emit createWidgetMPR();
+}
+
+//-----------------------------------------------------------------------------
 void asclepios::gui::WidgetsContainer::setLayout(const layouts& t_layout) const
 {
 	switch (t_layout)

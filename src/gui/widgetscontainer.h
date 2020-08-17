@@ -35,11 +35,13 @@ namespace asclepios::gui
 		void applyTransformation(const transformationType& t_type);
 		void closePatients();
 		void createWidget3D();
+		void createWidgetMPR();
 
 	private slots:
 		void onApplyTransformation();
 		void onClosePatients();
 		void onCreateWidget3D();
+		void onCreateWidgetMPR();
 
 	private:
 		Ui::WidgetsContainer m_ui = {};

@@ -192,6 +192,45 @@
     <ClCompile Include="toolbarwidget3d.cpp">
       <Filter>qt_widgets\source</Filter>
     </ClCompile>
+    <ClCompile Include="vtkresliceactor.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkreslicecallback.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkresliceplanecursorwidget.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkreslicerotator.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkreslicetranslator.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkreslicewidget.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkreslicewidgetrepresentation.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidgetmpr.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidgetmprcallback.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="vtkwidgetmprinteractorstyle.cpp">
+      <Filter>vtk_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="mprmaker.cpp">
+      <Filter>utils\source</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetmpr.cpp">
+      <Filter>qt_widgets\source</Filter>
+    </ClCompile>
+    <ClCompile Include="toolbarwidgetmpr.cpp">
+      <Filter>qt_widgets\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui.h">
@@ -248,6 +287,12 @@
     <QtMoc Include="toolbarwidget3d.h">
       <Filter>qt_widgets\header</Filter>
     </QtMoc>
+    <QtMoc Include="widgetmpr.h">
+      <Filter>qt_widgets\header</Filter>
+    </QtMoc>
+    <QtMoc Include="toolbarwidgetmpr.h">
+      <Filter>qt_widgets\header</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="guiframe.ui">
@@ -287,6 +332,12 @@
       <Filter>qt_widgets\ui</Filter>
     </QtUic>
     <QtUic Include="toolbarwidget3d.ui">
+      <Filter>qt_widgets\ui</Filter>
+    </QtUic>
+    <QtUic Include="widgetmpr.ui">
+      <Filter>qt_widgets\ui</Filter>
+    </QtUic>
+    <QtUic Include="toolbarwidgetmpr.ui">
       <Filter>qt_widgets\ui</Filter>
     </QtUic>
   </ItemGroup>
@@ -340,6 +391,39 @@
     </ClInclude>
     <ClInclude Include="vtkboxwidget3dcallback.h">
       <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkresliceactor.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkreslicecallback.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkresliceplanecursorwidget.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkreslicerotator.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkreslicetranslator.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkreslicewidget.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkreslicewidgetrepresentation.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidgetmpr.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidgetmprcallback.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="vtkwidgetmprinteractorstyle.h">
+      <Filter>vtk_widgets\header</Filter>
+    </ClInclude>
+    <ClInclude Include="mprmaker.h">
+      <Filter>utils\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

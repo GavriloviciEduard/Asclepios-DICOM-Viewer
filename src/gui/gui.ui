@@ -25,7 +25,7 @@
   <property name="styleSheet">
    <string notr="true">QMenuBar
 {
-	background-color:  #2a2a2b;
+	background-color:  #121212;
 	color : white;
 }
 
@@ -37,19 +37,19 @@ QMenu
 
 #toolBarThumbnails 
 {
-	 background-color:  #2a2a2b;
+	 background-color:  #121212;
 }
 
 #toolBarButtons
 {
-	 background-color:  #2a2a2b;
+	 background-color:  #121212;
 	 border: 0px ;
 	 margin:5px;
 }
 
 #toolBarImageTransf
 {
-	background-color:  #2a2a2b;
+	background-color:  #121212;
 }
 
 QMenuBar::item:selected,

@@ -31,7 +31,7 @@
   <property name="styleSheet">
    <string notr="true">QListView
 {
-	background:#19191a;
+	background:#1e1e1e;
 	color : white;
 	border: 0px;
 }

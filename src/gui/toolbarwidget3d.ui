@@ -28,7 +28,7 @@
   <property name="styleSheet">
    <string notr="true">#ToolbarWidget3D
 {
- background:#2a2a2b;
+ background:#121212;
     color : white;
     border: 0px;
 }
@@ -72,7 +72,7 @@ QComboBox::drop-down {border-width: 0px; } QComboBox::down-arrow {image: url(noi
 #toolButtonCrop:pressed
 {
     border-style: none;
-    background-color: rgba(128, 128, 128, 0.5);;
+    background-color: rgba(128, 128, 128, 0.5);
 }</string>
      </property>
      <property name="text">
@@ -112,10 +112,48 @@ QComboBox::drop-down {border-width: 0px; } QComboBox::down-arrow {image: url(noi
 {
   	border-style: none;
 	background-color: rgba(128, 128, 128, 0.3);
-}QComboBox::item:selected
+color:grey;
+}
+
+QComboBox::item:selected
 {
   	border-style: none;
 	background-color: rgba(128, 128, 128, 0.2);
+color:grey;
+}
+
+QWidget QComboBox QAbstractItemView 
+{
+  background-color:#1e1e1e;
+   border-style: none;
+color:grey;
+ 
+}
+
+QWidget QComboBox 
+{
+  border: none;
+  padding: 2px 18px 2px 3px;
+  selection-background-color: #D0D0D0;
+  selection-color: #000000;
+color:grey;
+}
+
+
+QWidget QComboBox:editable 
+{
+	border: none;
+  background-color:#1e1e1e;
+color:grey;
+}
+
+QWidget QComboBox:!editable,
+QWidget QComboBox::drop-down:editable,
+QWidget QComboBox:!editable:on,
+QWidget QComboBox::drop-down:editable:on {
+	border-style: none;
+	background-color:#1e1e1e;
+	color:grey;
 }</string>
      </property>
     </widget>
