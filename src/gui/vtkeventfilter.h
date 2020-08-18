@@ -12,7 +12,7 @@ namespace asclepios::gui
 		~vtkEventFilter() = default;
 
 		signals:
-			void activateWidget(const bool& t_flag);
+			void activateWidget(const bool& t_flag, QObject* t_object = nullptr);
 			void setMaximized();
 
 	protected:

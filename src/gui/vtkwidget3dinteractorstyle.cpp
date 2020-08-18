@@ -7,18 +7,15 @@ vtkStandardNewMacro(asclepios::gui::vtkWidget3DInteractorStyle);
 
 void asclepios::gui::vtkWidget3DInteractorStyle::OnMouseMove()
 {
-	auto* const currentEventPosition = 
+	auto* const currentEventPosition =
 		Interactor->GetEventPosition();
 	auto* const lastEventPosition =
 		Interactor->GetLastEventPosition();
 	if (State == VTKIS_SPIN)
 	{
-		m_widget3D->getIsIsosurfaceActive()
-			? m_transferFunction->
-		setIsosurfaceValue(currentEventPosition[0] - lastEventPosition[0])
-			: m_transferFunction->
-		updateWindowLevel(currentEventPosition[0] - lastEventPosition[0],
-			currentEventPosition[1] - lastEventPosition[1]);
+		m_transferFunction->
+			updateWindowLevel(currentEventPosition[0] - lastEventPosition[0],
+				currentEventPosition[1] - lastEventPosition[1]);
 		m_widget3D->updateFilter();
 		Interactor->Render();
 		return;

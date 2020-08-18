@@ -5,6 +5,7 @@
 #include <vtkVolumeProperty.h>
 #include <vtkRenderWindowInteractor.h>
 #include <vtkContourValues.h>
+#include <QString>
 
 void asclepios::gui::vtkWidget3D::initWidget()
 {
@@ -51,52 +52,41 @@ void asclepios::gui::vtkWidget3D::initInteractorStyle()
 //-----------------------------------------------------------------------------
 void asclepios::gui::vtkWidget3D::setVolumeMapperBlend() const
 {
-	if (m_isIsosurfaceActive)
-	{
-		m_mapper->SetBlendMode(vtkVolumeMapper::ISOSURFACE_BLEND);
-	}
-	else if (m_isMaximumIntensityProjectionActive)
-	{
-		m_mapper->SetBlendMode(vtkVolumeMapper::MAXIMUM_INTENSITY_BLEND);
-	}
-	else
-	{
-		m_mapper->SetBlendMode(vtkVolumeMapper::COMPOSITE_BLEND);
-	}
+	m_mapper->SetBlendMode(vtkVolumeMapper::COMPOSITE_BLEND);
 }
 
 //-----------------------------------------------------------------------------
-std::tuple< int, int> asclepios::gui::vtkWidget3D::getWindowLevel() const
+std::tuple<int, int> asclepios::gui::vtkWidget3D::getWindowLevel() const
 {
 	const auto imageReader =
 		m_image->getImageReader();
-	return std::make_tuple< int, int>(imageReader->
-		GetMetaData()->Get(DC::WindowCenter).AsInt(),
-		imageReader->GetMetaData()->Get(DC::WindowWidth).AsInt());
+	return std::make_tuple<int, int>(imageReader->
+	                                 GetMetaData()->Get(DC::WindowCenter).AsInt(),
+	                                 imageReader->GetMetaData()->Get(DC::WindowWidth).AsInt());
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::vtkWidget3D::setIsIsosurfaceActive(const bool& t_flag)
-{
-	m_isIsosurfaceActive = t_flag;
-	m_transferFunction->setIsosurfaceFunction(-500);
-}
-
-//-----------------------------------------------------------------------------
-void asclepios::gui::vtkWidget3D::setIsMaximumIntensityProjectionActive(const bool& t_flag)
-{
-	m_isMaximumIntensityProjectionActive = t_flag;
-	m_transferFunction->setMaximumIntensityProjectionFunction(0, 0);
-}
-
-//-----------------------------------------------------------------------------
-void asclepios::gui::vtkWidget3D::setFilter(const QString& t_filePath) const
+void asclepios::gui::vtkWidget3D::setFilter(const QString& t_filePath) 
 {
 	try
 	{
-		m_transferFunction->loadFilterFromFile(t_filePath);
-		m_interactorStyle->setTransferFunction(m_transferFunction.get());
+		if (t_filePath == "MIP")
+		{
+			m_transferFunction.reset();
+			m_transferFunction = std::make_unique<TransferFunction>();
+			m_mapper->SetBlendMode(vtkVolumeMapper::MAXIMUM_INTENSITY_BLEND);
+			m_transferFunction->setMaximumIntensityProjectionFunction(0, 0);
+			const auto [window, level] = getWindowLevel();
+			m_transferFunction->updateWindowLevel(window, level);
+		}
+		else
+		{
+			m_mapper->SetBlendMode(vtkVolumeMapper::COMPOSITE_BLEND);
+			m_transferFunction->loadFilterFromFile(t_filePath);
+		}
 		updateFilter();
+		m_interactorStyle->setTransferFunction(m_transferFunction.get());
+		
 	}
 	catch (const std::exception& ex)
 	{
@@ -110,16 +100,11 @@ void asclepios::gui::vtkWidget3D::render()
 	m_renderWindows[0]->OffScreenRenderingOn();
 	setVolumeMapperBlend();
 	const auto [window, level] = getWindowLevel();
-	if(m_isIsosurfaceActive)
-	{
-		m_mapper->AutoAdjustSampleDistancesOff();
-		m_mapper->SetSampleDistance(0.5);
-		m_mapper->SetAverageIPScalarRange(200, 250);
-	}
-	else
-	{
-		m_transferFunction->updateWindowLevel(window, level);
-	}
+	const auto reader = m_image && m_image->getIsMultiFrame()
+		                    ? m_image->getImageReader()
+		                    : m_series->getReaderForAllSingleFrameImages();
+	m_mapper->SetInputConnection(reader->GetOutputPort());
+	m_transferFunction->updateWindowLevel(window, level);
 	m_volume->SetMapper(m_mapper);
 	m_renderer->AddActor(m_volume);
 	m_renderWindows[0]->AddRenderer(m_renderer);
@@ -127,19 +112,18 @@ void asclepios::gui::vtkWidget3D::render()
 	m_renderWindows[0]->OffScreenRenderingOff();
 	auto* const extend = m_volume->GetBounds();
 	m_volume->SetOrigin(extend[0] + (extend[1] - extend[0]) / 2,
-		extend[2] + (extend[3] - extend[2]) / 2, 0);
-	updateFilter();
+	                    extend[2] + (extend[3] - extend[2]) / 2, 0);
 	initInteractorStyle();
-	initBoxWidget();
 }
 
 //-----------------------------------------------------------------------------
-void asclepios::gui::vtkWidget3D::activateBoxWidget(const bool& t_flag) const
+void asclepios::gui::vtkWidget3D::activateBoxWidget(const bool& t_flag)
 {
-	if (m_boxWidget)
+	if (!m_boxWidget)
 	{
-		m_boxWidget->SetEnabled(t_flag);
+		initBoxWidget();
 	}
+	m_boxWidget->SetEnabled(t_flag);
 }
 
 //-----------------------------------------------------------------------------
@@ -152,6 +136,6 @@ void asclepios::gui::vtkWidget3D::updateFilter() const
 	m_volume->GetProperty()->SetDiffuse(m_transferFunction->getDiffuse());
 	m_volume->GetProperty()->SetSpecular(m_transferFunction->getSpecular());
 	m_volume->GetProperty()->SetSpecularPower(m_transferFunction->getSpecularPower());
-	m_volume->GetProperty()->GetIsoSurfaceValues()->SetValue(0, m_transferFunction->getIsosurfaceValue());
+	m_volume->GetProperty()->GetIsoSurfaceValues()->SetValue(0, 0);
 	(m_transferFunction->getHasShade()) ? m_volume->GetProperty()->ShadeOn() : m_volume->GetProperty()->ShadeOff();
 }

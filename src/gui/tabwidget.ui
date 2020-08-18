@@ -13,6 +13,17 @@
   <property name="windowTitle">
    <string>TabWidget</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#TabWidget
+{
+	background:black;
+}
+
+#tab
+{
+	background:black;
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
@@ -39,6 +50,8 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="gui.qrc"/>
+ </resources>
  <connections/>
 </ui>

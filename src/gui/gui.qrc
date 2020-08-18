@@ -5,10 +5,12 @@
         <file>res/2.png</file>
         <file>res/3.png</file>
         <file>res/4.png</file>
+        <file>res/crop_icon.png</file>
         <file>res/close-button1.png</file>
+        <file>res/icon_reslice.png</file>
+        <file>res/reset_icon.png</file>
         <file>res/close-button2.png</file>
         <file>res/closeAll_icon.png</file>
-        <file>res/coronavirus_icon.png</file>
         <file>res/fliphorizontal_icon.png</file>
         <file>res/flipvertical_icon.png</file>
         <file>res/invert_icon.png</file>
@@ -26,5 +28,6 @@
         <file>res/minimize-button1.png</file>
         <file>res/arrow_icon.png</file>
         <file alias="loading">res/loading_gif.gif</file>
+        <file alias="closeTab">res/closeTab_icon.png</file>
     </qresource>
 </RCC>
