@@ -1,7 +1,6 @@
 #include "tabwidget.h"
 #include <QFocusEvent>
 #include <qstyle.h>
-#include <QTabBar>
 #include <QMimeData>
 #include <QJsonDocument>
 #include <study.h>
@@ -14,6 +13,9 @@ asclepios::gui::TabWidget::TabWidget(QWidget* parent)
 	: QWidget(parent)
 {
 	m_ui.setupUi(this);
+	dynamic_cast<QTabWidget*>
+		(findChild<QTabWidget*>("tab"))->
+		setStyleSheet(inActiveTabStyle);
 	setStyleSheet(inActiveTabStyle);
 	setAcceptDrops(true);
 	Q_UNUSED(connect(m_ui.tab, &QTabWidget::tabCloseRequested,
