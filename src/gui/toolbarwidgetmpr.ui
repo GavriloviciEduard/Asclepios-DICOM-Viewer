@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ToolbarWidgetMPR</class>
+ <widget class="QWidget" name="ToolbarWidgetMPR">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>466</width>
+    <height>24</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ToolbarWidgetMPR</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#ToolbarWidgetMPR { background:black; background-color:black;color:white;border:none;}QToolButton{border:none;background-color:transparent;}QToolButton:hover{border-style: none;background-color: rgba(128, 128, 128, 0.2);}QToolButton:pressed{border-style: none;background-color: rgba(128, 128, 128, 0.5);}</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="spacing">
+    <number>2</number>
+   </property>
+   <property name="leftMargin">
+    <number>4</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>4</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QToolButton" name="toolButtonReslicer">
+     <property name="toolTip">
+      <string>Reslicer</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="gui.qrc">
+       <normaloff>:/res/icon_reslice.png</normaloff>:/res/icon_reslice.png</iconset>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="toolButtonReset">
+     <property name="toolTip">
+      <string>Reset</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="gui.qrc">
+       <normaloff>:/res/reset_icon.png</normaloff>:/res/reset_icon.png</iconset>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="gui.qrc"/>
+ </resources>
+ <connections/>
+</ui>

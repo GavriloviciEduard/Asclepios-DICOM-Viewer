@@ -12,6 +12,7 @@ int main(int argc, char* argv[])
 {
 	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	QApplication application(argc, argv);
+	vtkObject::GlobalWarningDisplayOff();
 	application.setWindowIcon(QIcon(iconapp));
 	asclepios::gui::GUIFrame guiFrame;
 	asclepios::gui::GUI gui;

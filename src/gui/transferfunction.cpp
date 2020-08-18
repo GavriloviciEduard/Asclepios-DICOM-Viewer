@@ -4,22 +4,9 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-void asclepios::gui::TransferFunction::setIsosurfaceFunction(const int& t_value)
-{
-	m_isoValue = t_value;
-	m_colorFunction = vtkSmartPointer<vtkColorTransferFunction>::New();
-	m_colorFunction->RemoveAllPoints();
-	m_colorFunction->AddRGBPoint(150.0, 1.0, 1.0, 1.0);
-	m_opacityFunction = vtkSmartPointer<vtkPiecewiseFunction>::New();
-	m_opacityFunction->AddPoint(220.0, 1.0);
-	m_opacityFunction->AddPoint(150.0, 1);
-	m_opacityFunction->AddPoint(190.0, 1);
-	m_shade = true;
-}
-
 //-----------------------------------------------------------------------------
 void asclepios::gui::TransferFunction::setMaximumIntensityProjectionFunction(const int& t_windowCenter,
-	const int& t_windowWidth)
+                                                                             const int& t_windowWidth)
 {
 	m_ambient = 0.1;
 	m_diffuse = 0.7;
@@ -41,7 +28,7 @@ void asclepios::gui::TransferFunction::updateWindowLevel(const double& t_window,
 		for (const auto& colorPoint : m_colors)
 		{
 			m_colorFunction->AddRGBPoint(
-				m_level + m_window * 
+				m_level + m_window *
 				colorPoint->getValue() / 1000,
 				colorPoint->getRed(),
 				colorPoint->getGreen(),
@@ -54,7 +41,7 @@ void asclepios::gui::TransferFunction::updateWindowLevel(const double& t_window,
 		for (const auto& opacityPoint : m_opacities)
 		{
 			m_opacityFunction->AddPoint(
-				m_level + m_window * 
+				m_level + m_window *
 				opacityPoint->getValue() / 1000,
 				opacityPoint->getAlpha());
 		}
@@ -77,7 +64,7 @@ void asclepios::gui::TransferFunction::loadFilterFromFile(const QString& t_fileN
 		m_diffuse = root.value("diffuse").toObject()["value"].toDouble();
 		m_specular = root.value("specular").toObject()["value"].toDouble();
 		m_specularPower = root.value("specularpower").toObject()["value"].toDouble();
-		m_shade = root.value("shade").toObject()["value"].toBool();
+		m_shade = root.value("shade").toObject()["value"].toInt();
 		m_window = 1000;
 		m_level = 0;
 	}
@@ -92,16 +79,16 @@ void asclepios::gui::TransferFunction::extractColorFunctionInfo(const QJsonArray
 {
 	m_colorFunction = vtkSmartPointer<vtkColorTransferFunction>::New();
 	m_colors.clear();
-	for(const auto& value : t_array)
+	for (const auto& value : t_array)
 	{
 		m_colors.emplace_back(std::make_unique<Color>());
-		m_colors.back()->setValue(value.toObject()["value"].toInt());
+		m_colors.back()->setValue(value.toObject()["value"].toDouble());
 		m_colors.back()->setRed(value.toObject()["red"].toDouble());
 		m_colors.back()->setGreen(value.toObject()["green"].toDouble());
 		m_colors.back()->setBlue(value.toObject()["blue"].toDouble());
 		m_colorFunction->AddRGBPoint(m_colors.back()->getValue(),
-			m_colors.back()->getRed(), m_colors.back()->getGreen(),
-			m_colors.back()->getBlue());
+		                             m_colors.back()->getRed(), m_colors.back()->getGreen(),
+		                             m_colors.back()->getBlue());
 	}
 }
 
@@ -113,9 +100,9 @@ void asclepios::gui::TransferFunction::extractOpacityFunctionInfo(const QJsonArr
 	for (const auto& value : t_array)
 	{
 		m_opacities.emplace_back(std::make_unique<Opacity>());
-		m_opacities.back()->setValue(value.toObject()["value"].toInt());
+		m_opacities.back()->setValue(value.toObject()["value"].toDouble());
 		m_opacities.back()->setAlpha(value.toObject()["alpha"].toDouble());
 		m_opacityFunction->AddPoint(m_opacities.back()->getValue(),
-			m_opacities.back()->getAlpha());
+		                            m_opacities.back()->getAlpha());
 	}
 }

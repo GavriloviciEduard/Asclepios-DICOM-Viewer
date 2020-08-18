@@ -62,7 +62,7 @@ void asclepios::gui::vtkWidgetOverlay::createOverlayInCorners()
 		{
 			m_textProperty[i] = vtkSmartPointer<vtkTextProperty>::New();
 		}
-		m_textProperty[i]->SetColor(1, 1, 1);  
+		m_textProperty[i]->SetColor(1, 1, 1);
 		m_textProperty[i]->SetFontFamilyAsString("Arial");
 		m_textProperty[i]->SetFontSize(12);
 		m_cornersOfOverlay[i]->setTextActorProperty(m_textProperty[i]);
@@ -120,7 +120,8 @@ void asclepios::gui::vtkWidgetOverlay::createOverlayInfo(vtkDICOMMetaData* t_met
 		auto tagText = info->getTextBefore();
 		tagText.append(replaceInvalidCharactersInString(tagValue));
 		tagText.append(info->getTextAfter());
-		if(!tagText.empty() && tagText !="\n")
+		if (!tagText.empty() && tagText != "\n"
+			&& tagText != "Series: \n" && tagText != "Zoom: \n")
 		{
 			m_cornersOfOverlay[info->getCorner()]->setOverlayInfo(
 				std::to_string(tag.Key), tagText);
@@ -166,11 +167,11 @@ std::tuple<int, int> asclepios::gui::vtkWidgetOverlay::computeCurrentOverlayPosi
                                                                                      const int* size)
 {
 	const auto x = !i
-		? static_cast<double>(i * (size[0] - 5) + 10)
-		: static_cast<double>(i * (size[0] - 5) - 10);
+		               ? static_cast<double>(i * (size[0] - 5) + 10)
+		               : static_cast<double>(i * (size[0] - 5) - 10);
 	const auto y = !j
-		? static_cast<double>(j * (size[1] - 5) + 20)
-		: static_cast<double>(j * (size[1] - 5) - 20);
+		               ? static_cast<double>(j * (size[1] - 5) + 20)
+		               : static_cast<double>(j * (size[1] - 5) - 20);
 	return std::make_tuple(x, y);
 }
 

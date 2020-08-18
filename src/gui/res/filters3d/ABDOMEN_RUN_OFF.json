@@ -1,0 +1,101 @@
+{
+  "name":"Abdomen run off",
+  "color": [
+    {
+      "value": -1024,
+      "red": 1,
+      "green": 0.1372549019607843,
+      "blue": 0.1725490196078431
+    },
+    {
+      "value": 50,
+      "red": 1,
+      "green": 0.1372549019607843,
+      "blue": 0.1725490196078431
+    },
+    {
+      "value": 113,
+      "red": 1,
+      "green": 0.1725490196078431,
+      "blue": 0.1725490196078431
+    },
+    {
+      "value": 310,
+      "red": 1,
+      "green": 1,
+      "blue": 1
+    },
+    {
+      "value": 601,
+      "red": 1,
+      "green": 1,
+      "blue": 1
+    },
+    {
+      "value": 878,
+      "red": 1,
+      "green": 1,
+      "blue": 1
+    },
+    {
+      "value": 3071,
+      "red": 1,
+      "green": 1,
+      "blue": 1
+    }
+  ],
+  "opacity": [
+    {
+      "value": -1024,
+      "alpha": 0
+    },
+    {
+      "value": 50,
+      "alpha": 0
+    },
+    {
+      "value": 81,
+      "alpha": 0
+    },
+    {
+      "value": 113,
+      "alpha": 0.1647058823529412
+    },
+    {
+      "value": 310,
+      "alpha": 0.4431372549019608
+    },
+    {
+      "value": 601,
+      "alpha": 0.8862745098039215
+    },
+    {
+      "value": 878,
+      "alpha": 1
+    },
+    {
+      "value": 3071,
+      "alpha": 1
+    }
+  ],
+  "ambient":
+	{
+	  "value": 0.1
+	},
+  "diffuse":
+	{
+	  "value": 0.7
+	},
+  "specular":
+	{
+	  "value": 1.0
+	},
+  "specularpower":
+	{
+	  "value": 64
+	},
+  "shade":
+	{
+	  "value": 1
+	}
+}

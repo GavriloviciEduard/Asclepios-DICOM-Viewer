@@ -23,7 +23,7 @@ namespace asclepios::gui
 			none,
 			widget2d,
 			widgetmpr,
-			widgetvolume
+			widget3d
 		};
 
 		//getters
@@ -45,7 +45,6 @@ namespace asclepios::gui
 		void setWidgetType(const WidgetType& t_widgetType) { m_widgetType = t_widgetType; }
 		void setIndexes(const int& t_patientIndex, const int& t_studyIndex, const int& t_seriesIndex,
 		                const int& t_imageIndex);
-
 	protected:
 		QWidget* m_tabWidget = {};
 		core::Series* m_series = {};
@@ -63,8 +62,8 @@ namespace asclepios::gui
 		virtual void initView() = 0;
 		virtual void initData() = 0;
 		virtual void createConnections() = 0;
-		virtual void resetView() = 0;
-		virtual void setSliderValues(const int& t_min, const int& t_max, const int& t_value) = 0;
+		virtual void resetView() {};
+		virtual void setSliderValues(const int& t_min, const int& t_max, const int& t_value) {};
 		virtual void startLoadingAnimation() = 0;
 		void stopLoadingAnimation();
 		void focusInEvent(QFocusEvent* event) override;
