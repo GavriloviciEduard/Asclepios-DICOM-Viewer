@@ -26,13 +26,64 @@
    <string>ToolbarWidget3D</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#ToolbarWidget3D
+   <string notr="true">
+QComboBox::drop-down {border-width: 0px; } QComboBox::down-arrow {image: url(noimg); border-width: 0px;} QToolButton:checked { border:2px solid #695085;}
+
+QComboBox::item:pressed
 {
- background:#121212;
-    color : white;
-    border: 0px;
+  	border-style: none;
+	background-color: rgba(128, 128, 128, 0.3);
+	color:grey;
 }
-QComboBox::drop-down {border-width: 0px; } QComboBox::down-arrow {image: url(noimg); border-width: 0px;} QToolButton:checked { border:2px solid #695085;}</string>
+
+QComboBox::item:selected
+{
+  	border-style: none;
+	background-color: rgba(128, 128, 128, 0.2);
+	color:grey;
+}
+
+QComboBox QAbstractItemView 
+{
+  	background-color:black;
+  	border-style: none;
+  	color:grey;
+}
+
+ QComboBox 
+{
+  	border: none;
+ 	padding: 2px 18px 2px 3px;
+	selection-background-color: #D0D0D0;
+  	selection-color: #000000;
+	color:grey;
+}
+
+
+ QComboBox:editable 
+{
+	border: none;
+  	background-color:black;
+	color:grey;
+}
+
+ QComboBox:!editable,
+ QComboBox::drop-down:editable,
+ QComboBox:!editable:on,
+ QComboBox::drop-down:editable:on 
+{
+	border-style: none;
+	background-color:black;
+	color:grey;
+}
+
+#ToolbarWidget3D
+{
+	background:black;
+	background-color:black;
+	color: white;
+	border: 0px;
+}</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
@@ -108,53 +159,7 @@ QComboBox::drop-down {border-width: 0px; } QComboBox::down-arrow {image: url(noi
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QComboBox::item:pressed
-{
-  	border-style: none;
-	background-color: rgba(128, 128, 128, 0.3);
-color:grey;
-}
-
-QComboBox::item:selected
-{
-  	border-style: none;
-	background-color: rgba(128, 128, 128, 0.2);
-color:grey;
-}
-
-QWidget QComboBox QAbstractItemView 
-{
-  background-color:#1e1e1e;
-   border-style: none;
-color:grey;
- 
-}
-
-QWidget QComboBox 
-{
-  border: none;
-  padding: 2px 18px 2px 3px;
-  selection-background-color: #D0D0D0;
-  selection-color: #000000;
-color:grey;
-}
-
-
-QWidget QComboBox:editable 
-{
-	border: none;
-  background-color:#1e1e1e;
-color:grey;
-}
-
-QWidget QComboBox:!editable,
-QWidget QComboBox::drop-down:editable,
-QWidget QComboBox:!editable:on,
-QWidget QComboBox::drop-down:editable:on {
-	border-style: none;
-	background-color:#1e1e1e;
-	color:grey;
-}</string>
+      <string notr="true"/>
      </property>
     </widget>
    </item>

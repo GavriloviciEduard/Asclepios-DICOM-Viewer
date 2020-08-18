@@ -1,6 +1,5 @@
 #include "widget3d.h"
 #include "tabwidget.h"
-#include <QFocusEvent>
 #include <vtkRendererCollection.h>
 #include <vtkGenericOpenGLRenderWindow.h>
 #include <QKeyEvent>
@@ -51,21 +50,21 @@ bool asclepios::gui::Widget3D::eventFilter(QObject* watched, QEvent* event)
 		switch (key)
 		{
 		case Qt::Key_Left:
-			{
-				const int currentIndex = combo->currentIndex();
-				combo->setCurrentIndex(!combo->currentIndex()
-					                       ? combo->count() - 1
-					                       : currentIndex - 1);
-				break;
-			}
+		{
+			const int currentIndex = combo->currentIndex();
+			combo->setCurrentIndex(!combo->currentIndex()
+				? combo->count() - 1
+				: currentIndex - 1);
+			break;
+		}
 		case Qt::Key_Right:
-			{
-				const int currentIndex = combo->currentIndex();
-				combo->setCurrentIndex(currentIndex == combo->count() - 1
-					                       ? 0
-					                       : currentIndex + 1);
-				break;
-			}
+		{
+			const int currentIndex = combo->currentIndex();
+			combo->setCurrentIndex(currentIndex == combo->count() - 1
+				? 0
+				: currentIndex + 1);
+			break;
+		}
 		default:
 			break;
 		}
@@ -119,13 +118,13 @@ void asclepios::gui::Widget3D::onFinishedRenderAsync()
 		m_qtvtkWidget->GetRenderWindow();
 	renderWindow->AddRenderer(m_vtkWidget->
 		getRenderWindows()[0]->GetRenderers()->
-		                       GetFirstRenderer());
+		GetFirstRenderer());
 	renderWindow->Render();
 	onfilterChanged(m_toolbar->getUI()
-	                         .comboBoxFilters->itemData(0).toString());
+		.comboBoxFilters->itemData(0).toString());
 	stopLoadingAnimation();
 	disconnect(this, &Widget3D::finishedRenderAsync,
-	           this, &Widget3D::onFinishedRenderAsync);
+		this, &Widget3D::onFinishedRenderAsync);
 	m_toolbar->getUI().toolButtonCrop->setVisible(true);
 	m_toolbar->getUI().comboBoxFilters->setVisible(true);
 	installEventFilter(this);

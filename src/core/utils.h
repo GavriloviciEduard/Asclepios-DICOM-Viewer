@@ -13,12 +13,11 @@ constexpr auto overlaysInformation = "res/overlays.json";
 constexpr auto scroll2DStyle = "res/scroll2d.css";
 constexpr auto filters3dDir = "res/filters3d";
 constexpr auto activeTabStyle =
-	"QTabBar::tab{background-color:#bb86fc; border-top-left-radius: 4px; border-top-right-radius: 4px; min-height: 15px; min-width: 80px; color:white;} QTabWidget::pane[active=\"true\"] { border:2px solid #bb86fc;} QTabBar::close-button { border: none; background-color: transparent; image:url(:/closeTab); } QTabBar::close-button:hover { background-color:  rgba(128, 128, 128, 0.5); } QTabBar::close-button:pressed {background-color:  rgba(128, 128, 128, 0.6);}";
+	"QTabBar::tab{background-color:#bb86fc; border-top-left-radius: 4px; border-top-right-radius: 4px; min-height: 15px; min-width: 80px; color:white;} QTabWidget::pane[active=\"true\"] { background:black; border:2px solid #bb86fc;} QTabBar::close-button { border: none; background-color: transparent; image:url(:/closeTab); } QTabBar::close-button:hover { background-color:  rgba(128, 128, 128, 0.5); } QTabBar::close-button:pressed {background-color:  rgba(128, 128, 128, 0.6);}";
 constexpr auto inActiveTabStyle =
-	"QTabBar::tab {background-color:#423352; border-top- left-radius: 4px; border-top-right-radius: 4px; min-height: 15px; min-width: 80px;color:white;} QTabWidget::pane[active = \"false\"] { border: 2px solid #3a2f45;} QTabBar::close-button { border: none; background-color: transparent; image:url(:/closeTab); } QTabBar::close-button:hover { background-color:  rgba(128, 128, 128, 0.5); } QTabBar::close-button:pressed {background-color:  rgba(128, 128, 128, 0.6);}";
+	"QTabBar::tab {background-color:#423352; border-top-left-radius: 4px; border-top-right-radius: 4px; min-height: 15px; min-width: 80px;color:white;} QTabWidget::pane[active = \"false\"] { background:black; border: 2px solid #3a2f45;} QTabBar::close-button { border: none; background-color: transparent; image:url(:/closeTab); } QTabBar::close-button:hover { background-color:  rgba(128, 128, 128, 0.5); } QTabBar::close-button:pressed {background-color:  rgba(128, 128, 128, 0.6);}";
 constexpr auto menuBarStyle =
-	"QMenuBar::item:selected{border-style: none;background-color:rgba(128, 128, 128, 0.5);}QMenuBar::item:pressed{border-style: none;background-color:rgba(128, 128, 128, 0.6);}";
-
+	"QMenuBar::item:selected{border-style:none;background-color:rgba(128, 128, 128, 0.5);}QMenuBar::item:pressed{border-style: none;background-color:rgba(128, 128, 128, 0.6);}";
 
 enum class transformationType
 {

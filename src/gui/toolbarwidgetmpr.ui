@@ -7,37 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>466</width>
-    <height>22</height>
+    <height>24</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ToolbarWidgetMPR</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#ToolbarWidgetMPR
-{
- background:#121212;
-    color : white;
-    border: 0px;
-}
-
-QToolButton
-{
-    border: none;
-    background-color: transparent;
-}
-
-QToolButton:hover
-{
-    border-style: none;
-    background-color: rgba(128, 128, 128, 0.2);
-}
-
-QToolButton:pressed
-{
-    border-style: none;
-    background-color: rgba(128, 128, 128, 0.5);
-}</string>
+   <string notr="true">#ToolbarWidgetMPR { background:black; background-color:black;color:white;border:none;}QToolButton{border:none;background-color:transparent;}QToolButton:hover{border-style: none;background-color: rgba(128, 128, 128, 0.2);}QToolButton:pressed{border-style: none;background-color: rgba(128, 128, 128, 0.5);}</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">

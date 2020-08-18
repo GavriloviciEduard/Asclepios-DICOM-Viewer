@@ -13,6 +13,12 @@
   <property name="windowTitle">
    <string>Widget3D</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#Widget3D
+{	
+	background:black;
+}</string>
+  </property>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

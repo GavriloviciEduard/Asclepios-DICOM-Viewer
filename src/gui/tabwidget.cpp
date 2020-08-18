@@ -77,8 +77,8 @@ void asclepios::gui::TabWidget::resetWidget()
 asclepios::gui::WidgetBase::WidgetType asclepios::gui::TabWidget::getWidgetType() const
 {
 	return m_tabbedWidget
-		       ? m_tabbedWidget->getWidgetType()
-		       : WidgetBase::WidgetType::none;
+		? m_tabbedWidget->getWidgetType()
+		: WidgetBase::WidgetType::none;
 }
 
 //-----------------------------------------------------------------------------
@@ -97,7 +97,8 @@ void asclepios::gui::TabWidget::setTabTitle(const int& t_index, const QString& t
 void asclepios::gui::TabWidget::onFocus(const bool& t_flag)
 {
 	m_isActive = t_flag;
-	auto* const tab = dynamic_cast<QTabWidget*>(this->findChild<QTabWidget*>("tab"));
+	auto* const tab =
+		dynamic_cast<QTabWidget*>(findChild<QTabWidget*>("tab"));
 	tab->setProperty("active", t_flag);
 	if (m_isActive)
 	{
@@ -124,7 +125,6 @@ void asclepios::gui::TabWidget::onMaximize()
 //-----------------------------------------------------------------------------
 void asclepios::gui::TabWidget::closeWidget(const int& t_index) const
 {
-	//todo delete only when thread finished
 	delete m_ui.tab->widget(t_index);
 }
 
@@ -160,7 +160,7 @@ void asclepios::gui::TabWidget::dropEvent(QDropEvent* event)
 		return;
 	}
 	auto const [series, image] = getDropData(data);
-	if (!series || ! image)
+	if (!series || !image)
 	{
 		return;
 	}
@@ -180,14 +180,14 @@ void asclepios::gui::TabWidget::populateWidget(core::Series* t_series, core::Ima
 	widget->setImage(t_image);
 	auto* const study = t_series->getParentObject();
 	widget->setIndexes(study->getParentObject()->getIndex(),
-	                   study->getIndex(), t_series->getIndex(),
-	                   t_image->getIndex());
+		study->getIndex(), t_series->getIndex(),
+		t_image->getIndex());
 	widget->setIsImageLoaded(true);
 	widget->render();
 	if (!m_isActive)
 	{
 		auto* ev = new QFocusEvent(QEvent::FocusIn,
-		                           Qt::FocusReason::MouseFocusReason);
+			Qt::FocusReason::MouseFocusReason);
 		focusInEvent(ev);
 		delete ev;
 	}
@@ -209,6 +209,6 @@ bool asclepios::gui::TabWidget::canCreateWidgetMPR3D() const
 {
 	auto* const series = m_tabbedWidget->getSeries();
 	return m_tabbedWidget->getImage() &&
-	(series->getSinlgeFrameImages().size() > 2
-		|| !series->getMultiFrameImages().empty());
+		(series->getSinlgeFrameImages().size() > 2
+			|| !series->getMultiFrameImages().empty());
 }

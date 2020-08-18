@@ -23,49 +23,7 @@
    <string>gui</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QMenuBar
-{
-	background-color:  #121212;
-	color : white;
-}
-
-QMenu
-{
-	background-color:#2a2a2c;
-	color : white;
-}
-
-#toolBarThumbnails 
-{
-	 background-color:  #121212;
-}
-
-#toolBarButtons
-{
-	 background-color:  #121212;
-	 border: 0px ;
-	 margin:5px;
-}
-
-#toolBarImageTransf
-{
-	background-color:  #121212;
-}
-
-QMenuBar::item:selected,
-QMenu::item:selected
-{
-	border-style: none;
-	background-color:  rgba(128, 128, 128, 0.2);
-}
-
-QMenuBar::item:pressed,
-QMenu::item:pressed
-{
-	border-style: none;
-	background-color:  rgba(128, 128, 128, 0.3);
-}
-</string>
+   <string notr="true"/>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>

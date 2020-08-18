@@ -169,15 +169,8 @@ void asclepios::gui::vtkResliceWidgetRepresentation::rotate(const double t_angle
 void asclepios::gui::vtkResliceWidgetRepresentation::setPlane(const int t_plane)
 {
 	m_plane = t_plane;
-	double verticalColor[3];
-	double horizontalColor[3];
-
-	horizontalColor[0] = 255;
-	horizontalColor[1] = t_plane == 0 || t_plane == 1 ? 255 : 0;
-	horizontalColor[2] = 0;
-	verticalColor[0] = t_plane == 1 || t_plane == 2 ? 0 : 255;
-	verticalColor[1] = 0;
-	verticalColor[2] = t_plane == 1 || t_plane == 2 ? 255 : 0;
+	double verticalColor[3] = {3, 218, 198};
+	double horizontalColor[3] = {3, 218, 198};
 	if (m_cursorActor)
 	{
 		m_cursorActor->createColors(verticalColor, horizontalColor);
