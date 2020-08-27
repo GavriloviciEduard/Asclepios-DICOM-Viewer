@@ -58,6 +58,6 @@ Asclepios DICOM Viewer provides state of the art post-processing techniques, suc
 # Libraries links
 - [Qt](https://www.qt.io/)
 - [Visualization Toolkit - VTK](https://vtk.org/)
-- [Imebra: DICOM C++ Library](https://imebra.com/)
+- [DCMTK - DICOM Toolkit](https://dicom.offis.de/dcmtk.php.en)
 - [DICOM for VTK](http://dgobbi.github.io/vtk-dicom/)
 - [Qt-Nice-Frameless-Window](https://github.com/Bringer-of-Light/Qt-Nice-Frameless-Window)
