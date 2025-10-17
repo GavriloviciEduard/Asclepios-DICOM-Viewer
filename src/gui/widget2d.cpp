@@ -1233,6 +1233,7 @@ void asclepios::gui::Widget2D::onRenderFinished()
                                 std::stoi(m_series->getNumber()));
                 connectScroll();
                 m_scroll->setVisible(m_scroll->maximum());
+                m_isImageLoaded = true;
                 m_tabWidget->setAcceptDrops(true);
                 m_future = {};
                 disconnect(this, &Widget2D::imageReaderInitialized,
